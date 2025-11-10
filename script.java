@@ -77,12 +77,6 @@ const currentTheme = localStorage.getItem('theme') || 'dark';
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     
-    // Ícone da lâmpada - 💡 acesa para light, 🔦 apagada para dark
-    themeBtn.innerHTML = theme === 'light' ? '💡' : '🔦';
-    themeBtn.setAttribute('title', theme === 'light' ? 'Modo Claro' : 'Modo Escuro');
-    
-    localStorage.setItem('theme', theme);
-    
     // Atualizar meta theme-color para mobile
     const themeColor = theme === 'light' ? '#f5f2e9' : '#07060a';
     let metaThemeColor = document.querySelector('meta[name="theme-color"]');
@@ -317,4 +311,5 @@ if ('serviceWorker' in navigator && isMobile) {
             .then(registration => console.log('SW registered: ', registration))
             .catch(registrationError => console.log('SW registration failed: ', registrationError));
     });
+
 }
