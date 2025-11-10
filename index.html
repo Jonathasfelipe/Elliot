@@ -346,19 +346,45 @@
           </div>
         </article>
 
-        <!-- Seção de Vídeos Futuros -->
-        <section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2>Reflexões em Vídeo</h2>
-          <p class="meta">(Em breve - conteúdos visuais complementares)</p>
-          
-          <div class="video-placeholder">
-            <div style="text-align: center; padding: 3rem; background: var(--glass); border-radius: 8px;">
-              <p style="font-size: 3rem; margin: 0;">🎬</p>
-              <p style="color: var(--muted);">Espaço para futuras produções em vídeo</p>
-              <p style="font-size: 0.9rem; color: var(--muted);">Baseadas nos ensaios deste projeto</p>
-            </div>
-          </div>
-        </section>
+        <!-- Seção de Vídeos -->
+<section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+  <h2>Reflexões em Vídeo</h2>
+  <p class="meta">Conteúdo visual complementar aos ensaios</p>
+  
+  <div class="video-container" style="margin: 2rem 0;">
+    <!-- Seu vídeo do YouTube -->
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <iframe 
+        src="https://www.youtube.com/embed/rnmLmbq19Nw" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+    
+    <div style="margin-top: 1rem; text-align: center;">
+      <p style="color: var(--muted); font-size: 0.9rem;">
+        🎥 <strong>Reflexão sobre Tecnologia e Espiritualidade</strong><br>
+        Uma conversa sobre as intersecções entre inovação e sabedoria ancestral
+      </p>
+    </div>
+  </div>
+
+  <!-- Espaço para futuros vídeos -->
+  <div style="margin-top: 3rem;">
+    <h3 style="color: var(--muted); font-size: 1.1rem;">Próximos Vídeos</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+      <div style="background: var(--glass); padding: 2rem; border-radius: 8px; text-align: center;">
+        <p style="font-size: 2rem; margin: 0;">🎬</p>
+        <p style="color: var(--muted); font-size: 0.8rem;">Em breve</p>
+      </div>
+      <div style="background: var(--glass); padding: 2rem; border-radius: 8px; text-align: center;">
+        <p style="font-size: 2rem; margin: 0;">🎬</p>
+        <p style="color: var(--muted); font-size: 0.8rem;">Em breve</p>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- ==================== -->
         <!-- SEÇÃO: SOBRE -->
@@ -487,4 +513,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
