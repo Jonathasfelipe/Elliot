@@ -1,0 +1,2118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elliot — A Jornada dos Jogos: Dos Ossos aos Bytes</title>
+  <meta name="description" content="Uma narrativa épica sobre como os jogos evoluíram de simples passatempos para complexos sistemas de significado, cultura e transformação pessoal." />
+  <meta property="og:title" content="Elliot — A Jornada dos Jogos" />
+  <meta property="og:description" content="Dos ossos aos bytes: como os jogos se tornaram espelhos da condição humana e ferramentas de transformação." />
+  <meta property="og:type" content="website" />
+  <meta name="keywords" content="jogos, videogames, história dos games, filosofia dos jogos, cultura gamer, evolução dos games">
+  <meta name="author" content="Jonathas Felipe">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ESTILOS BASE IDÊNTICOS */
+    :root {
+      --bg: #07060a;
+      --panel: #0f1720;
+      --muted: #9aa4b2;
+      --accent: #e6c07b;
+      --glass: rgba(255,255,255,0.03);
+      --max-width: 1000px;
+      --book-pad: 1rem;
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f2e9;
+      --panel: #ffffff;
+      --muted: #6b7280;
+      --accent: #8b5cf6;
+      --text: #1f2937;
+      --glass: rgba(0,0,0,0.03);
+    }
+
+    * { 
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body { 
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at center, rgba(20,24,30,1) 0%, rgba(7,6,10,1) 60%);
+      color: #eef2f6;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: background 0.3s ease;
+      min-height: 100vh;
+    }
+
+    [data-theme="light"] body {
+      background: radial-gradient(ellipse at center, #e2e8f0 0%, #f5f2e9 60%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.04) 0.6px, transparent 0.7px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.03) 0.5px, transparent 0.6px);
+      background-size: 150px 150px, 200px 200px, 120px 120px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.7;
+      animation: drift 120s linear infinite;
+      mix-blend-mode: screen;
+    }
+
+    [data-theme="light"] body::before {
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 70% 40%, rgba(0,0,0,0.04) 0.6px, transparent 0.7px),
+        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.03) 0.5px, transparent 0.6px);
+      mix-blend-mode: multiply;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-150px); }
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #ffd488);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(230, 192, 123, 0.5);
+    }
+
+    .top-btn {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #111;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(230, 192, 123, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      touch-action: manipulation;
+    }
+
+    .top-btn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .top-btn:active {
+      transform: scale(0.95);
+    }
+
+    .theme-switcher {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+    }
+
+    .theme-btn {
+      background: var(--glass);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .theme-btn:hover {
+      background: var(--accent);
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(230, 192, 123, 0.3);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.95);
+    }
+
+    .book-wrap {
+      width: 100%;
+      max-width: var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+      position: relative;
+      padding: 0.75rem;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      animation: contentFade 1s ease 0.5s forwards;
+      margin-top: 0;
+    }
+
+    [data-theme="light"] .book-wrap {
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    @keyframes contentFade {
+      to { opacity: 1; }
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      min-height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #ffd488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-weight: 700;
+      font-family: 'Libre Baskerville', serif;
+      box-shadow: 0 4px 12px rgba(230,192,123,0.15);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    .subtitle { 
+      font-size: 0.8rem; 
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      order: 3;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .main-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .main-nav a:hover,
+    .main-nav a:active {
+      color: var(--accent);
+      background: rgba(230, 192, 123, 0.1);
+      border-color: var(--accent);
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    main {
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius: 8px;
+      order: 1;
+    }
+
+    [data-theme="light"] main {
+      background: linear-gradient(180deg, rgba(0,0,0,0.015), rgba(0,0,0,0.01));
+    }
+
+    article {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+      margin-bottom: 2.5rem;
+      padding: 0;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    article:nth-child(1) { animation-delay: 0.1s; }
+    article:nth-child(2) { animation-delay: 0.2s; }
+    article:nth-child(3) { animation-delay: 0.3s; }
+    article:nth-child(4) { animation-delay: 0.4s; }
+    article:nth-child(5) { animation-delay: 0.5s; }
+    article:nth-child(6) { animation-delay: 0.6s; }
+
+    article h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.4rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.3;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p { 
+      margin: 0 0 1rem; 
+      line-height: 1.6;
+      font-size: 0.95rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    ul, ol {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      line-height: 1.5;
+    }
+
+    mark {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #f1d411;
+      padding: 2px 4px;
+      border-radius: 4px;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+      font-weight: 600;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    [data-theme="light"] mark {
+      background-color: rgba(139, 92, 246, 0.15);
+      color: #7c3aed;
+      text-shadow: none;
+    }
+
+    .blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1rem;
+      background: var(--glass);
+      border-radius: 0 8px 8px 0;
+      font-family: 'Libre Baskerville', serif;
+      line-height: 1.5;
+    }
+
+    aside {
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+      border-radius: 8px;
+      order: 2;
+      position: static;
+      margin-top: 1rem;
+    }
+
+    [data-theme="light"] aside {
+      background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.008));
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+    }
+
+    .toc li { 
+      margin: 0.5rem 0; 
+      padding-left: 0.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .toc li:hover {
+      border-left-color: var(--accent);
+    }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+      display: block;
+      padding: 0.25rem 0;
+      touch-action: manipulation;
+    }
+
+    .toc a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+    }
+
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: var(--glass);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      width: 100%;
+      touch-action: manipulation;
+    }
+
+    .cta:active {
+      transform: scale(0.98);
+      background: var(--accent);
+      color: #111;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--glass);
+      margin-top: 2rem;
+      order: 3;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin: 0 0.25rem;
+      display: inline-block;
+      padding: 0.25rem;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* ESTILOS ESPECÍFICOS PARA JOGOS */
+    .part-divider {
+      text-align: center;
+      margin: 3rem 0;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(230, 192, 123, 0.1), transparent);
+      border-radius: 12px;
+      border: 1px solid rgba(230, 192, 123, 0.2);
+    }
+
+    .part-divider h3 {
+      color: var(--accent);
+      margin: 0 0 0.5rem;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .era-context {
+      background: rgba(230, 192, 123, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .era-context h4 {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+    }
+
+    .gaming-timeline {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      margin: 2rem 0;
+      scrollbar-width: thin;
+    }
+
+    .era {
+      flex: 0 0 auto;
+      width: 140px;
+      text-align: center;
+      padding: 1rem;
+      background: var(--glass);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .era-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .era h4 {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .era p {
+      font-size: 0.8rem;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .console-generations {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .gen-card {
+      background: var(--glass);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .gen-card h5 {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .philosophy-breakdown {
+      background: rgba(139, 92, 246, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #8b5cf6;
+    }
+
+    .insight-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+
+    .insight-card h5 {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+    }
+
+    .genre-reflection {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .reflection-card {
+      background: var(--glass);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .reflection-card h5 {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+    }
+
+    .future-vision {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .vision-card {
+      background: var(--glass);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    .vision-card h5 {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+    }
+
+    .pixel-art {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+
+    .transition-note {
+      background: rgba(139, 92, 246, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-style: italic;
+      border-left: 3px solid #8b5cf6;
+    }
+
+    /* NOVOS ESTILOS ADICIONADOS */
+
+    /* Seção de Notícias e Lançamentos */
+    .news-section {
+      margin: 3rem 0;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .news-card {
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .news-card h4 {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .news-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .news-tag {
+      background: rgba(230, 192, 123, 0.2);
+      color: var(--accent);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* Tópicos de Discussão */
+    .topics-section {
+      margin: 3rem 0;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .topic-card {
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .topic-card h4 {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+
+    .topic-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .topic-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.8rem;
+    }
+
+    .topic-btn:hover {
+      background: var(--accent);
+      color: #111;
+    }
+
+    /* Sistema de Recomendações */
+    .recommendations-section {
+      margin: 3rem 0;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .rec-card {
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .rec-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .rec-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #ffd488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .rec-content h4 {
+      margin: 0 0 0.25rem;
+      color: var(--accent);
+    }
+
+    .rec-content p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .rec-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: rgba(230, 192, 123, 0.1);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .rec-link:hover {
+      background: var(--accent);
+      color: #111;
+    }
+
+    /* Elementos Interativos */
+    .interactive-section {
+      margin: 3rem 0;
+    }
+
+    .quiz-container {
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .quiz-question {
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      padding: 1rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-option:hover {
+      background: rgba(230, 192, 123, 0.1);
+      border-color: var(--accent);
+    }
+
+    .quiz-option.selected {
+      background: rgba(230, 192, 123, 0.2);
+      border-color: var(--accent);
+    }
+
+    .quiz-result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      display: none;
+    }
+
+    .quiz-result.show {
+      display: block;
+    }
+
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .memory-card {
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .memory-card.flipped {
+      background: var(--accent);
+      color: #111;
+    }
+
+    /* Elementos de Destaque */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(230, 192, 123, 0.1), rgba(139, 92, 246, 0.1));
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(230, 192, 123, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: "✨";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .highlight-box h3 {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    /* Newsletter */
+    .newsletter-section {
+      background: linear-gradient(135deg, rgba(230, 192, 123, 0.1), rgba(139, 92, 246, 0.1));
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 3rem 0;
+      text-align: center;
+      border: 1px solid rgba(230, 192, 123, 0.2);
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-input {
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-family: inherit;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .newsletter-btn {
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #111;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(230, 192, 123, 0.3);
+    }
+
+    @media (min-width: 769px) {
+      body {
+        padding: 2rem 1rem;
+      }
+      
+      .book-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+        gap: 2rem;
+      }
+      
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+      }
+      
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: auto;
+      }
+      
+      .brand {
+        justify-content: flex-start;
+        text-align: left;
+      }
+      
+      h1 {
+        text-align: left;
+      }
+      
+      .subtitle {
+        text-align: left;
+      }
+      
+      .theme-switcher {
+        position: static;
+        margin-left: auto;
+      }
+      
+      .main-nav {
+        order: 0;
+        width: auto;
+        margin-top: 0;
+        margin-left: 2rem;
+        justify-content: flex-end;
+      }
+      
+      aside {
+        position: sticky;
+        top: 2rem;
+        order: 2;
+      }
+      
+      main {
+        order: 1;
+      }
+      
+      .cta {
+        width: auto;
+      }
+      
+      .console-generations {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .genre-reflection {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .future-vision {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      /* NOVOS ESTILOS RESPONSIVOS */
+      .news-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .topics-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .rec-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .memory-game {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .newsletter-form {
+        flex-direction: row;
+      }
+
+      .newsletter-input {
+        flex: 1;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .book-wrap {
+        max-width: 1200px;
+      }
+      
+      .content-wrapper {
+        grid-template-columns: 1fr 350px;
+        gap: 3rem;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de Progresso -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="topBtn" class="top-btn" title="Voltar ao topo">↑</button>
+
+  <div class="book-wrap" role="document">
+    <header>
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>
+          <h1>Elliot — A Jornada dos Jogos</h1>
+          <div class="subtitle">Dos Ossos aos Bytes: A Evolução da Experiência Lúdica</div>
+        </div>
+      </div>
+      
+      <!-- NAVEGAÇÃO ENTRE PÁGINAS -->
+      <nav class="main-nav" aria-label="principal">
+        <a href="index.html">🏠 Blog Principal</a>
+        <a href="tecnologia.html">🔧 Tecnologia</a>
+        <a href="criancas.html">👶 Elliot Kids</a>
+        <a href="https://jonathasfelipe.github.io/HTML-CSS/">💻 Projetos</a>
+      </nav>
+      
+      <!-- Seletor de Tema -->
+      <div class="theme-switcher">
+        <button id="themeBtn" class="theme-btn" title="Mudar tema">🔦</button>
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+      <main>
+        <!-- Hero Section -->
+        <section id="hero" aria-labelledby="hero-title">
+          <div class="eyebrow">Narrativa Lúdica — Do Tabuleiro à Realidade Virtual</div>
+          <h2 id="hero-title">A Grande Jornada dos Jogos na História Humana</h2>
+          <p class="meta">por <strong>Jonathas Felipe</strong> · Série: <em>Os Espelhos do Divertimento</em></p>
+
+          <article>
+            <p>Esta não é apenas uma história sobre entretenimento. É uma narrativa sobre como os jogos se tornaram espelhos da condição humana, ferramentas de aprendizado e portais para realidades alternativas.</p>
+            <p>Dos primeiros dados de ossos aos mundos virtuais imersivos, cada era de jogos revela algo profundo sobre quem somos e quem aspiramos ser.</p>
+          </article>
+
+          <!-- Timeline dos Jogos -->
+          <div class="gaming-timeline">
+            <div class="era" data-year="3000BC">
+              <div class="era-icon">🎲</div>
+              <h4>Jogos Ancestrais</h4>
+              <p>3000 a.C.</p>
+            </div>
+            <div class="era" data-year="500BC">
+              <div class="era-icon">♟️</div>
+              <h4>Xadrez & Go</h4>
+              <p>500 a.C.</p>
+            </div>
+            <div class="era" data-year="1972">
+              <div class="era-icon">🕹️</div>
+              <h4>Era Arcade</h4>
+              <p>1972</p>
+            </div>
+            <div class="era" data-year="1985">
+              <div class="era-icon">📺</div>
+              <h4>8-bit Doméstico</h4>
+              <p>1985</p>
+            </div>
+            <div class="era" data-year="1994">
+              <div class="era-icon">🎨</div>
+              <h4>Era 32-bit</h4>
+              <p>1994</p>
+            </div>
+            <div class="era" data-year="2004">
+              <div class="era-icon">🌐</div>
+              <h4>Jogos Online</h4>
+              <p>2004</p>
+            </div>
+            <div class="era" data-year="2016">
+              <div class="era-icon">🥽</div>
+              <h4>Realidade Virtual</h4>
+              <p>2016</p>
+            </div>
+            <div class="era" data-year="2020">
+              <div class="era-icon">🤖</div>
+              <h4>IA Generativa</h4>
+              <p>2020+</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOVA SEÇÃO: NOTÍCIAS E LANÇAMENTOS -->
+        <section class="news-section" id="noticias">
+          <h2>📰 Notícias e Lançamentos do Mundo dos Games</h2>
+          <p>Fique por dentro das últimas novidades, lançamentos e tendências do universo gamer.</p>
+          
+          <div class="news-grid">
+            <div class="news-card">
+              <div class="news-meta">
+                <span class="news-tag">Lançamento</span>
+                <span>15 de Março, 2025</span>
+              </div>
+              <h4>Nova Geração de Consoles Anunciada</h4>
+              <p>A próxima geração de consoles promete revolucionar a experiência de jogo com gráficos fotorrealistas e IA integrada.</p>
+            </div>
+            
+            <div class="news-card">
+              <div class="news-meta">
+                <span class="news-tag">Tecnologia</span>
+                <span>10 de Março, 2025</span>
+              </div>
+              <h4>Realidade Virtual Acessível Chega ao Mercado</h4>
+              <p>Novos headsets de VR com preços acessíveis prometem popularizar a imersão em realidade virtual.</p>
+            </div>
+            
+            <div class="news-card">
+              <div class="news-meta">
+                <span class="news-tag">Indie</span>
+                <span>5 de Março, 2025</span>
+              </div>
+              <h4>Jogo Indie Brasileiro Ganha Prêmio Internacional</h4>
+              <p>"A Lenda do Cerrado" conquista prêmio de melhor narrativa em festival internacional de games independentes.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PARTE 1: AS ORIGENS ARCAICAS -->
+        <div class="part-divider">
+          <h3>PARTE 1: AS ORIGENS ARCAICAS</h3>
+          <p>Dos primeiros sistemas de significado aos jogos de estratégia milenares</p>
+        </div>
+
+        <!-- ERA 1: JOGOS ANCESTRAIS -->
+        <article id="jogos-ancestrais">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Era:</h4>
+            <p><strong>Por que começar aqui?</strong> Porque os primeiros jogos não eram apenas diversão - eram <mark>ferramentas de aprendizado, socialização e transmissão cultural</mark>. Eles preparavam as pessoas para a vida real.</p>
+            <p style="margin: 0.5rem 0; font-style: italic;">
+              "Imagine crianças da Idade da Pedra jogando com seixos coloridos - elas não estavam apenas se divertindo, mas aprendendo contagem, estratégia e cooperação."
+            </p>
+          </div>
+          
+          <h2>🎲 Jogos Ancestrais: Os Primeiros Sistemas de Significado (3000 a.C. - 500 a.C.)</h2>
+          
+          <p>Antes dos dados, antes dos tabuleiros - os primeiros jogos emergiram como extensões naturais da vida humana. O <strong>Senet</strong> no Egito Antigo, o <strong>Real Ur</strong> na Mesopotâmia, o <strong>Go</strong> na China - cada um destes jogos era mais do que passatempo.</p>
+          
+          <div class="console-generations">
+            <div class="gen-card">
+              <h5>🏺 Senet Egípcio</h5>
+              <p>Não era apenas um jogo - era uma representação da jornada da alma através do submundo. Cada casa no tabuleiro representava um desafio espiritual.</p>
+            </div>
+            <div class="gen-card">
+              <h5>🎲 Dados de Ossos</h5>
+              <p>Os primeiros dados eram feitos de ossos de animais. O acaso já fascinava nossos ancestrais, misturando destino e habilidade.</p>
+            </div>
+          </div>
+          
+          <p>Estes jogos serviam como <strong>microcosmos</strong> - mundos em miniatura onde as pessoas podiam experimentar com conceitos abstratos como estratégia, risco e recompensa de forma segura.</p>
+          
+          <div class="blockquote">
+            "Os jogos ancestrais eram a primeira realidade virtual da humanidade - espaços seguros onde poderíamos falhar sem consequências reais, aprender sem perigo, e explorar possibilidades além do cotidiano."
+          </div>
+          
+          <p>Esta era estabeleceu o propósito fundamental dos jogos: <strong>espaços protegidos para experimentação e aprendizado</strong>.</p>
+        </article>
+
+        <!-- NOVA SEÇÃO: TÓPICOS DE DISCUSSÃO -->
+        <section class="topics-section" id="topicos">
+          <h2>💬 Tópicos para Discussão</h2>
+          <p>Participe dessas conversas sobre temas relevantes no mundo dos games.</p>
+          
+          <div class="topics-grid">
+            <div class="topic-card">
+              <h4>Os Jogos Estão Perdendo Sua Essência Lúdica?</h4>
+              <p>Com a crescente monetização e foco em gráficos, estamos nos esquecendo do que faz um jogo ser divertido?</p>
+              <div class="topic-actions">
+                <button class="topic-btn">💬 24 Comentários</button>
+                <button class="topic-btn">👍 42 Curtidas</button>
+              </div>
+            </div>
+            
+            <div class="topic-card">
+              <h4>O Futuro dos Jogos Indie</h4>
+              <p>Com ferramentas mais acessíveis, estamos prestes a ver uma nova era dourada dos jogos independentes?</p>
+              <div class="topic-actions">
+                <button class="topic-btn">💬 18 Comentários</button>
+                <button class="topic-btn">👍 31 Curtidas</button>
+              </div>
+            </div>
+            
+            <div class="topic-card">
+              <h4>Jogos Como Ferramenta Educacional</h4>
+              <p>Como podemos usar melhor os jogos para ensinar habilidades importantes para a vida?</p>
+              <div class="topic-actions">
+                <button class="topic-btn">💬 15 Comentários</button>
+                <button class="topic-btn">👍 27 Curtidas</button>
+              </div>
+            </div>
+            
+            <div class="topic-card">
+              <h4>A Ética dos Microtransações</h4>
+              <p>Onde traçar a linha entre monetização justa e práticas predatórias nos jogos?</p>
+              <div class="topic-actions">
+                <button class="topic-btn">💬 32 Comentários</button>
+                <button class="topic-btn">👍 45 Curtidas</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ERA 2: XADREZ E GO -->
+        <article id="xadrez-go">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Era:</h4>
+            <p><strong>O nascimento da estratégia pura:</strong> Xadrez e Go representam duas filosofias opostas sobre conflito e controle que ecoariam através dos milênios.</p>
+          </div>
+          
+          <h2>♟️ Xadrez & Go: A Batalha da Estratégia Pura (500 a.C. - Presente)</h2>
+          
+          <p>Enquanto o Xadrez (originário da Índia como Chaturanga) e o Go (da China) evoluíam separadamente, eles encapsulavam visões fundamentalmente diferentes sobre guerra, poder e inteligência.</p>
+          
+          <div class="genre-reflection">
+            <div class="reflection-card">
+              <h5>♟️ Xadrez: A Batalha Centralizada</h5>
+              <p><strong>Filosofia:</strong> Hierarquia clara, peças com poderes diferentes, objetivo único (xeque-mate)</p>
+              <p><strong>Reflete:</strong> Sociedades feudais, comando centralizado, batalhas decisivas</p>
+            </div>
+            
+            <div class="reflection-card">
+              <h5>⚫ Go: A Guerra de Território</h5>
+              <p><strong>Filosofia:</strong> Todas as peças iguais, ênfase no território e influência, vitória por pontos</p>
+              <p><strong>Reflete:</strong> Guerras de desgaste, estratégia indireta, pensamento sistêmico</p>
+            </div>
+          </div>
+          
+          <p>Estes jogos se tornaram não apenas passatempos, mas <strong>ferramentas de treinamento mental</strong> para estrategistas, generais e líderes por séculos. Eles ensinavam paciência, antecipação e a aceitação elegante da derrota como oportunidade de aprendizado.</p>
+          
+          <div class="blockquote">
+            "Enquanto o Xadrez nos ensina a encontrar a jogada perfeita, o Go nos ensina a construir a posição perfeita. Um é sobre tática, o outro sobre estratégia - ambos essenciais para navegar a complexidade da vida."
+          </div>
+        </article>
+
+        <!-- NOVA SEÇÃO: INTERCONEXÃO ENTRE BLOGS -->
+        <section class="recommendations-section" id="interconexao">
+          <h2>🔗 Conexões com Outras Jornadas</h2>
+          <p>Descubra como a evolução dos jogos se conecta com outros temas explorados no Elliot.</p>
+          
+          <div class="rec-grid">
+            <div class="rec-card">
+              <div class="rec-header">
+                <div class="rec-icon">🔧</div>
+                <div class="rec-content">
+                  <h4>Tecnologia e Jogos</h4>
+                  <p>Como os avanços tecnológicos moldaram cada era dos videogames</p>
+                </div>
+              </div>
+              <a href="tecnologia.html" class="rec-link">Explorar Conexão</a>
+            </div>
+            
+            <div class="rec-card">
+              <div class="rec-header">
+                <div class="rec-icon">👶</div>
+                <div class="rec-content">
+                  <h4>Jogos e Desenvolvimento Infantil</h4>
+                  <p>Como os jogos influenciam o aprendizado e crescimento das crianças</p>
+                </div>
+              </div>
+              <a href="criancas.html" class="rec-link">Explorar Conexão</a>
+            </div>
+            
+            <div class="rec-card">
+              <div class="rec-header">
+                <div class="rec-icon">🧠</div>
+                <div class="rec-content">
+                  <h4>Psicologia dos Jogos</h4>
+                  <p>Por que nos envolvemos emocionalmente com mundos virtuais</p>
+                </div>
+              </div>
+              <a href="index.html" class="rec-link">Explorar Conexão</a>
+            </div>
+            
+            <div class="rec-card">
+              <div class="rec-header">
+                <div class="rec-icon">🎨</div>
+                <div class="rec-content">
+                  <h4>Arte e Design em Jogos</h4>
+                  <p>Como a estética dos jogos evoluiu ao longo das décadas</p>
+                </div>
+              </div>
+              <a href="index.html" class="rec-link">Explorar Conexão</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRANSITION -->
+        <div class="transition-note">
+          <p><strong>Transição:</strong> Por milênios, os jogos permaneceram analógicos, limitados pela física e geografia. Mas uma revolução tecnológica estava prestes a criar um novo tipo de espaço lúdico - um espaço feito não de madeira ou pedra, mas de elétrons e pixels...</p>
+        </div>
+
+        <!-- PARTE 2: A REVOLUÇÃO DOS VIDEOGAMES -->
+        <div class="part-divider">
+          <h3>PARTE 2: A REVOLUÇÃO DOS VIDEOGAMES</h3>
+          <p>Do arcade à sala de estar - quando os jogos se tornaram digitais</p>
+        </div>
+
+        <!-- ERA 3: ERA ARCADE -->
+        <article id="era-arcade">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Revolução:</h4>
+            <p><strong>O nascimento dos universos digitais:</strong> Pela primeira vez, os jogos não eram mais abstrações - eram <mark>mundos visíveis, sonoros e interativos</mark> que você podia habitar.</p>
+          </div>
+          
+          <h2>🕹️ A Era Arcade: O Nascimento dos Universos Digitais (1972-1985)</h2>
+          
+          <p>Quando <strong>Pong</strong> apareceu nos fliperamas em 1972, algo fundamental mudou. Pela primeira vez, as pessoas não estavam apenas manipulando peças em um tabuleiro - estavam <strong>interagindo com mundos virtuais</strong>.</p>
+          
+          <div class="console-generations">
+            <div class="gen-card">
+              <h5>🎵 A Experiência Sensorial</h5>
+              <p>Arcades eram templos multisensoriais - luzes piscantes, sons eletrônicos, controles físicos. Pela primeira vez, jogar era uma experiência corporal total.</p>
+            </div>
+            <div class="gen-card">
+              <h5>🏆 A Cultura da Pontuação</h5>
+              <p>As high scores criaram uma nova forma de status - sua habilidade ficava registrada publicamente, criando lendas locais e rivalidades saudáveis.</p>
+            </div>
+          </div>
+          
+          <p>De <strong>Space Invaders</strong> a <strong>Pac-Man</strong>, cada jogo de arcade era um microcosmos com suas próprias regras físicas. Pela primeira vez, as pessoas podiam experimentar ser piloto de naves espaciais, fantasma comedor de bolinhas, ou herói de pixels.</p>
+          
+          <div class="blockquote">
+            "Os arcades foram nossos primeiros portais consistentes para outras realidades. Em salas escuras e barulhentas, gerações inteiras descobriram que podiam ser mais do que eram no mundo real - podiam ser heróis, estrategistas, sobreviventes."
+          </div>
+        </article>
+
+        <!-- NOVA SEÇÃO: ELEMENTOS INTERATIVOS -->
+        <section class="interactive-section" id="interativo">
+          <h2>🎮 Elementos Interativos</h2>
+          <p>Teste seus conhecimentos e divirta-se com esses elementos interativos sobre a história dos games.</p>
+          
+          <div class="quiz-container">
+            <h4>Quiz: História dos Videogames</h4>
+            <div class="quiz-question">
+              <p>Qual foi o primeiro jogo de arcade comercialmente bem-sucedido?</p>
+              <div class="quiz-options">
+                <div class="quiz-option" data-correct="true">Pong</div>
+                <div class="quiz-option">Space Invaders</div>
+                <div class="quiz-option">Pac-Man</div>
+                <div class="quiz-option">Computer Space</div>
+              </div>
+            </div>
+            <button class="cta" id="checkAnswer">Verificar Resposta</button>
+            <div class="quiz-result" id="quizResult">
+              <p><strong>Resposta Correta!</strong> Pong, lançado em 1972 pela Atari, foi o primeiro jogo de arcade comercialmente bem-sucedido, marcando o início da indústria de videogames como a conhecemos.</p>
+            </div>
+          </div>
+          
+          <div class="highlight-box">
+            <h3>Jogo da Memória: Ícones dos Games</h3>
+            <p>Encontre os pares de ícones que marcaram a história dos videogames!</p>
+            <div class="memory-game" id="memoryGame">
+              <!-- Cards serão gerados via JavaScript -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ERA 4: CONSOLES DOMÉSTICOS -->
+        <article id="consoles-domesticos">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Revolução:</h4>
+            <p><strong>A democratização do entretenimento interativo:</strong> Quando os jogos saíram dos arcades e entraram nas salas de estar, eles se tornaram <mark>parte da vida cotidiana</mark>.</p>
+          </div>
+          
+          <h2>📺 Consoles Domésticos: A Democratização do Entretenimento (1985-1994)</h2>
+          
+          <p>O <strong>Nintendo Entertainment System (NES)</strong> não apenas salvou a indústria de games do crash de 1983 - ele redefiniu completamente o que significava jogar. Agora, aventuras épicas não exigiam fichas ou saídas de casa.</p>
+          
+          <div class="console-generations">
+            <div class="gen-card">
+              <h5>👑 A Revolução do 8-bit</h5>
+              <ul>
+                <li><strong>Super Mario Bros.</strong> - Nascimento da plataforma moderna</li>
+                <li><strong>The Legend of Zelda</strong> - Primeiro RPG de ação de mundo aberto</li>
+                <li><strong>Metroid</strong> - Gênero metroidvania e protagonismo feminino</li>
+              </ul>
+            </div>
+            <div class="gen-card">
+              <h5>🎮 A Filosofia do "Game Over"</h5>
+              <p>Jogos como <strong>Contra</strong> e <strong>Ninja Gaiden</strong> ensinaram uma geração inteira sobre persistência. Cada "Game Over" não era fracasso, mas convite para tentar novamente, mais sabiamente.</p>
+            </div>
+          </div>
+          
+          <p>Esta era viu os jogos se tornarem <strong>narrativas compartilhadas</strong>. Todo mundo na escola jogava os mesmos jogos, trocava segredos, descobria easter eggs juntos. Nasciam as primeiras comunidades gamer.</p>
+          
+          <div class="blockquote">
+            "O NES não vendia apenas um console - vendia a promessa de que qualquer criança comum podia se tornar herói. Mario era um encanador, Link começava sem equipamento - eram personagens com os quais poderíamos nos identificar."
+          </div>
+        </article>
+
+        <!-- PARTE 3: A ERA DA NARRATIVA -->
+        <div class="part-divider">
+          <h3>PARTE 3: A ERA DA NARRATIVA</h3>
+          <p>Quando os jogos aprenderam a contar histórias</p>
+        </div>
+
+        <!-- ERA 5: RPGS E JORNADAS -->
+        <article id="rpg-jornadas">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Era:</h4>
+            <p><strong>Jogos como literatura interativa:</strong> Pela primeira vez, os jogos não eram apenas sobre pontuação ou conclusão - eram sobre <mark>transformação pessoal através da jornada</mark>.</p>
+          </div>
+          
+          <h2>⚔️ RPGs: Quando os Jogos Viraram Literatura Interativa (1990-Presente)</h2>
+          
+          <p>Com a ascensão dos Role-Playing Games, os jogos transcenderam o entretenimento puro para se tornarem <strong>veículos para narrativas profundas e transformação pessoal</strong>.</p>
+          
+          <div class="philosophy-breakdown">
+            <h4>🧠 O Que Final Fantasy Nos Ensina Sobre Vida e Morte</h4>
+            
+            <div class="insight-card">
+              <h5>💔 A Beleza da Perda (FFVII)</h5>
+              <p>A morte de Aeris não era apenas um plot twist - era uma lição sobre luto e continuar em frente mesmo quando parte de você morre.</p>
+            </div>
+            
+            <div class="insight-card">
+              <h5>⚖️ As Consequências das Escolhas (The Witcher)</h5>
+              <p>The Witcher nos mostrou que o mundo raramente tem heróis puros ou vilões puros - apenas pessoas fazendo escolhas difíceis.</p>
+            </div>
+            
+            <div class="insight-card">
+              <h5>🌱 Crescimento Através do Conflito (Chrono Trigger)</h5>
+              <p>Cada personagem em Chrono Trigger começa com falhas e medos, e cresce através das aventuras - assim como nós na vida real.</p>
+            </div>
+          </div>
+          
+          <p>Estes jogos nos permitiam <strong>viver outras vidas</strong>, tomar decisões morais complexas, e experimentar consequências em um espaço seguro. Eles se tornaram ferramentas poderosas para desenvolvimento de empatia e compreensão emocional.</p>
+        </article>
+
+        <!-- NOVA SEÇÃO: NEWSLETTER -->
+        <section class="newsletter-section" id="newsletter">
+          <h2>📧 Fique Por Dentro das Novidades</h2>
+          <p>Assine nossa newsletter para receber atualizações sobre novos artigos, lançamentos de jogos e conteúdos exclusivos.</p>
+          
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+            <button type="submit" class="newsletter-btn">Assinar Newsletter</button>
+          </form>
+          <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--muted);">Respeitamos sua privacidade. Você pode cancelar a qualquer momento.</p>
+        </section>
+
+        <!-- ERA 6: JOGOS INDIE -->
+        <article id="jogos-indie">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Revolução:</h4>
+            <p><strong>Arte, autoria e emoção:</strong> Desenvolvedores independentes redescobriram que jogos podiam ser <mark>expressão pessoal pura</mark>, não apenas produtos comerciais.</p>
+          </div>
+          
+          <h2>🎨 A Revolução Indie: Arte, Autoria e Emoção (2008-Presente)</h2>
+          
+          <p>Enquanto a indústria AAA focava em gráficos realistas e orçamentos bilionários, desenvolvedores independentes lembraram a todos que <strong>jogos são arte</strong> - e que a arte vem da autenticidade, não do orçamento.</p>
+          
+          <div class="genre-reflection">
+            <div class="reflection-card">
+              <h5>😢 Jogos Como Terapia (Celeste)</h5>
+              <p>Celeste não esconde que é uma metáfora para ansiedade e depressão. Cada salto impossível representa superar um obstáculo mental.</p>
+            </div>
+            
+            <div class="reflection-card">
+              <h5>🎵 Experiências Sensoriais (Journey)</h5>
+              <p>Journey prova que jogos podem ser meditações interativas sobre vida, morte e conexão humana - tudo sem uma palavra de diálogo.</p>
+            </div>
+          </div>
+          
+          <p>Esta revolução mostrou que jogos podiam tratar dos temas mais profundos da condição humana - <strong>solidão em Stray, luto em Gris, paternidade em The Last of Us</strong>. Eles se tornaram espelhos ainda mais claros de quem somos.</p>
+          
+          <div class="blockquote">
+            "Os jogos indie nos lembraram que a interatividade é a linguagem mais poderosa que temos para contar histórias. Quando não apenas assistimos, mas vivemos uma experiência, ela se torna parte de nós de uma forma que nenhum outro meio pode igualar."
+          </div>
+        </article>
+
+        <!-- PARTE 4: JOGOS COMO ESPELHOS -->
+        <div class="part-divider">
+          <h3>PARTE 4: JOGOS COMO ESPELHOS</h3>
+          <p>Como diferentes gêneros refletem aspectos da condição humana</p>
+        </div>
+
+        <!-- SEÇÃO: JOGOS ESPELHOS -->
+        <article id="jogos-espelhos">
+          <h2>🪞 Jogos Como Espelhos da Condição Humana</h2>
+          
+          <p>Diferentes gêneros de jogos funcionam como lentes diferentes através das quais podemos examinar aspectos específicos da experiência humana:</p>
+          
+          <div class="genre-reflection">
+            <div class="reflection-card">
+              <h5>🎲 RPGs: A Jornada do Herói</h5>
+              <p>Todo RPG é uma versão interativa da Jornada do Herói de Campbell. Partimos do ordinário (humilde fazendeiro/personagem nível 1) em direção ao extraordinário (salvador do mundo), passando por provações que nos transformam.</p>
+              <p><strong>Reflete:</strong> Nossa busca por propósito e crescimento pessoal</p>
+            </div>
+            
+            <div class="reflection-card">
+              <h5>🔫 FPS: O Mito do Individualismo</h5>
+              <p>Os shooters refletem nossa cultura de ação individual e resolução violenta de conflitos. Mas os multiplayer mostram que mesmo heróis solitários precisam de equipe para vencer desafios maiores.</p>
+              <p><strong>Reflete:</strong> Nossa relação com conflito, competição e cooperação</p>
+            </div>
+            
+            <div class="reflection-card">
+              <h5>🏗️ Simuladores: O Prazer dos Sistemas</h5>
+              <p>De SimCity a Factorio, estes jogos atendem nosso desejo profundo de criar ordem a partir do caos, entender sistemas complexos e ver nossos esforços resultarem em estruturas funcionais.</p>
+              <p><strong>Reflete:</strong> Nossa necessidade de agência e criação</p>
+            </div>
+            
+            <div class="reflection-card">
+              <h5>🎭 Jogos de Quebra-cabeça: A Beleza da Resolução</h5>
+              <p>Portal, The Witness e outros jogos de puzzle exploram nosso prazer fundamental em resolver problemas, ver padrões e experimentar o momento "Eureka!" da compreensão.</p>
+              <p><strong>Reflete:</strong> Nossa busca por entendimento e clareza</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SEÇÃO: PSICOLOGIA DOS CHEFES -->
+        <article id="psicologia-chefes">
+          <h2>🐉 A Psicologia Por Trás dos Chefes de Fase</h2>
+          
+          <p>Os chefes - esses desafios finais que bloqueiam nosso progresso - são muito mais do que obstáculos arbitrários. Eles encapsulam lições profundas sobre superação pessoal:</p>
+          
+          <div class="philosophy-breakdown">
+            <h4>💀 O Que Dark Souls Nos Ensina Sobre Resiliência</h4>
+            
+            <div class="insight-card">
+              <h5>📈 Padrões Previsíveis</h5>
+              <p>Como a vida, os chefes em Dark Souls nos ensinam que mesmo o caos aparente tem padrões discerníveis. A chave não é força bruta, mas observação e aprendizado.</p>
+            </div>
+            
+            <div class="insight-card">
+              <h5>🎯 Fracasso Como Aprendizado</h5>
+              <p>Cada morte não é punição, mas lição. O jogo nos ensina que o fracasso é apenas informação - dados sobre o que não funciona, nos aproximando do que funciona.</p>
+            </div>
+            
+            <div class="insight-card">
+              <h5>🏆 Vitória Como Transformação</h5>
+              <p>Derrotar um chefe em Dark Souls não é sobre ganhar um troféu, mas sobre tornar-se a pessoa capaz de derrotá-lo. A verdadeira vitória é interna.</p>
+            </div>
+          </div>
+          
+          <p>Estes desafios nos preparam para os obstáculos da vida real, ensinando <strong>persistência, adaptabilidade e a coragem de tentar novamente após o fracasso</strong>.</p>
+        </article>
+
+        <!-- PARTE 5: O FUTURO LÚDICO -->
+        <div class="part-divider">
+          <h3>PARTE 5: O FUTURO LÚDICO</h3>
+          <p>Para onde os jogos estão nos levando?</p>
+        </div>
+
+        <!-- ERA 7: REALIDADE VIRTUAL -->
+        <article id="realidade-virtual">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Revolução:</h4>
+            <p><strong>A dissolução das fronteiras:</strong> Pela primeira vez, o jogo deixa de ser algo que você assiste para se tornar algo que você <mark>habita completamente</mark>.</p>
+          </div>
+          
+          <h2>🥽 Realidade Virtual: A Dissolução das Fronteiras (2016-Presente)</h2>
+          
+          <p>A RV representa talvez a mudança mais radical desde a invenção dos próprios videogames. Agora, não estamos mais controlando um personagem na tela - <strong>nós somos o personagem</strong>.</p>
+          
+          <div class="future-vision">
+            <div class="vision-card">
+              <h5>🎯 Presença Total</h5>
+              <p>Em VR, sua mente realmente acredita que está no mundo do jogo. Esta presença psicológica cria conexões emocionais impossíveis em outras mídias.</p>
+            </div>
+            
+            <div class="vision-card">
+              <h5>💪 Aprendizado Corporal</h5>
+              <p>Jogos como Beat Saber e Superhot VR ensinam coordenação, reflexos e consciência espacial de forma que controles tradicionais nunca conseguiriam.</p>
+            </div>
+            
+            <div class="vision-card">
+              <h5>😨 Emoções Autênticas</h5>
+              <p>O medo em Resident Evil VR é real, não performático. A conexão com personagens em Half-Life: Alyx é visceral, não intelectual.</p>
+            </div>
+          </div>
+          
+          <div class="blockquote">
+            "A Realidade Virtual não é uma evolução dos jogos - é uma revolução na própria natureza da experiência interativa. Pela primeira vez, a distância entre 'jogador' e 'jogo' desaparece completamente."
+          </div>
+        </article>
+
+        <!-- ERA 8: JOGOS TRANSFORMATIVOS -->
+        <article id="jogos-transformativos">
+          <div class="era-context">
+            <h4>🎯 O Contexto Desta Era:</h4>
+            <p><strong>Além do entretenimento:</strong> Estamos entrando em uma era onde os jogos estão se tornando <mark>ferramentas ativas para educação, terapia e crescimento pessoal</mark>.</p>
+          </div>
+          
+          <h2>🌱 Jogos que Transformam: Além do Entretenimento (Presente-Futuro)</h2>
+          
+          <p>Os jogos estão transcendendo sua função tradicional de entretenimento para se tornarem <strong>ferramentas poderosas de transformação positiva</strong>:</p>
+          
+          <div class="future-vision">
+            <div class="vision-card">
+              <h5>🏥 Jogos Terapêuticos</h5>
+              <p>Realidade virtual está sendo usada para tratar fobias, PTSD e ansiedade. Jogos como SPARX ajudam jovens com depressão.</p>
+            </div>
+            
+            <div class="vision-card">
+              <h5>🎓 Educação Lúdica</h5>
+              <p>Salas de aula onde aprender história, ciência ou matemática é uma aventura épica. Minecraft Education já mostra o potencial.</p>
+            </div>
+            
+            <div class="vision-card">
+              <h5>🌍 Simulações Sociais</h5>
+              <p>Jogos como Civilization ou Democracy nos ajudam a entender sistemas complexos como política, economia e ecologia.</p>
+            </div>
+          </div>
+          
+          <p>Estamos testemunhando o nascimento de jogos projetados especificamente para <strong>melhorar habilidades cognitivas, desenvolver empatia, ensinar resiliência emocional e até facilitar cura psicológica</strong>.</p>
+          
+          <div class="blockquote">
+            "O futuro dos jogos não é sobre gráficos mais realistas ou mundos maiores - é sobre experiências mais significativas que nos deixam melhores do que quando começamos a jogar."
+          </div>
+        </article>
+
+        <!-- CONCLUSÃO -->
+        <section id="conclusao" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2 style="text-align: center; color: var(--accent);">🎯 O Que Aprendemos Nesta Jornada?</h2>
+          
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem;">
+            <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px;">
+              <h4 style="margin-top: 0; color: var(--accent);">🔄 O Ciclo Eterno</h4>
+              <p>Em cada era de jogos, vemos o mesmo padrão:</p>
+              <ul>
+                <li>Criamos espaços seguros para experimentação</li>
+                <li>Estes espaços nos transformam</li>
+                <li>Nossa transformação nos leva a criar novos espaços</li>
+                <li>O ciclo continua...</li>
+              </ul>
+            </div>
+            
+            <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px;">
+              <h4 style="margin-top: 0; color: var(--accent);">💫 Por Que Jogamos?</h4>
+              <p>Do xamã ao streamer, buscamos nos jogos:</p>
+              <ul>
+                <li>Significado além do cotidiano</li>
+                <li>Conexão com outros através de experiências compartilhadas</li>
+                <li>Crescimento através de desafios superados</li>
+                <li>Beleza em sistemas elegantes e narrativas comoventes</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="blockquote" style="text-align: center; margin-top: 2rem;">
+            "Os jogos não são escape da realidade - são ferramentas para entendê-la melhor. Cada desafio superado em um jogo nos prepara para os desafios da vida, cada história vivida expande nossa empatia, cada sistema compreendido aguça nossa mente para a complexidade do mundo real."
+          </div>
+          
+          <div style="text-align: center; margin-top: 2rem;">
+            <p><strong>A jornada continua... 🎮✨</strong></p>
+          </div>
+        </section>
+
+      </main>
+
+      <aside>
+        <div style="margin-top:2rem">
+          <div class="meta">💡 Como Navegar Esta Jornada</div>
+          <p style="font-size:0.9rem; color:var(--muted);">
+            <strong>Mais que uma história de games.</strong> Cada era revela:
+          </p>
+          <ul style="font-size:0.8rem; color:var(--muted); padding-left: 1rem;">
+            <li>🎯 <strong>Contexto</strong> - Por que estes jogos importam</li>
+            <li>🪞 <strong>Reflexão</strong> - O que revelam sobre nós</li>
+            <li>🔗 <strong>Conexões</strong> - Links entre eras diferentes</li>
+            <li>🌱 <strong>Legado</strong> - Como influenciam o presente</li>
+          </ul>
+        </div>
+
+        <div class="meta">🎮 Linha do Tempo dos Jogos</div>
+        <ul class="toc">
+          <li><a href="#jogos-ancestrais">🎲 Jogos Ancestrais</a></li>
+          <li><a href="#xadrez-go">♟️ Xadrez & Go</a></li>
+          <li><a href="#era-arcade">🕹️ Era Arcade</a></li>
+          <li><a href="#consoles-domesticos">📺 Consoles Domésticos</a></li>
+          <li><a href="#rpg-jornadas">⚔️ A Era dos RPGs</a></li>
+          <li><a href="#jogos-indie">🎨 Revolução Indie</a></li>
+          <li><a href="#jogos-espelhos">🪞 Jogos Como Espelhos</a></li>
+          <li><a href="#psicologia-chefes">🐉 Psicologia dos Chefes</a></li>
+          <li><a href="#realidade-virtual">🥽 Realidade Virtual</a></li>
+          <li><a href="#jogos-transformativos">🌱 Jogos Transformativos</a></li>
+          <li><a href="#conclusao">🎯 Conclusão</a></li>
+        </ul>
+
+        <div style="margin-top:2rem">
+          <div class="meta">Explorar Outras Jornadas</div>
+          <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+            <a href="index.html" class="cta" style="text-align: center; font-size: 0.9rem;">
+              🏠 Blog Principal
+            </a>
+            <a href="tecnologia.html" class="cta" style="text-align: center; font-size: 0.9rem;">
+              🔧 Evolução Tecnológica
+            </a>
+            <a href="criancas.html" class="cta" style="text-align: center; font-size: 0.9rem;">
+              👶 Elliot Kids
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem">
+          <div class="meta">Reflexão da Jornada</div>
+          <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
+            "Cada jogo que jogamos é um espelho que mostra não apenas quem somos, mas quem poderíamos nos tornar."
+          </p>
+        </div>
+
+        <div style="margin-top:1rem">
+          <div class="meta">Gêneros Como Lentes</div>
+          <a href="#rpg-jornadas" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(230, 192, 123, 0.1);">
+            ⚔️ RPGs: Jornadas de Transformação
+          </a>
+          <a href="#jogos-indie" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(139, 92, 246, 0.1);">
+            🎨 Indies: Arte Interativa
+          </a>
+          <a href="#jogos-transformativos" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(34, 197, 94, 0.1);">
+            🌱 Jogos que Curam e Ensinam
+          </a>
+        </div>
+
+        <!-- NOVO: RECOMENDAÇÕES DE LEITURA -->
+        <div style="margin-top:2rem">
+          <div class="meta">📚 Leituras Recomendadas</div>
+          <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+            <a href="#" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 92, 246, 0.1);">
+              🎮 A Arte dos Videogames
+            </a>
+            <a href="#" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(34, 197, 94, 0.1);">
+              🧠 Psicologia dos Jogos
+            </a>
+            <a href="#" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(230, 192, 123, 0.1);">
+              📖 História dos Videogames
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="year">2025</span> Jonathas Felipe — 
+      <a href="index.html" style="color: var(--muted); text-decoration: none;">Blog Principal</a> • 
+      <a href="https://github.com/Jonathasfelipe" style="color: var(--muted); text-decoration: none;">GitHub</a> • 
+      <a href="https://jonathasfelipe.github.io/HTML-CSS/" style="color: var(--muted); text-decoration: none;">Projetos</a>
+    </footer>
+  </div>
+
+  <!-- MESMO SCRIPT DO ORIGINAL COM ADIÇÕES -->
+  <script>
+    // script.js - Elliot Project - Mobile Optimized
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    const progressBar = document.getElementById('progressBar');
+    const topBtn = document.getElementById('topBtn');
+    const themeBtn = document.getElementById('themeBtn');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    function updateProgressBar() {
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight - winHeight;
+        const scrolled = (window.scrollY / docHeight) * 100;
+        progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+    }
+
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
+    window.addEventListener('scroll', throttle(updateProgressBar, 16));
+
+    function toggleTopButton() {
+        if (window.pageYOffset > 200) {
+            topBtn.classList.add('show');
+        } else {
+            topBtn.classList.remove('show');
+        }
+    }
+
+    window.addEventListener('scroll', throttle(toggleTopButton, 100));
+
+    topBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        themeBtn.innerHTML = theme === 'light' ? '💡' : '🔦';
+        themeBtn.setAttribute('title', theme === 'light' ? 'Modo Claro' : 'Modo Escuro');
+        localStorage.setItem('theme', theme);
+        
+        const themeColor = theme === 'light' ? '#f5f2e9' : '#07060a';
+        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        
+        if (!metaThemeColor) {
+            metaThemeColor = document.createElement('meta');
+            metaThemeColor.name = 'theme-color';
+            document.head.appendChild(metaThemeColor);
+        }
+        metaThemeColor.setAttribute('content', themeColor);
+    }
+
+    applyTheme(currentTheme);
+
+    themeBtn.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+        
+        themeBtn.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            themeBtn.style.transform = 'scale(1)';
+        }, 200);
+    });
+
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 10;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    const sections = document.querySelectorAll('article[id], section[id]');
+    const navLinks = document.querySelectorAll('.toc a');
+
+    function highlightCurrentSection() {
+        let current = '';
+        const scrollPosition = window.scrollY + (window.innerHeight * 0.3);
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // NOVAS FUNÇÕES INTERATIVAS
+
+    // Quiz Interativo
+    function initQuiz() {
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const checkAnswerBtn = document.getElementById('checkAnswer');
+        const quizResult = document.getElementById('quizResult');
+        
+        let selectedOption = null;
+        
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove seleção anterior
+                quizOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Seleciona nova opção
+                option.classList.add('selected');
+                selectedOption = option;
+            });
+        });
+        
+        checkAnswerBtn.addEventListener('click', () => {
+            if (!selectedOption) {
+                alert('Por favor, selecione uma resposta!');
+                return;
+            }
+            
+            const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
+            
+            if (isCorrect) {
+                quizResult.innerHTML = '<p><strong>Resposta Correta!</strong> Pong, lançado em 1972 pela Atari, foi o primeiro jogo de arcade comercialmente bem-sucedido, marcando o início da indústria de videogames como a conhecemos.</p>';
+            } else {
+                quizResult.innerHTML = '<p><strong>Resposta Incorreta.</strong> A resposta correta é Pong, lançado em 1972 pela Atari. Foi o primeiro jogo de arcade comercialmente bem-sucedido.</p>';
+            }
+            
+            quizResult.classList.add('show');
+        });
+    }
+
+    // Jogo da Memória
+    function initMemoryGame() {
+        const memoryGame = document.getElementById('memoryGame');
+        const icons = ['🎮', '🕹️', '👾', '🎯', '🃏', '🎲', '🎮', '🕹️', '👾', '🎯', '🃏', '🎲'];
+        
+        // Embaralhar ícones
+        const shuffledIcons = [...icons].sort(() => Math.random() - 0.5);
+        
+        // Criar cards
+        shuffledIcons.forEach((icon, index) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card';
+            card.setAttribute('data-icon', icon);
+            card.setAttribute('data-index', index);
+            card.textContent = '?';
+            
+            card.addEventListener('click', () => {
+                if (card.classList.contains('flipped') || document.querySelectorAll('.memory-card.flipped').length >= 2) {
+                    return;
+                }
+                
+                card.textContent = icon;
+                card.classList.add('flipped');
+                
+                checkForMatch();
+            });
+            
+            memoryGame.appendChild(card);
+        });
+        
+        let flippedCards = [];
+        
+        function checkForMatch() {
+            const currentFlipped = document.querySelectorAll('.memory-card.flipped:not(.matched)');
+            
+            if (currentFlipped.length === 2) {
+                const [card1, card2] = currentFlipped;
+                
+                if (card1.getAttribute('data-icon') === card2.getAttribute('data-icon')) {
+                    // Match encontrado
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    
+                    // Verificar se o jogo terminou
+                    if (document.querySelectorAll('.memory-card.matched').length === icons.length) {
+                        setTimeout(() => {
+                            alert('Parabéns! Você completou o jogo da memória!');
+                        }, 500);
+                    }
+                } else {
+                    // Não é um match, virar de volta após um tempo
+                    setTimeout(() => {
+                        card1.textContent = '?';
+                        card2.textContent = '?';
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                    }, 1000);
+                }
+            }
+        }
+    }
+
+    // Newsletter
+    function initNewsletter() {
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('.newsletter-input').value;
+            
+            // Simulação de envio
+            alert(`Obrigado por se inscrever com o e-mail: ${email}\nVocê receberá nossas atualizações em breve!`);
+            newsletterForm.reset();
+        });
+    }
+
+    // Tópicos de Discussão - Simulação de Interação
+    function initTopics() {
+        const topicBtns = document.querySelectorAll('.topic-btn');
+        
+        topicBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.textContent.includes('Curtidas')) {
+                    // Simular curtida
+                    const currentLikes = parseInt(btn.textContent.match(/\d+/)[0]);
+                    btn.textContent = btn.textContent.replace(/\d+/, currentLikes + 1);
+                    btn.style.background = 'var(--accent)';
+                    btn.style.color = '#111';
+                    
+                    setTimeout(() => {
+                        btn.style.background = '';
+                        btn.style.color = '';
+                    }, 300);
+                } else if (btn.textContent.includes('Comentários')) {
+                    // Simular comentário
+                    alert('Funcionalidade de comentários será implementada em breve!');
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('year').textContent = new Date().getFullYear();
+        initSmoothScroll();
+        highlightCurrentSection();
+        window.addEventListener('scroll', throttle(highlightCurrentSection, 50));
+        
+        // Inicializar novas funcionalidades
+        initQuiz();
+        initMemoryGame();
+        initNewsletter();
+        initTopics();
+        
+        console.log('🎮 Elliot Games Journey - Carregado!');
+    });
+  </script>
+</body>
+</html>
