@@ -65,6 +65,66 @@
       color: #111;
       transform: scale(1.05);
     }
+    
+    /* Novos estilos para seção de vídeos */
+    .videos-section {
+      background: rgba(230, 192, 123, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 3rem 0;
+      border: 2px solid rgba(230, 192, 123, 0.3);
+    }
+    
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .video-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(230, 192, 123, 0.2);
+    }
+    
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .video-thumbnail {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, #e6c07b, #b8943c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    
+    .video-info {
+      padding: 1rem;
+    }
+    
+    .video-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #e6c07b;
+    }
+    
+    .video-description {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #e6c07b, transparent);
+      margin: 3rem 0;
+    }
   </style>
 </head>
 <body>
@@ -87,6 +147,7 @@
       <nav aria-label="principal">
         <a href="#inicio">Início</a>
         <a href="#historias">Histórias</a>
+        <a href="#jogos">Meus Jogos</a>
         <a href="../index.html">Versão Adulta</a>
       </nav>
     </header>
@@ -106,6 +167,7 @@
         
         <div class="nav-criancas">
           <a href="#historias" class="btn-crianca">📖 Ver Histórias</a>
+          <a href="#jogos" class="btn-crianca">🎮 Meus Jogos</a>
           <a href="../index.html" class="btn-crianca">🌙 Versão Adulta</a>
         </div>
       </section>
@@ -309,15 +371,140 @@
         </div>
       </article>
 
+      <!-- SEÇÃO: MEUS JOGOS -->
+      <section id="jogos" class="videos-section">
+        <div class="emoji-title">🎮 Meus Jogos Criados 🎮</div>
+        <h3 style="text-align: center; margin-bottom: 1rem;">Jogos que eu mesmo desenvolvi!</h3>
+        <p style="text-align: center;">Clique para jogar e se divertir!</p>
+        
+        <div class="video-grid">
+          <!-- Game Page -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/index4gamepage.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🎯</div>
+              <div class="video-info">
+                <div class="video-title">Game Page</div>
+                <div class="video-description">Uma página especial com vários jogos divertidos!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Tênis Neon -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/tenis.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🎾</div>
+              <div class="video-info">
+                <div class="video-title">Tênis Neon</div>
+                <div class="video-description">Um jogo de tênis com efeitos de luz incríveis!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Tetris -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/Tetris.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🧩</div>
+              <div class="video-info">
+                <div class="video-title">Tetris</div>
+                <div class="video-description">O clássico jogo de encaixar peças! Desafie sua mente!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Runner -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/Runner.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🏃</div>
+              <div class="video-info">
+                <div class="video-title">Runner</div>
+                <div class="video-description">Corra, pule e desvie dos obstáculos!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Piano -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/Piano.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🎹</div>
+              <div class="video-info">
+                <div class="video-title">Piano Virtual</div>
+                <div class="video-description">Toque músicas incríveis neste piano digital!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Space Invaders -->
+          <div class="video-card">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/Spaceinvaders.html" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">👾</div>
+              <div class="video-info">
+                <div class="video-title">Space Invaders</div>
+                <div class="video-description">Proteja a Terra dos invasores espaciais!</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divisor visual -->
+      <div class="section-divider"></div>
+
+      <!-- SEÇÃO: VÍDEOS DO YOUTUBE -->
+      <section id="videos" class="videos-section">
+        <div class="emoji-title">📺 Vídeos Recomendados 📺</div>
+        <h3 style="text-align: center; margin-bottom: 1rem;">Vídeos interessantes do YouTube!</h3>
+        <p style="text-align: center;">Assista e aprenda coisas novas!</p>
+        
+        <div class="video-grid">
+          <!-- Gameplay -->
+          <div class="video-card">
+            <a href="https://www.youtube.com/watch?v=CoxwYSwo8rA" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🎮</div>
+              <div class="video-info">
+                <div class="video-title">Gameplay Divertida</div>
+                <div class="video-description">Uma aventura incrível cheia de desafios e diversão!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Manutenção de Computadores -->
+          <div class="video-card">
+            <a href="https://www.youtube.com/watch?v=Uq5LuAZzrk4" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">🔧</div>
+              <div class="video-info">
+                <div class="video-title">Manutenção de PC</div>
+                <div class="video-description">Aprenda como cuidar do seu computador!</div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Vídeo Educativo -->
+          <div class="video-card">
+            <a href="https://www.youtube.com/watch?v=CoxwYSwo8rA" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="video-thumbnail">📚</div>
+              <div class="video-info">
+                <div class="video-title">Aprendendo Programação</div>
+                <div class="video-description">Dicas para começar a criar seus próprios jogos!</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="https://www.youtube.com/channel/SEU_CANAL" target="_blank" class="btn-crianca">📺 Ver Mais Vídeos</a>
+        </div>
+      </section>
+
       <!-- CHAMADA PARA AÇÃO -->
       <section style="text-align: center; margin: 4rem 0;">
         <div class="emoji-title">🎨✨🤔</div>
-        <h3>Gostou das histórias?</h3>
-        <p>Compartilhe com seus amigos ou peça para lerem com você!</p>
+        <h3>Gostou das histórias e jogos?</h3>
+        <p>Compartilhe com seus amigos ou peça para jogarem com você!</p>
         <div class="nav-criancas">
-  <a href="#inicio" class="btn-crianca">📚 Ler Todas Novamente</a>
-  <a href="../index.html" class="btn-crianca">🌙 Ver Versão para Adultos</a>  <!-- ← JÁ TEM! -->
-</div>
+          <a href="#inicio" class="btn-crianca">📚 Ler Todas Novamente</a>
+          <a href="#jogos" class="btn-crianca">🎮 Meus Jogos</a>
+          <a href="../index.html" class="btn-crianca">🌙 Ver Versão para Adultos</a>
+        </div>
       </section>
 
     </main>
@@ -332,6 +519,8 @@
         <li><a href="#historia-3">3. Os Dois Pássaros</a></li>
         <li><a href="#historia-4">4. O Amigo de Todos</a></li>
         <li><a href="#historia-5">5. A Lanterna Mágica</a></li>
+        <li><a href="#jogos">🎮 Meus Jogos</a></li>
+        <li><a href="#videos">📺 Vídeos Recomendados</a></li>
       </ul>
 
       <div style="margin-top:2rem">
