@@ -525,4 +525,16 @@ footer a:hover {
   }
 
 }
+/* Estilos para vídeos do YouTube */
+.video-container {
+  transition: transform 0.3s ease;
+}
+
+.video-container:hover {
+  transform: translateY(-5px);
+}
+
+.video-container iframe {
+  border-radius: 12px;
+}
 
