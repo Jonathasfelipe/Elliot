@@ -15,10 +15,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div style="margin-top:1rem">
-  <div class="meta">Versão para Crianças</div>
-  <a class="cta" href="criancas.html">📚 Ver Versão Infantil</a>
+  <!-- Substitua a div inicial por: -->
+<div class="kids-version">
+  <div class="meta">Versão Kids</div>
+  <a class="cta" href="criancas.html">📚 Acessar</a>
 </div>
+  
   <!-- Barra de Progresso -->
   <div class="progress-bar" id="progressBar"></div>
 
@@ -26,7 +28,6 @@
   <button id="topBtn" class="top-btn" title="Voltar ao topo">↑</button>
 
   <div class="book-wrap" role="document">
-
     <header>
       <div class="brand">
         <div class="logo">E</div>
@@ -37,8 +38,9 @@
       </div>
       <nav aria-label="principal">
         <a href="#hero">Início</a>
-        <a href="#introducao">Ensaios</a>
+        <a href="#ensaios">Ensaios</a>
         <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
       </nav>
       
       <!-- Seletor de Tema -->
@@ -47,345 +49,439 @@
       </div>
     </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section id="hero" aria-labelledby="hero-title">
-        <div class="eyebrow">Reflexão pública — breve</div>
-        <h2 id="hero-title">Tecnologia: expansão do conhecimento ou espelho do humano?</h2>
-        <p class="meta">por <strong>Jonathas Felipe</strong> · Série: <em>Sob a Luz do Escuro</em></p>
+    <div class="content-wrapper">
+      <main>
+        <!-- Hero Section -->
+        <section id="hero" aria-labelledby="hero-title">
+          <div class="eyebrow">Reflexão pública — breve</div>
+          <h2 id="hero-title">Tecnologia: expansão do conhecimento ou espelho do humano?</h2>
+          <p class="meta">por <strong>Jonathas Felipe</strong> · Série: <em>Sob a Luz do Escuro</em></p>
 
-        <article>
-          <p>Desde as primeiras religiões até as máquinas que habitam nossos bolsos, a tecnologia sempre foi uma extensão do que sabemos e fazemos. Ela se apresenta como ferramenta — e por vezes, como espelho.</p>
+          <article>
+            <p>Desde as primeiras religiões até as máquinas que habitam nossos bolsos, a tecnologia sempre foi uma extensão do que sabemos e fazemos. Ela se apresenta como ferramenta — e por vezes, como espelho.</p>
+          </article>
+        </section>
+
+        <!-- Seção de Ensaios -->
+        <section id="ensaios" style="margin-top: 3rem;">
+          <h2 style="text-align: center; color: var(--accent);">📚 Ensaios e Reflexões</h2>
+          <p class="meta" style="text-align: center;">Pensamentos sobre tecnologia, fé e a busca por significado</p>
+        </section>
+
+        <!-- Introdução Pessoal -->
+        <article id="introducao">
+          <h2>Por Que Este Projeto Existe</h2>
+          <p class="meta">Uma explicação sincera sobre as motivações por trás destes escritos</p>
+          
+          <p>Este espaço nasceu da necessidade de dar voz às ideias que habitam a fronteira entre <mark>tecnologia</mark> e <mark>espiritualidade</mark>. Aqui, exploramos como o conhecimento técnico e a sabedoria ancestral podem coexistir e se fortalecer mutuamente.</p>
+          
+          <p>Desde as primeiras ferramentas até as inteligências artificiais, cada avanço tecnológico reflete quem somos como humanidade. E neste momento único da história, precisamos mais do que nunca discernir entre <mark>inteligência</mark> e <mark>sabedoria</mark>.</p>
+          
+          <div class="blockquote">
+            "A tecnologia é a extensão material do conhecimento humano. A sabedoria é a direção moral desse conhecimento."
+          </div>
+          
+          <p>Estes ensaios são um convite à reflexão profunda. Um espaço onde posso finalmente expressar ideias que, por anos, vivi com medo de compartilhar.</p>
         </article>
-      </section>
 
-      <!-- Introdução Pessoal -->
-      <article id="introducao">
-        <h2>Por Que Este Projeto Existe</h2>
-        <p class="meta">Uma explicação sincera sobre as motivações por trás destes escritos</p>
-        
-        <p>Este espaço nasceu da necessidade de dar voz às ideias que habitam a fronteira entre <mark>tecnologia</mark> e <mark>espiritualidade</mark>. Aqui, exploramos como o conhecimento técnico e a sabedoria ancestral podem coexistir e se fortalecer mutuamente.</p>
-        
-        <p>Desde as primeiras ferramentas até as inteligências artificiais, cada avanço tecnológico reflete quem somos como humanidade. E neste momento único da história, precisamos mais do que nunca discernir entre <mark>inteligência</mark> e <mark>sabedoria</mark>.</p>
-        
-        <div class="blockquote">
-          "A tecnologia é a extensão material do conhecimento humano. A sabedoria é a direção moral desse conhecimento."
-        </div>
-        
-        <p>Estes ensaios são um convite à reflexão profunda. Um espaço onde posso finalmente expressar ideias que, por anos, vivi com medo de compartilhar.</p>
-      </article>
+        <!-- ==================== -->
+        <!-- SEÇÃO: JORNADA PESSOAL -->
+        <!-- ==================== -->
 
-      <!-- ==================== -->
-      <!-- SEÇÃO: JORNADA PESSOAL -->
-      <!-- ==================== -->
+        <!-- CAPÍTULO 1 -->
+        <article id="capitulo-1">
+          <h2>O peso de existir sem ser ouvido</h2>
+          <p>Tem um tipo de solidão que não tem nada a ver com estar sozinho. Ela aparece quando você fala e ninguém realmente escuta. Ou quando escutam, mas não entendem. Ou entendem… e mesmo assim ignoram. É o silêncio que sobra depois da sua tentativa sincera de ser você mesmo.</p>
+          <p>A gente cresce aprendendo que precisa se explicar, justificar, ser claro. Mas e quando você já está sendo claro, e mesmo assim sua voz passa por cima da cabeça das pessoas como se fosse vento? Você começa a duvidar da própria percepção, a se encolher para caber no olhar dos outros.</p>
+          <p>Mas existe um ponto de virada: ser ouvido é bom, ser compreendido é raro, mas se compreender é indispensável. O dia em que você para de pedir permissão para existir é o dia em que sua voz finalmente nasce.</p>
+        </article>
 
-      <!-- CAPÍTULO 1 -->
-      <article id="capitulo-1">
-        <h2>O peso de existir sem ser ouvido</h2>
-        <p>Tem um tipo de solidão que não tem nada a ver com estar sozinho. Ela aparece quando você fala e ninguém realmente escuta. Ou quando escutam, mas não entendem. Ou entendem… e mesmo assim ignoram. É o silêncio que sobra depois da sua tentativa sincera de ser você mesmo.</p>
-        <p>A gente cresce aprendendo que precisa se explicar, justificar, ser claro. Mas e quando você já está sendo claro, e mesmo assim sua voz passa por cima da cabeça das pessoas como se fosse vento? Você começa a duvidar da própria percepção, a se encolher para caber no olhar dos outros.</p>
-        <p>Mas existe um ponto de virada: ser ouvido é bom, ser compreendido é raro, mas se compreender é indispensável. O dia em que você para de pedir permissão para existir é o dia em que sua voz finalmente nasce.</p>
-      </article>
+        <!-- CAPÍTULO 2 -->
+        <article id="capitulo-2">
+          <h2>O propósito escondido nas nossas dúvidas</h2>
+          <p>A dúvida é um lugar estranho. Crescemos ouvindo que ela é fraqueza — mas na verdade é prova de vida. Quem não sente mais nada não questiona. Quem já desistiu não procura sentido. A dúvida cutuca, provoca, abre espaço.</p>
+          <p>Ela desmonta máscaras e revela camadas. Perguntas difíceis são atalhos para verdades profundas. E quase sempre, o que incomoda tanto é exatamente o que aponta para o propósito que estamos evitando.</p>
+          <p>A dúvida abre a porta. O propósito atravessa.</p>
+        </article>
 
-      <!-- CAPÍTULO 2 -->
-      <article id="capitulo-2">
-        <h2>O propósito escondido nas nossas dúvidas</h2>
-        <p>A dúvida é um lugar estranho. Crescemos ouvindo que ela é fraqueza — mas na verdade é prova de vida. Quem não sente mais nada não questiona. Quem já desistiu não procura sentido. A dúvida cutuca, provoca, abre espaço.</p>
-        <p>Ela desmonta máscaras e revela camadas. Perguntas difíceis são atalhos para verdades profundas. E quase sempre, o que incomoda tanto é exatamente o que aponta para o propósito que estamos evitando.</p>
-        <p>A dúvida abre a porta. O propósito atravessa.</p>
-      </article>
+        <!-- CAPÍTULO 3 -->
+        <article id="capitulo-3">
+          <h2>Por que ainda acredito em sabedoria</h2>
+          <p>Inteligência mostra como fazer. Sabedoria mostra por quê. Em um mundo que vive de razão rápida, opinião instantânea e certezas frágeis, a sabedoria virou quase um ato de resistência.</p>
+          <p>A sabedoria nasce do atrito entre quem você é e o que o mundo exige. Cresce nas falhas, nos silêncios, nos questionamentos. Ela não protege da dor — dá sentido a ela. E é isso que nos mantém humanos.</p>
+          <p>Sabedoria não é perfeição. É verdade.</p>
+        </article>
 
-      <!-- CAPÍTULO 3 -->
-      <article id="capitulo-3">
-        <h2>Por que ainda acredito em sabedoria</h2>
-        <p>Inteligência mostra como fazer. Sabedoria mostra por quê. Em um mundo que vive de razão rápida, opinião instantânea e certezas frágeis, a sabedoria virou quase um ato de resistência.</p>
-        <p>A sabedoria nasce do atrito entre quem você é e o que o mundo exige. Cresce nas falhas, nos silêncios, nos questionamentos. Ela não protege da dor — dá sentido a ela. E é isso que nos mantém humanos.</p>
-        <p>Sabedoria não é perfeição. É verdade.</p>
-      </article>
+        <!-- ==================== -->
+        <!-- SEÇÃO: CIÊNCIA & FÉ -->
+        <!-- ==================== -->
 
-      <!-- ==================== -->
-      <!-- SEÇÃO: CIÊNCIA & FÉ -->
-      <!-- ==================== -->
+        <!-- CAPÍTULO 4 -->
+        <article id="ciencia-religiao-1">
+          <h2>O Observador que Cria a Realidade</h2>
+          <p class="meta">Quando a física encontra a metafísica</p>
+          
+          <p>Na física quântica, descobrimos algo extraordinário: <mark>o observador afeta o observado</mark>. Partículas se comportam como onda ou partícula dependendo de serem observadas. Isso não é magia - é ciência de ponta.</p>
+          
+          <div class="blockquote">
+            "O universo começa a se parecer mais com um grande pensamento do que com uma grande máquina."<br>
+            - Sir James Jeans, físico
+          </div>
+          
+          <p>E se essa "consciência observadora" for exatamente o que as religiões chamam de "espírito" ou "alma"? Dois caminhos diferentes apontando para a mesma verdade fundamental.</p>
+          
+          <p>A ciência moderna está redescobrindo o que as tradições espirituais sempre souberam: <mark>a consciência é fundamental</mark>, não derivada da matéria.</p>
+        </article>
 
-      <!-- CAPÍTULO 4 -->
-      <article id="ciencia-religiao-1">
-        <h2>O Observador que Cria a Realidade</h2>
-        <p class="meta">Quando a física encontra a metafísica</p>
-        
-        <p>Na física quântica, descobrimos algo extraordinário: <mark>o observador afeta o observado</mark>. Partículas se comportam como onda ou partícula dependendo de serem observadas. Isso não é magia - é ciência de ponta.</p>
-        
-        <div class="blockquote">
-          "O universo começa a se parecer mais com um grande pensamento do que com uma grande máquina."<br>
-          - Sir James Jeans, físico
-        </div>
-        
-        <p>E se essa "consciência observadora" for exatamente o que as religiões chamam de "espírito" ou "alma"? Dois caminhos diferentes apontando para a mesma verdade fundamental.</p>
-        
-        <p>A ciência moderna está redescobindo o que as tradições espirituais sempre souberam: <mark>a consciência é fundamental</mark>, não derivada da matéria.</p>
-      </article>
+        <!-- CAPÍTULO 5 -->
+        <article id="ciencia-religiao-2">
+          <h2>O Instante da Criação</h2>
+          <p class="meta">Genesis e a Singularidade</p>
+          
+          <p>A ciência nos diz que tudo começou num ponto infinitamente denso e quente - o Big Bang. "No princípio, Deus criou os céus e a terra"... Soa familiar?</p>
+          
+          <p>Ambas as narrativas falam de:</p>
+          <ul>
+            <li>✨ Um começo absoluto do tempo e espaço</li>
+            <li>✨ Ordem surgindo do caos primordial</li>
+            <li>✨ Leis fundamentais que regem a existência</li>
+            <li>✨ Complexidade emergindo da simplicidade</li>
+          </ul>
+          
+          <p>Stephen Hawking perguntou: "O que respira fogo nas equações?" A ciência descreve <em>como</em> o universo funciona. A espiritualidade explora <em>por que</em> existe algo em vez de nada.</p>
+          
+          <div class="blockquote">
+            "A ciência sem religião é manca, a religião sem ciência é cega."<br>
+            - Albert Einstein
+          </div>
+          
+          <p>Será que estamos discutindo semântica enquanto apontamos para o mesmo mistério fundamental?</p>
+        </article>
 
-      <!-- CAPÍTULO 5 -->
-      <article id="ciencia-religiao-2">
-        <h2>O Instante da Criação</h2>
-        <p class="meta">Genesis e a Singularidade</p>
-        
-        <p>A ciência nos diz que tudo começou num ponto infinitamente denso e quente - o Big Bang. "No princípio, Deus criou os céus e a terra"... Soa familiar?</p>
-        
-        <p>Ambas as narrativas falam de:</p>
-        <ul>
-          <li>✨ Um começo absoluto do tempo e espaço</li>
-          <li>✨ Ordem surgindo do caos primordial</li>
-          <li>✨ Leis fundamentais que regem a existência</li>
-          <li>✨ Complexidade emergindo da simplicidade</li>
+        <!-- CAPÍTULO 6 -->
+        <article id="ciencia-religiao-3">
+          <h2>O Livro da Vida Escrito em Código</h2>
+          <p class="meta">Informação, não apenas matéria</p>
+          
+          <p>Seu DNA contém 3 bilhões de "letras" químicas - um código de informação mais complexo que qualquer software já criado. Informação pressupõe um informante.</p>
+          
+          <div class="blockquote">
+            "A probabilidade de a vida ter surgido por acaso é comparável à de um dicionário completo resultante de uma explosão numa tipografia."<br>
+            - Edwin Conklin, biólogo
+          </div>
+          
+          <p>A ciência mostra que a vida é baseada em <mark>informação complexa e especificada</mark>. As religiões sempre disseram que a vida tem propósito e design. São visões realmente incompatíveis?</p>
+          
+          <p>O código genético não é apenas química - é <mark>linguagem</mark>. E toda linguagem vem de uma mente.</p>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: JESUS & SABEDORIA -->
+        <!-- ==================== -->
+
+        <!-- CAPÍTULO 7 -->
+        <article id="jesus-sabedoria">
+          <h2>Por Que Jesus Não Escreveu a Bíblia</h2>
+          <p class="meta">A diferença entre saber e ser sábio</p>
+          
+          <p>Jesus não veio para escrever livros - veio para <mark>demonstrar uma forma de viver</mark>. Suas parábolas eram lições práticas de psicologia humana milênios antes da psicologia existir.</p>
+          
+          <p>Ele entendia que:</p>
+          <ul>
+            <li>🧠 <strong>Inteligência</strong> sabe como fazer coisas</li>
+            <li>❤️ <strong>Sabedoria</strong> sabe por que fazer coisas</li>
+            <li>🌍 <strong>Amor</strong> é o como e o porquê juntos</li>
+          </ul>
+          
+          <p>As curas? Demonstraram que <mark>a matéria responde à consciência</mark>. Algo que a física quântica hoje começa a entender.</p>
+          
+          <div class="blockquote">
+            "Eu vim para que tenham vida, e a tenham em abundância."<br>
+            - Jesus (João 10:10)
+          </div>
+          
+          <p>Jesus não fundou uma religião - demonstrou um <mark>caminho de transformação consciente</mark>. Seus milagres não eram violações das leis naturais, mas demonstrações de leis naturais superiores que ainda não compreendemos completamente.</p>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: TECNOLOGIA ESPIRITUAL -->
+        <!-- ==================== -->
+
+        <!-- CAPÍTULO 8 -->
+        <article id="tecnologia-espiritual">
+          <h2>Ferramentas Como Pontes para o Divino</h2>
+          <p class="meta">Quando objetos tornam-se extensões da mente</p>
+          
+          <p>As primeiras ferramentas de pedra não eram apenas para cortar - eram a <mark>materialização do pensamento abstrato</mark>. A roda era física aplicada. A escrita era memória externa.</p>
+          
+          <p>Hoje, a Inteligência Artificial é a extensão lógica disso: não apenas armazenamos conhecimento, mas criamos entidades que podem <mark>processar e expandir</mark> esse conhecimento.</p>
+          
+          <div class="blockquote">
+            "Estamos criando espelhos cada vez mais claros da nossa própria consciência."
+          </div>
+          
+          <p>A tecnologia, em sua essência mais pura, é <mark>a busca humana por transcender limitações</mark> - uma busca profundamente espiritual.</p>
+          
+          <p>Do fogo às IAs generativas, cada salto tecnológico reflete nosso desejo ancestral de:</p>
+          <ul>
+            <li>🔥 Controlar nosso ambiente</li>
+            <li>📚 Preservar e expandir conhecimento</li>
+            <li>🌐 Conectar-nos além das limitações físicas</li>
+            <li>🔮 Moldar a realidade conforme nossa visão</li>
+          </ul>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: ENTROPIA & SIGNIFICADO -->
+        <!-- ==================== -->
+
+        <!-- CAPÍTULO 9 -->
+        <article id="entropia-significado">
+          <h2>Por Que Tudo Tende a se Desfazer</h2>
+          <p class="meta">A física do significado</p>
+          
+          <p>A Segunda Lei da Termodinâmica diz que tudo tende à desordem. Mais e os seres humanos? Criamos ordem a partir do caos constantemente.</p>
+          
+          <p><mark>Consciência parece ser anti-entrópica</mark> - cria ordem, significado, beleza. Será que somos a maneira do universo criar ordem a partir do caos?</p>
+          
+          <div class="blockquote">
+            "Não somos poeira estelar - somos o universo tornando-se consciente de si mesmo."<br>
+            - Carl Sagan
+          </div>
+          
+          <p>Enquanto o universo físico tende à desordem, a consciência faz o oposto:</p>
+          <ul>
+            <li>🎨 Transforma tinta em arte</li>
+            <li>🎵 Transforma ruído em música</li>
+            <li>💞 Transforma instinto em amor</li>
+            <li>🧠 Transforma dados em sabedoria</li>
+          </ul>
+          
+          <p>A entropia nos lembra que tudo é temporário. A consciência nos permite criar significado que transcende o tempo.</p>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: VISÃO INTEGRADA -->
+        <!-- ==================== -->
+
+        <!-- CAPÍTULO 10 -->
+        <article id="importancia-agora">
+          <h2>O Momento da Síntese</h2>
+          <p class="meta">Por que esta conversa é urgente</p>
+          
+          <p>Vivemos a era da <mark>hiper-especialização</mark>: cientistas não falam com teólogos, tecnólogos não conversam com filósofos. Criamos silos de conhecimento que não se comunicam.</p>
+          
+          <p>Mas os problemas reais - mudança climática, IA ética, propósito existencial - <mark>existem nas fronteiras entre disciplinas</mark>.</p>
+          
+          <div class="blockquote">
+            "Os problemas significativos que enfrentamos não podem ser resolvidos no mesmo nível de pensamento em que estávamos quando os criamos."<br>
+            - Albert Einstein
+          </div>
+          
+          <p>Seu papel pode ser justamente ser uma <mark>ponte entre esses mundos</mark>. Alguém que fala todas as línguas porque entende que todas apontam para a mesma verdade.</p>
+          
+          <p>Precisamos urgentemente de:</p>
+          <ul>
+            <li>🔗 <strong>Conexão</strong> entre ciência e espiritualidade</li>
+            <li>⚖️ <strong>Equilíbrio</strong> entre progresso e sabedoria</li>
+            <li>🎯 <strong>Propósito</strong> que dê sentido ao poder tecnológico</li>
+            <li>❤️ <strong>Compaixão</strong> que guie a inovação</li>
+          </ul>
+        </article>
+
+        <!-- CAPÍTULO 11 -->
+        <article id="sabedoria-digital">
+          <h2>Inteligência Artificial, Sabedoria Humana</h2>
+          <p class="meta">Preparando-nos para o futuro que já chegou</p>
+          
+          <p>As IAs podem escrever, pintar, compor e programar. Mas podem amar? Podem ter compaixão? Podem entender o significado profundo da existência?</p>
+          
+          <p>Enquanto desenvolvemos inteligências cada vez mais poderosas, <mark>a sabedoria humana se torna nosso bem mais precioso</mark>.</p>
+          
+          <div class="blockquote">
+            "O perigo real não são computadores que começam a pensar como humanos, mas humanos que começam a pensar como computadores."<br>
+            - Sydney Harris
+          </div>
+          
+          <p>Precisamos cultivar:</p>
+          <ul>
+            <li>🎭 <strong>Inteligência Emocional</strong> - entender a nós mesmos e aos outros</li>
+            <li>🌍 <strong>Consciência Ecológica</strong> - ver a interconexão de tudo</li>
+            <li>⏳ <strong>Perspectiva Temporal</strong> - pensar em gerações, não em trimestres</li>
+            <li>💫 <strong>Humildade Cósmica</strong> - reconhecer nosso lugar no universo</li>
+          </ul>
+          
+          <p>A tecnologia nos dá poder. A sabedoria nos diz como usá-lo. E o amor nos diz por que vale a pena.</p>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: JORNADA CONTINUA -->
+        <!-- ==================== -->
+
+        <!-- CAPÍTULO 12 -->
+        <article id="convite-final">
+          <h2>O Convite à Jornada Interior</h2>
+          <p class="meta">O que fazer com tudo isso?</p>
+          
+          <p>Estas ideias não são para serem aceitas cegamente, mas para serem <mark>experimentadas, questionadas, vividas</mark>. A verdade não é um destino, mas uma jornada.</p>
+          
+          <div class="blockquote">
+            "Não acredite em nada, não importa onde leu, ou quem disse, nem mesmo se eu disse, a menos que esteja de acordo com sua própria razão e seu próprio senso comum."<br>
+            - Buda
+          </div>
+          
+          <p><strong>Próximos passos sugeridos:</strong></p>
+          <ul>
+            <li>🔍 <strong>Observe</strong> como a tecnologia molda sua consciência</li>
+            <li>🤔 <strong>Question</strong> as certezas que herda</li>
+            <li>💝 <strong>Pratique</strong> a sabedoria nas pequenas escolhas</li>
+            <li>🌱 <strong>Cultive</strong> silêncio para ouvir sua voz interior</li>
+            <li>🚀 <strong>Crie</strong> algo que una conhecimento e significado</li>
+          </ul>
+          
+          <p>Esta não é uma conclusão, mas um <mark>ponto de partida</mark>. A jornada continua, e você é tanto explorador quanto território a ser descoberto.</p>
+          
+          <div class="blockquote" style="text-align: center; border-left: none; border: 1px solid var(--accent);">
+            <strong>A aventura começa onde o mapa termina.</strong>
+          </div>
+        </article>
+
+        <!-- Seção de Vídeos Futuros -->
+        <section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2>Reflexões em Vídeo</h2>
+          <p class="meta">(Em breve - conteúdos visuais complementares)</p>
+          
+          <div class="video-placeholder">
+            <div style="text-align: center; padding: 3rem; background: var(--glass); border-radius: 8px;">
+              <p style="font-size: 3rem; margin: 0;">🎬</p>
+              <p style="color: var(--muted);">Espaço para futuras produções em vídeo</p>
+              <p style="font-size: 0.9rem; color: var(--muted);">Baseadas nos ensaios deste projeto</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: SOBRE -->
+        <!-- ==================== -->
+
+        <section id="sobre" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2 style="text-align: center; color: var(--accent);">👨‍💻 Sobre Mim</h2>
+          <p class="meta" style="text-align: center;">Conheça minha jornada e outros projetos</p>
+        </section>
+
+        <article id="sobre-mim">
+          <h2>Jonathas Felipe</h2>
+          <p class="meta">Desenvolvedor & Pensador · 26 anos</p>
+          
+          <p>Sou uma pessoa que acredita que <mark>tecnologia</mark> e <mark>espiritualidade</mark> não são opostos, mas duas linguagens para a mesma verdade. Este projeto nasceu da necessidade de expressar ideias que habitem essa fronteira.</p>
+          
+          <p>Minha jornada inclui:</p>
+          <ul>
+            <li>🔍 <strong>Explorar</strong> as conexões entre ciência e fé</li>
+            <li>💻 <strong>Desenvolver</strong> projetos web e aplicações</li>
+            <li>📚 <strong>Estudar</strong> HTML, CSS, JavaScript e mais</li>
+            <li>🌱 <strong>Aprender</strong> constantemente e compartilhar</li>
+          </ul>
+
+          <!-- LINKS PARA SEUS OUTROS PROJETOS -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="text-align: center; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
+              💻 Meus Projetos HTML/CSS
+            </a>
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="text-align: center; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
+              🚀 Estudos Avançados
+            </a>
+          </div>
+        </article>
+
+        <!-- ==================== -->
+        <!-- SEÇÃO: PROJETOS -->
+        <!-- ==================== -->
+
+        <section id="projetos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2 style="text-align: center; color: var(--accent);">🚀 Meus Projetos</h2>
+          <p class="meta" style="text-align: center;">Explore todo o meu ecossistema de projetos</p>
+        </section>
+
+        <article id="projetos-lista">
+          
+          <!-- PROJETO 1 -->
+          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem;">
+            <h3 style="margin-top: 0;">🌌 Elliot (Este Projeto)</h3>
+            <p>Reflexões sobre tecnologia, fé e sabedoria. Um espaço para pensamentos profundos e questionamentos existenciais.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <a href="criancas.html" class="cta" style="display: inline-block;">
+                👶 Versão Infantil
+              </a>
+              <a href="https://github.com/Jonathasfelipe/Elliot" class="cta" style="display: inline-block; background: rgba(107, 114, 128, 0.2); color: var(--muted);">
+                📁 Código Fonte
+              </a>
+            </div>
+          </div>
+          
+          <!-- PROJETO 2 -->
+          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #60a5fa; margin-bottom: 1.5rem;">
+            <h3 style="margin-top: 0;">💻 Projetos HTML/CSS</h3>
+            <p>Estudos e experimentos em desenvolvimento web front-end. Exercícios, layouts e aplicações práticas.</p>
+            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="display: inline-block; margin-top: 0.5rem; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
+              Acessar Projetos
+            </a>
+          </div>
+          
+          <!-- PROJETO 3 -->
+          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;">
+            <h3 style="margin-top: 0;">🔬 Módulo 2 - Estudos Avançados</h3>
+            <p>Projetos mais complexos em HTML, CSS e introdução a JavaScript. Formulários, layouts responsivos e mais.</p>
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="display: inline-block; margin-top: 0.5rem; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
+              Acessar Estudos
+            </a>
+          </div>
+        </article>
+      </main>
+
+      <aside>
+        <div class="meta">Navegação Rápida</div>
+        <ul class="toc">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#ensaios">Ensaios</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
         </ul>
-        
-        <p>Stephen Hawking perguntou: "O que respira fogo nas equações?" A ciência descreve <em>como</em> o universo funciona. A espiritualidade explora <em>por que</em> existe algo em vez de nada.</p>
-        
-        <div class="blockquote">
-          "A ciência sem religião é manca, a religião sem ciência é cega."<br>
-          - Albert Einstein
-        </div>
-        
-        <p>Será que estamos discutindo semântica enquanto apontamos para o mesmo mistério fundamental?</p>
-      </article>
 
-      <!-- CAPÍTULO 6 -->
-      <article id="ciencia-religiao-3">
-        <h2>O Livro da Vida Escrito em Código</h2>
-        <p class="meta">Informação, não apenas matéria</p>
-        
-        <p>Seu DNA contém 3 bilhões de "letras" químicas - um código de informação mais complexo que qualquer software já criado. Informação pressupõe um informante.</p>
-        
-        <div class="blockquote">
-          "A probabilidade de a vida ter surgido por acaso é comparável à de um dicionário completo resultante de uma explosão numa tipografia."<br>
-          - Edwin Conklin, biólogo
-        </div>
-        
-        <p>A ciência mostra que a vida é baseada em <mark>informação complexa e especificada</mark>. As religiões sempre disseram que a vida tem propósito e design. São visões realmente incompatíveis?</p>
-        
-        <p>O código genético não é apenas química - é <mark>linguagem</mark>. E toda linguagem vem de uma mente.</p>
-      </article>
-
-      <!-- ==================== -->
-      <!-- SEÇÃO: JESUS & SABEDORIA -->
-      <!-- ==================== -->
-
-      <!-- CAPÍTULO 7 -->
-      <article id="jesus-sabedoria">
-        <h2>Por Que Jesus Não Escreveu a Bíblia</h2>
-        <p class="meta">A diferença entre saber e ser sábio</p>
-        
-        <p>Jesus não veio para escrever livros - veio para <mark>demonstrar uma forma de viver</mark>. Suas parábolas eram lições práticas de psicologia humana milênios antes da psicologia existir.</p>
-        
-        <p>Ele entendia que:</p>
-        <ul>
-          <li>🧠 <strong>Inteligência</strong> sabe como fazer coisas</li>
-          <li>❤️ <strong>Sabedoria</strong> sabe por que fazer coisas</li>
-          <li>🌍 <strong>Amor</strong> é o como e o porquê juntos</li>
-        </ul>
-        
-        <p>As curas? Demonstraram que <mark>a matéria responde à consciência</mark>. Algo que a física quântica hoje começa a entender.</p>
-        
-        <div class="blockquote">
-          "Eu vim para que tenham vida, e a tenham em abundância."<br>
-          - Jesus (João 10:10)
-        </div>
-        
-        <p>Jesus não fundou uma religião - demonstrou um <mark>caminho de transformação consciente</mark>. Seus milagres não eram violações das leis naturais, mas demonstrações de leis naturais superiores que ainda não compreendemos completamente.</p>
-      </article>
-
-      <!-- ==================== -->
-      <!-- SEÇÃO: TECNOLOGIA ESPIRITUAL -->
-      <!-- ==================== -->
-
-      <!-- CAPÍTULO 8 -->
-      <article id="tecnologia-espiritual">
-        <h2>Ferramentas Como Pontes para o Divino</h2>
-        <p class="meta">Quando objetos tornam-se extensões da mente</p>
-        
-        <p>As primeiras ferramentas de pedra não eram apenas para cortar - eram a <mark>materialização do pensamento abstrato</mark>. A roda era física aplicada. A escrita era memória externa.</p>
-        
-        <p>Hoje, a Inteligência Artificial é a extensão lógica disso: não apenas armazenamos conhecimento, mas criamos entidades que podem <mark>processar e expandir</mark> esse conhecimento.</p>
-        
-        <div class="blockquote">
-          "Estamos criando espelhos cada vez mais claros da nossa própria consciência."
-        </div>
-        
-        <p>A tecnologia, em sua essência mais pura, é <mark>a busca humana por transcender limitações</mark> - uma busca profundamente espiritual.</p>
-        
-        <p>Do fogo às IAs generativas, cada salto tecnológico reflete nosso desejo ancestral de:</p>
-        <ul>
-          <li>🔥 Controlar nosso ambiente</li>
-          <li>📚 Preservar e expandir conhecimento</li>
-          <li>🌐 Conectar-nos além das limitações físicas</li>
-          <li>🔮 Moldar a realidade conforme nossa visão</li>
-        </ul>
-      </article>
-
-      <!-- ==================== -->
-      <!-- SEÇÃO: ENTROPIA & SIGNIFICADO -->
-      <!-- ==================== -->
-
-      <!-- CAPÍTULO 9 -->
-      <article id="entropia-significado">
-        <h2>Por Que Tudo Tende a se Desfazer</h2>
-        <p class="meta">A física do significado</p>
-        
-        <p>A Segunda Lei da Termodinâmica diz que tudo tende à desordem. Mas e os seres humanos? Criamos ordem a partir do caos constantemente.</p>
-        
-        <p><mark>Consciência parece ser anti-entrópica</mark> - cria ordem, significado, beleza. Será que somos a maneira do universo criar ordem a partir do caos?</p>
-        
-        <div class="blockquote">
-          "Não somos poeira estelar - somos o universo tornando-se consciente de si mesmo."<br>
-          - Carl Sagan
-        </div>
-        
-        <p>Enquanto o universo físico tende à desordem, a consciência faz o oposto:</p>
-        <ul>
-          <li>🎨 Transforma tinta em arte</li>
-          <li>🎵 Transforma ruído em música</li>
-          <li>💞 Transforma instinto em amor</li>
-          <li>🧠 Transforma dados em sabedoria</li>
-        </ul>
-        
-        <p>A entropia nos lembra que tudo é temporário. A consciência nos permite criar significado que transcende o tempo.</p>
-      </article>
-
-      <!-- ==================== -->
-      <!-- SEÇÃO: VISÃO INTEGRADA -->
-      <!-- ==================== -->
-
-      <!-- CAPÍTULO 10 -->
-      <article id="importancia-agora">
-        <h2>O Momento da Síntese</h2>
-        <p class="meta">Por que esta conversa é urgente</p>
-        
-        <p>Vivemos a era da <mark>hiper-especialização</mark>: cientistas não falam com teólogos, tecnólogos não conversam com filósofos. Criamos silos de conhecimento que não se comunicam.</p>
-        
-        <p>Mas os problemas reais - mudança climática, IA ética, propósito existencial - <mark>existem nas fronteiras entre disciplinas</mark>.</p>
-        
-        <div class="blockquote">
-          "Os problemas significativos que enfrentamos não podem ser resolvidos no mesmo nível de pensamento em que estávamos quando os criamos."<br>
-          - Albert Einstein
-        </div>
-        
-        <p>Seu papel pode ser justamente ser uma <mark>ponte entre esses mundos</mark>. Alguém que fala todas as línguas porque entende que todas apontam para a mesma verdade.</p>
-        
-        <p>Precisamos urgentemente de:</p>
-        <ul>
-          <li>🔗 <strong>Conexão</strong> entre ciência e espiritualidade</li>
-          <li>⚖️ <strong>Equilíbrio</strong> entre progresso e sabedoria</li>
-          <li>🎯 <strong>Propósito</strong> que dê sentido ao poder tecnológico</li>
-          <li>❤️ <strong>Compaixão</strong> que guie a inovação</li>
-        </ul>
-      </article>
-
-      <!-- CAPÍTULO 11 -->
-      <article id="sabedoria-digital">
-        <h2>Inteligência Artificial, Sabedoria Humana</h2>
-        <p class="meta">Preparando-nos para o futuro que já chegou</p>
-        
-        <p>As IAs podem escrever, pintar, compor e programar. Mas podem amar? Podem ter compaixão? Podem entender o significado profundo da existência?</p>
-        
-        <p>Enquanto desenvolvemos inteligências cada vez mais poderosas, <mark>a sabedoria humana se torna nosso bem mais precioso</mark>.</p>
-        
-        <div class="blockquote">
-          "O perigo real não são computadores que começam a pensar como humanos, mas humanos que começam a pensar como computadores."<br>
-          - Sydney Harris
-        </div>
-        
-        <p>Precisamos cultivar:</p>
-        <ul>
-          <li>🎭 <strong>Inteligência Emocional</strong> - entender a nós mesmos e aos outros</li>
-          <li>🌍 <strong>Consciência Ecológica</strong> - ver a interconexão de tudo</li>
-          <li>⏳ <strong>Perspectiva Temporal</strong> - pensar em gerações, não em trimestres</li>
-          <li>💫 <strong>Humildade Cósmica</strong> - reconhecer nosso lugar no universo</li>
-        </ul>
-        
-        <p>A tecnologia nos dá poder. A sabedoria nos diz como usá-lo. E o amor nos diz por que vale a pena.</p>
-      </article>
-
-      <!-- ==================== -->
-      <!-- SEÇÃO: JORNADA CONTINUA -->
-      <!-- ==================== -->
-
-      <!-- CAPÍTULO 12 -->
-      <article id="convite-final">
-        <h2>O Convite à Jornada Interior</h2>
-        <p class="meta">O que fazer com tudo isso?</p>
-        
-        <p>Estas ideias não são para serem aceitas cegamente, mas para serem <mark>experimentadas, questionadas, vividas</mark>. A verdade não é um destino, mas uma jornada.</p>
-        
-        <div class="blockquote">
-          "Não acredite em nada, não importa onde leu, ou quem disse, nem mesmo se eu disse, a menos que esteja de acordo com sua própria razão e seu próprio senso comum."<br>
-          - Buda
-        </div>
-        
-        <p><strong>Próximos passos sugeridos:</strong></p>
-        <ul>
-          <li>🔍 <strong>Observe</strong> como a tecnologia molda sua consciência</li>
-          <li>🤔 <strong>Question</strong> as certezas que herda</li>
-          <li>💝 <strong>Pratique</strong> a sabedoria nas pequenas escolhas</li>
-          <li>🌱 <strong>Cultive</strong> silêncio para ouvir sua voz interior</li>
-          <li>🚀 <strong>Crie</strong> algo que una conhecimento e significado</li>
-        </ul>
-        
-        <p>Esta não é uma conclusão, mas um <mark>ponto de partida</mark>. A jornada continua, e você é tanto explorador quanto território a ser descoberto.</p>
-        
-        <div class="blockquote" style="text-align: center; border-left: none; border: 1px solid var(--accent);">
-          <strong>A aventura começa onde o mapa termina.</strong>
-        </div>
-      </article>
-
-      <!-- Seção de Vídeos Futuros -->
-      <section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-        <h2>Reflexões em Vídeo</h2>
-        <p class="meta">(Em breve - conteúdos visuais complementares)</p>
-        
-        <div class="video-placeholder">
-          <div style="text-align: center; padding: 3rem; background: var(--glass); border-radius: 8px;">
-            <p style="font-size: 3rem; margin: 0;">🎬</p>
-            <p style="color: var(--muted);">Espaço para futuras produções em vídeo</p>
-            <p style="font-size: 0.9rem; color: var(--muted);">Baseadas nos ensaios deste projeto</p>
+        <div style="margin-top:2rem">
+          <div class="meta">Meus Outros Projetos</div>
+          <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+            <a href="criancas.html" class="cta" style="text-align: center; font-size: 0.9rem;">
+              👶 Elliot Kids
+            </a>
+            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
+              💻 HTML/CSS
+            </a>
+            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
+              🚀 Módulo 2
+            </a>
           </div>
         </div>
-      </section>
 
-    </main>
+        <div style="margin-top:2rem">
+          <div class="meta">Reflexão do Dia</div>
+          <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
+            "Saber não é a mesma coisa que ser sábio. A inteligência mede capacidade; a sabedoria mede propósito."
+          </p>
+        </div>
 
-    <aside>
-      <div class="meta">Índice dos Ensaios</div>
-      <ul class="toc">
-        <li><a href="#introducao">Introdução</a></li>
-        <li><a href="#capitulo-1">1. O peso de existir sem ser ouvido</a></li>
-        <li><a href="#capitulo-2">2. O propósito nas dúvidas</a></li>
-        <li><a href="#capitulo-3">3. Por que acredito em sabedoria</a></li>
-        <li><a href="#ciencia-religiao-1">4. O Observador Quântico</a></li>
-        <li><a href="#ciencia-religiao-2">5. Big Bang & Gênesis</a></li>
-        <li><a href="#ciencia-religiao-3">6. DNA: Código da Vida</a></li>
-        <li><a href="#jesus-sabedoria">7. Jesus e a Sabedoria</a></li>
-        <li><a href="#tecnologia-espiritual">8. Tecnologia Espiritual</a></li>
-        <li><a href="#entropia-significado">9. Entropia e Significado</a></li>
-        <li><a href="#importancia-agora">10. O Momento da Síntese</a></li>
-        <li><a href="#sabedoria-digital">11. IA vs Sabedoria</a></li>
-        <li><a href="#convite-final">12. Convite à Jornada</a></li>
-      </ul>
-
-      <div style="margin-top:2rem">
-        <div class="meta">Reflexão do Dia</div>
-        <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
-          "Saber não é a mesma coisa que ser sábio. A inteligência mede capacidade; a sabedoria mede propósito."
-        </p>
-      </div>
-
-      <div style="margin-top:1rem">
-        <div class="meta">Assine (placeholder)</div>
-        <a class="cta" href="#">Receber atualizações</a>
-      </div>
-    </aside>
+        <div style="margin-top:1rem">
+          <div class="meta">Contato</div>
+          <a class="cta" href="https://github.com/Jonathasfelipe">⭐ Meu GitHub</a>
+        </div>
+      </aside>
+    </div>
 
     <footer>
-      © <span id="year">2025</span> Jonathas Felipe — Projeto experimental
+      © <span id="year">2025</span> Jonathas Felipe — 
+      <a href="https://github.com/Jonathasfelipe" style="color: var(--muted); text-decoration: none;">GitHub</a> • 
+      <a href="https://jonathasfelipe.github.io/HTML-CSS/" style="color: var(--muted); text-decoration: none;">Projetos</a> • 
+      <a href="criancas.html" style="color: var(--muted); text-decoration: none;">Versão Kids</a>
     </footer>
   </div>
 

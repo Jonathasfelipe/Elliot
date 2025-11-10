@@ -5,25 +5,29 @@
 // =============================================
 const progressBar = document.getElementById('progressBar');
 
-window.addEventListener('scroll', () => {
+function updateProgressBar() {
     const winHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight - winHeight;
     const scrolled = (window.scrollY / docHeight) * 100;
     progressBar.style.width = scrolled + '%';
-});
+}
+
+window.addEventListener('scroll', updateProgressBar);
 
 // =============================================
 // 2. BOTÃO VOLTAR AO TOPO
 // =============================================
 const topBtn = document.getElementById('topBtn');
 
-window.addEventListener('scroll', () => {
+function toggleTopButton() {
     if (window.pageYOffset > 300) {
         topBtn.classList.add('show');
     } else {
         topBtn.classList.remove('show');
     }
-});
+}
+
+window.addEventListener('scroll', toggleTopButton);
 
 topBtn.addEventListener('click', () => {
     window.scrollTo({
@@ -57,48 +61,57 @@ themeBtn.addEventListener('click', () => {
 // =============================================
 // 4. ANIMAÇÃO DE SCROLL SUAVE PARA LINKS INTERNOS
 // =============================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-});
+}
 
 // =============================================
 // 5. ATUALIZAR ANO NO FOOTER
 // =============================================
-document.getElementById('year').textContent = new Date().getFullYear();
+function updateYear() {
+    document.getElementById('year').textContent = new Date().getFullYear();
+}
 
 // =============================================
 // 6. DESTACAR ITEM ATUAL NO TOC
 // =============================================
-const sections = document.querySelectorAll('article, section[id]');
+const sections = document.querySelectorAll('article[id], section[id]');
 const navLinks = document.querySelectorAll('.toc a');
 
 function highlightCurrentSection() {
     let current = '';
+    const scrollPosition = window.scrollY + 100;
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 100)) {
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        const href = link.getAttribute('href').substring(1);
+        if (href === current) {
             link.classList.add('active');
-            link.style.color = 'var(--accent)';
-        } else {
-            link.style.color = '';
         }
     });
 }
@@ -116,10 +129,8 @@ function debounce(func, wait) {
     };
 }
 
-window.addEventListener('scroll', debounce(highlightCurrentSection, 10));
-
 // =============================================
-// 7. ANIMAÇÃO DE DIGITAÇÃO PARA TEXTO DESTACADO (Opcional)
+// 7. ANIMAÇÃO DE DIGITAÇÃO PARA TEXTO DESTACADO
 // =============================================
 function typeWriter(element, text, speed = 50) {
     let i = 0;
@@ -135,33 +146,66 @@ function typeWriter(element, text, speed = 50) {
     type();
 }
 
-// Inicializar animação de digitação no hero (opcional)
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.getElementById('hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 70);
-    }
-});
-
 // =============================================
 // 8. LAZY LOADING PARA IMAGENS FUTURAS
 // =============================================
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
         });
-    });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
 }
 
-console.log('🚀 Elliot Project - Scripts carregados com sucesso!');
+// =============================================
+// 9. INICIALIZAÇÃO GERAL
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Atualizar ano
+    updateYear();
+    
+    // Inicializar scroll suave
+    initSmoothScroll();
+    
+    // Inicializar lazy loading
+    initLazyLoading();
+    
+    // Inicializar highlight do TOC
+    highlightCurrentSection();
+    window.addEventListener('scroll', debounce(highlightCurrentSection, 10));
+    
+    // Animação de digitação opcional no hero
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle && window.innerWidth > 768) {
+        const originalText = heroTitle.textContent;
+        setTimeout(() => {
+            typeWriter(heroTitle, originalText, 70);
+        }, 1000);
+    }
+    
+    console.log('🚀 Elliot Project - Scripts carregados com sucesso!');
+});
+
+// =============================================
+// 10. OTIMIZAÇÕES DE PERFORMANCE
+// =============================================
+// Prevenir múltiplos event listeners
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        updateProgressBar();
+        toggleTopButton();
+    }, 250);
+});
