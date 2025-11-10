@@ -3,16 +3,777 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elliot — Ensaios sobre Tecnologia, Fé & Sabedoria</title>
-  <meta name="description" content="Textos e reflexões sobre tecnologia, sabedoria e fé. Estética de livro; fundo escuro espacial." />
-  <meta property="og:title" content="Elliot — Ensaios sobre Tecnologia, Fé & Sabedoria" />
-  <meta property="og:description" content="Textos e reflexões sobre tecnologia, sabedoria e fé. Estética de livro; fundo escuro espacial." />
+  <title>Elliot — Blog Pessoal: Tecnologia, Fé & Sabedoria</title>
+  <meta name="description" content="Reflexões pessoais sobre tecnologia, espiritualidade e a busca por significado. Diálogos autênticos e recomendações." />
+  <meta property="og:title" content="Elliot — Blog Pessoal: Tecnologia, Fé & Sabedoria" />
+  <meta property="og:description" content="Reflexões pessoais sobre tecnologia, espiritualidade e a busca por significado." />
   <meta property="og:type" content="website" />
-  <meta name="keywords" content="tecnologia, sabedoria, fé, filosofia, autoconhecimento, desenvolvimento pessoal">
+  <meta name="keywords" content="tecnologia, sabedoria, fé, filosofia, autoconhecimento, desenvolvimento pessoal, blog pessoal">
   <meta name="author" content="Jonathas Felipe">
   
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #07060a;
+      --panel: #0f1720;
+      --muted: #9aa4b2;
+      --accent: #e6c07b;
+      --glass: rgba(255,255,255,0.03);
+      --max-width: 1000px;
+      --book-pad: 1rem;
+    }
+
+    /* Variáveis para Modo Claro */
+    [data-theme="light"] {
+      --bg: #f5f2e9;
+      --panel: #ffffff;
+      --muted: #6b7280;
+      --accent: #8b5cf6;
+      --text: #1f2937;
+      --glass: rgba(0,0,0,0.03);
+    }
+
+    /* Reset Mobile-Friendly */
+    * { 
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body { 
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at center, rgba(20,24,30,1) 0%, rgba(7,6,10,1) 60%);
+      color: #eef2f6;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: background 0.3s ease;
+      min-height: 100vh;
+    }
+
+    /* Ajustes para modo claro */
+    [data-theme="light"] body {
+      background: radial-gradient(ellipse at center, #e2e8f0 0%, #f5f2e9 60%);
+      color: var(--text);
+    }
+
+    /* Starfield otimizado para mobile */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.04) 0.6px, transparent 0.7px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.03) 0.5px, transparent 0.6px);
+      background-size: 150px 150px, 200px 200px, 120px 120px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.7;
+      animation: drift 120s linear infinite;
+      mix-blend-mode: screen;
+    }
+
+    [data-theme="light"] body::before {
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 70% 40%, rgba(0,0,0,0.04) 0.6px, transparent 0.7px),
+        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.03) 0.5px, transparent 0.6px);
+      mix-blend-mode: multiply;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-150px); }
+    }
+
+    /* Barra de Progresso Mobile */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #ffd488);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(230, 192, 123, 0.5);
+    }
+
+    /* Botão Voltar ao Topo Mobile */
+    .top-btn {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #111;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(230, 192, 123, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      touch-action: manipulation;
+    }
+
+    .top-btn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .top-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Botão do Tema Atualizado */
+    .theme-switcher {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+    }
+
+    .theme-btn {
+      background: var(--glass);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .theme-btn:hover {
+      background: var(--accent);
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(230, 192, 123, 0.3);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Container Principal Mobile */
+    .book-wrap {
+      width: 100%;
+      max-width: var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+      position: relative;
+      padding: 0.75rem;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      animation: contentFade 1s ease 0.5s forwards;
+      margin-top: 0;
+    }
+
+    [data-theme="light"] .book-wrap {
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    @keyframes contentFade {
+      to { opacity: 1; }
+    }
+
+    /* Header Mobile */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      min-height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #ffd488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-weight: 700;
+      font-family: 'Libre Baskerville', serif;
+      box-shadow: 0 4px 12px rgba(230,192,123,0.15);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    .subtitle { 
+      font-size: 0.8rem; 
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Navegação Mobile */
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      order: 3;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      background: var(--glass);
+    }
+
+    nav a:hover,
+    nav a:active {
+      color: var(--accent);
+      background: rgba(230, 192, 123, 0.1);
+    }
+
+    /* Layout do conteúdo principal Mobile */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Main reading column Mobile */
+    main {
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius: 8px;
+      order: 1;
+    }
+
+    [data-theme="light"] main {
+      background: linear-gradient(180deg, rgba(0,0,0,0.015), rgba(0,0,0,0.01));
+    }
+
+    /* Artigos Mobile */
+    article {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+      margin-bottom: 2.5rem;
+      padding: 0;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Delay progressivo para os artigos */
+    article:nth-child(1) { animation-delay: 0.1s; }
+    article:nth-child(2) { animation-delay: 0.2s; }
+    article:nth-child(3) { animation-delay: 0.3s; }
+    article:nth-child(4) { animation-delay: 0.4s; }
+    article:nth-child(5) { animation-delay: 0.5s; }
+    article:nth-child(6) { animation-delay: 0.6s; }
+
+    article h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.4rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.3;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p { 
+      margin: 0 0 1rem; 
+      line-height: 1.6;
+      font-size: 0.95rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Lists Mobile */
+    ul, ol {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      line-height: 1.5;
+    }
+
+    /* keyword highlight Mobile */
+    mark {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #f1d411;
+      padding: 2px 4px;
+      border-radius: 4px;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+      font-weight: 600;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    [data-theme="light"] mark {
+      background-color: rgba(139, 92, 246, 0.15);
+      color: #7c3aed;
+      text-shadow: none;
+    }
+
+    /* Citações Destacadas Mobile */
+    .blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1rem;
+      background: var(--glass);
+      border-radius: 0 8px 8px 0;
+      font-family: 'Libre Baskerville', serif;
+      line-height: 1.5;
+    }
+
+    /* Aside Mobile */
+    aside {
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+      border-radius: 8px;
+      order: 2;
+      position: static;
+      margin-top: 1rem;
+    }
+
+    [data-theme="light"] aside {
+      background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.008));
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+    }
+
+    .toc li { 
+      margin: 0.5rem 0; 
+      padding-left: 0.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .toc li:hover {
+      border-left-color: var(--accent);
+    }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+      display: block;
+      padding: 0.25rem 0;
+      touch-action: manipulation;
+    }
+
+    .toc a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+    }
+
+    /* Componentes Mobile */
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: var(--glass);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      width: 100%;
+      touch-action: manipulation;
+    }
+
+    .cta:active {
+      transform: scale(0.98);
+      background: var(--accent);
+      color: #111;
+    }
+
+    /* Footer Mobile */
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--glass);
+      margin-top: 2rem;
+      order: 3;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin: 0 0.25rem;
+      display: inline-block;
+      padding: 0.25rem;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* Vídeo YouTube Mobile */
+    .video-container {
+      margin: 1.5rem 0;
+    }
+
+    .video-container iframe {
+      border-radius: 8px;
+      min-height: 200px;
+    }
+
+    /* Grid de Projetos Mobile */
+    .project-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--glass);
+      padding: 1.25rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    /* ===== NOVOS ESTILOS PARA DIÁLOGOS ===== */
+    .dialogue-block {
+      margin: 1.5rem 0;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .message {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .user-message .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), #ffd488);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #111;
+      flex-shrink: 0;
+    }
+
+    .message-content {
+      background: var(--glass);
+      padding: 1rem 1.5rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      flex: 1;
+      position: relative;
+    }
+
+    .message-content::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 15px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid var(--glass);
+    }
+
+    .vulnerability-section {
+      background: rgba(230, 192, 123, 0.05);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .confession {
+      background: rgba(255,255,255,0.03);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px dashed var(--accent);
+      font-style: italic;
+    }
+
+    .reflection-note {
+      background: linear-gradient(135deg, rgba(230, 192, 123, 0.1), transparent);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      border: 1px solid rgba(230, 192, 123, 0.2);
+    }
+
+    /* Grid de vídeos recomendados */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .video-card {
+      background: var(--glass);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .video-thumbnail {
+      height: 120px;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .video-info {
+      padding: 1.5rem;
+    }
+
+    .video-info h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .video-info p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== MEDIA QUERIES ===== */
+
+    /* Tablets pequenos */
+    @media (min-width: 481px) and (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .book-wrap {
+        padding: 1rem;
+      }
+      
+      main, aside {
+        padding: 1.5rem;
+      }
+      
+      article h2 {
+        font-size: 1.5rem;
+      }
+      
+      nav {
+        gap: 0.75rem;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    /* Tablets e Desktop */
+    @media (min-width: 769px) {
+      body {
+        padding: 2rem 1rem;
+      }
+      
+      .book-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+        gap: 2rem;
+      }
+      
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+      }
+      
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: auto;
+      }
+      
+      .brand {
+        justify-content: flex-start;
+        text-align: left;
+      }
+      
+      h1 {
+        text-align: left;
+      }
+      
+      .subtitle {
+        text-align: left;
+      }
+      
+      .theme-switcher {
+        position: static;
+        margin-left: auto;
+      }
+      
+      nav {
+        order: 0;
+        width: auto;
+        margin-top: 0;
+        margin-left: 2rem;
+        justify-content: flex-end;
+      }
+      
+      aside {
+        position: sticky;
+        top: 2rem;
+        order: 2;
+      }
+      
+      main {
+        order: 1;
+      }
+      
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .cta {
+        width: auto;
+      }
+
+      .video-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+    }
+
+    /* Desktop grande */
+    @media (min-width: 1200px) {
+      .book-wrap {
+        max-width: 1200px;
+      }
+      
+      .content-wrapper {
+        grid-template-columns: 1fr 350px;
+        gap: 3rem;
+      }
+    }
+
+    /* Ajustes de toque para iOS/Safari */
+    @supports (-webkit-touch-callout: none) {
+      .top-btn,
+      .theme-btn,
+      .cta,
+      nav a {
+        cursor: pointer;
+      }
+      
+      body {
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    /* Prevenir zoom em inputs no iOS */
+    @media screen and (max-width: 768px) {
+      input,
+      select,
+      textarea {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Barra de Progresso -->
@@ -27,13 +788,15 @@
         <div class="logo">E</div>
         <div>
           <h1>Elliot</h1>
-          <div class="subtitle">Ensaios — tecnologia, fé e sabedoria</div>
+          <div class="subtitle">Blog Pessoal — tecnologia, fé e sabedoria</div>
         </div>
       </div>
       
       <nav aria-label="principal">
         <a href="#hero">Início</a>
         <a href="#ensaios">Ensaios</a>
+        <a href="#dialogos">Diálogos</a>
+        <a href="#videos-recomendados">Vídeos</a>
         <a href="#sobre">Sobre</a>
         <a href="#projetos">Projetos</a>
       </nav>
@@ -54,6 +817,7 @@
 
           <article>
             <p>Desde as primeiras religiões até as máquinas que habitam nossos bolsos, a tecnologia sempre foi uma extensão do que sabemos e fazemos. Ela se apresenta como ferramenta — e por vezes, como espelho.</p>
+            <p>Este espaço é onde exploro essas conexões através de ensaios, diálogos autênticos e recomendações que me inspiram.</p>
           </article>
         </section>
 
@@ -65,7 +829,7 @@
 
         <!-- Introdução Pessoal -->
         <article id="introducao">
-          <h2>Por Que Este Projeto Existe</h2>
+          <h2>Por Que Este Blog Existe</h2>
           <p class="meta">Uma explicação sincera sobre as motivações por trás destes escritos</p>
           
           <p>Este espaço nasceu da necessidade de dar voz às ideias que habitam a fronteira entre <mark>tecnologia</mark> e <mark>espiritualidade</mark>. Aqui, exploramos como o conhecimento técnico e a sabedoria ancestral podem coexistir e se fortalecer mutuamente.</p>
@@ -101,6 +865,54 @@
           <p>Inteligência mostra como fazer. Sabedoria mostra por quê. Em um mundo que vive de razão rápida, opinião instantânea e certezas frágeis, a sabedoria virou quase um ato de resistência.</p>
           <p>A sabedoria nasce do atrito entre quem você é e o que o mundo exige. Cresce nas falhas, nos silêncios, nos questionamentos. Ela não protege da dor — dá sentido a ela. E é isso que nos mantém humanos.</p>
           <p>Sabedoria não é perfeição. É verdade.</p>
+        </article>
+
+        <!-- NOVA SEÇÃO: DIÁLOGOS AUTÊNTICOS -->
+        <section id="dialogos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2 style="text-align: center; color: var(--accent);">💬 Diálogos Autênticos</h2>
+          <p class="meta" style="text-align: center;">Conversas reais que moldaram meu pensamento</p>
+        </section>
+
+        <article id="conversa-transformadora">
+          <h2>🌌 A Conversa Que Mudou Tudo</h2>
+          <p class="meta">Transcrição de um diálogo profundo sobre autismo, tecnologia e espiritualidade</p>
+          
+          <div class="dialogue-block">
+            <div class="message user-message">
+              <div class="avatar">JF</div>
+              <div class="message-content">
+                <p>"Eu me chamo Jonathas Felipe Cardoso dos Santos, atualmente tenho 26 anos, sou um ser humano adulto (aparentemente normal). Mas porque eu disse isso? Anteontem tive uma conversa profunda com meu pai sobre a possibilidade de eu ter vivido esses 26 anos com algum nível de espectro autista..."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dialogue-block">
+            <div class="message user-message">
+              <div class="avatar">JF</div>
+              <div class="message-content">
+                <p>"O que eu quero dizer é que expliquei pra ele porque na minha visão a TECNOLOGIA não é algo material e sem valor como a sociedade vê hoje... mas sim uma expansão do conhecimento humano. Desde as primeiras religiões como o hinduísmo, já usávamos inteligência/tecnologia para revolucionar a história..."</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reflection-note">
+            <p><strong>Minha reflexão:</strong> Esta conversa foi o ponto de partida para entender que minha perspectiva única pode ajudar outros a verem conexões invisíveis.</p>
+          </div>
+        </article>
+
+        <article id="jornada-pessoal">
+          <h2>😔 Por Que Finalmente Estou Falando</h2>
+          <p class="meta">A dor de ser incompreendido e a coragem de se expressar</p>
+          
+          <div class="vulnerability-section">
+            <p>"Sinceramente dói parecer que eles não acreditam, devido todos ao meu redor me tratarem como 'criança' por não ter status, dinheiro ou independência, pra ter voz e falar o que penso..."</p>
+            
+            <div class="confession">
+              <p>"Esta é a conversa mais difícil e confortável que eu tive na vida. Sinceramente, agora estou chorando... e confesso que estou fumando maconha também. Não acho que estou em crise, mas estou bem."</p>
+            </div>
+            
+            <p>Mas existe um ponto de virada: <mark>ser ouvido é bom, ser compreendido é raro, mas se compreender é indispensável</mark>. O dia em que você para de pedir permissão para existir é o dia em que sua voz finalmente nasce.</p>
+          </div>
         </article>
 
         <!-- CAPÍTULO 4 -->
@@ -313,6 +1125,41 @@
           </div>
         </article>
 
+        <!-- NOVA SEÇÃO: VÍDEOS RECOMENDADOS -->
+        <section id="videos-recomendados" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
+          <h2>🎬 Vídeos Que Me Inspiraram</h2>
+          <p class="meta">Conteúdo que expandiu minha visão sobre tecnologia e espiritualidade</p>
+          
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-thumbnail">🧠</div>
+              <div class="video-info">
+                <h3>Inteligência Artificial e Consciência</h3>
+                <p>Como a IA está nos forçando a repensar o que significa ser humano</p>
+                <a href="https://www.youtube.com/watch?v=CoxwYSwo8rA" target="_blank" class="cta">Assistir</a>
+              </div>
+            </div>
+            
+            <div class="video-card">
+              <div class="video-thumbnail">🔧</div>
+              <div class="video-info">
+                <h3>Manutenção de Computadores</h3>
+                <p>O lado prático da tecnologia - cuidando das ferramentas que usamos</p>
+                <a href="https://www.youtube.com/watch?v=Uq5LuAZzrk4" target="_blank" class="cta">Assistir</a>
+              </div>
+            </div>
+
+            <div class="video-card">
+              <div class="video-thumbnail">🌌</div>
+              <div class="video-info">
+                <h3>Física Quântica e Espiritualidade</h3>
+                <p>As conexões surpreendentes entre ciência moderna e sabedoria ancestral</p>
+                <a href="https://www.youtube.com/watch?v=CoxwYSwo8rA" target="_blank" class="cta">Assistir</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Seção de Vídeos -->
         <section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
           <h2>Reflexões em Vídeo</h2>
@@ -418,6 +1265,8 @@
         <ul class="toc">
           <li><a href="#hero">Início</a></li>
           <li><a href="#ensaios">Ensaios</a></li>
+          <li><a href="#dialogos">Diálogos Autênticos</a></li>
+          <li><a href="#videos-recomendados">Vídeos Recomendados</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#projetos">Projetos</a></li>
         </ul>
@@ -440,8 +1289,18 @@
         <div style="margin-top:2rem">
           <div class="meta">Reflexão do Dia</div>
           <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
-            "Saber não é a mesma coisa que ser sábio. A inteligência mede capacidade; a sabedoria mede propósito."
+            "A verdadeira coragem não é não ter medo, mas seguir em frente mesmo com medo de ser incompreendido."
           </p>
+        </div>
+
+        <div style="margin-top:1rem">
+          <div class="meta">Minha Jornada</div>
+          <a href="#jornada-pessoal" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(230, 192, 123, 0.1);">
+            😔 Minha Vulnerabilidade
+          </a>
+          <a href="#conversa-transformadora" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(139, 92, 246, 0.1);">
+            🌌 Diálogo Transformador
+          </a>
         </div>
 
         <div style="margin-top:1rem">
@@ -459,6 +1318,327 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // script.js - Elliot Project - Mobile Optimized
+    // =============================================
+    // 1. DETECÇÃO DE MOBILE E TOUCH
+    // =============================================
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // =============================================
+    // 2. BARRA DE PROGRESSO OTIMIZADA
+    // =============================================
+    const progressBar = document.getElementById('progressBar');
+
+    function updateProgressBar() {
+        const winHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight - winHeight;
+        const scrolled = (window.scrollY / docHeight) * 100;
+        progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+    }
+
+    // Throttle para performance mobile
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
+    window.addEventListener('scroll', throttle(updateProgressBar, 16));
+
+    // =============================================
+    // 3. BOTÃO VOLTAR AO TOPO MOBILE
+    // =============================================
+    const topBtn = document.getElementById('topBtn');
+
+    function toggleTopButton() {
+        if (window.pageYOffset > 200) {
+            topBtn.classList.add('show');
+        } else {
+            topBtn.classList.remove('show');
+        }
+    }
+
+    window.addEventListener('scroll', throttle(toggleTopButton, 100));
+
+    topBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Touch feedback
+    if (isTouchDevice) {
+        topBtn.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+        });
+        
+        topBtn.addEventListener('touchend', function() {
+            this.style.transform = '';
+        });
+    }
+
+    // =============================================
+    // 4. SISTEMA DE TEMAS (LÂMPADA)
+    // =============================================
+    const themeBtn = document.getElementById('themeBtn');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    // Aplicar tema salvo ao carregar
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Ícone da lâmpada - 💡 acesa para light, 🔦 apagada para dark
+        themeBtn.innerHTML = theme === 'light' ? '💡' : '🔦';
+        themeBtn.setAttribute('title', theme === 'light' ? 'Modo Claro' : 'Modo Escuro');
+        
+        localStorage.setItem('theme', theme);
+        
+        // Atualizar meta theme-color para mobile
+        const themeColor = theme === 'light' ? '#f5f2e9' : '#07060a';
+        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        
+        if (!metaThemeColor) {
+            metaThemeColor = document.createElement('meta');
+            metaThemeColor.name = 'theme-color';
+            document.head.appendChild(metaThemeColor);
+        }
+        metaThemeColor.setAttribute('content', themeColor);
+    }
+
+    // Aplicar tema inicial
+    applyTheme(currentTheme);
+
+    // Alternar tema ao clicar
+    themeBtn.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+        
+        // Feedback visual
+        themeBtn.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            themeBtn.style.transform = 'scale(1)';
+        }, 200);
+    });
+
+    // Suporte a preferência do sistema
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    prefersDark.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    // =============================================
+    // 5. SCROLL SUAVE MOBILE
+    // =============================================
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 10;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Feedback tátil
+                    if (isTouchDevice) {
+                        this.style.backgroundColor = 'rgba(230, 192, 123, 0.2)';
+                        setTimeout(() => {
+                            this.style.backgroundColor = '';
+                        }, 300);
+                    }
+                }
+            });
+        });
+    }
+
+    // =============================================
+    // 6. TOC INTERATIVO
+    // =============================================
+    const sections = document.querySelectorAll('article[id], section[id]');
+    const navLinks = document.querySelectorAll('.toc a');
+
+    function highlightCurrentSection() {
+        let current = '';
+        const scrollPosition = window.scrollY + (window.innerHeight * 0.3);
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+                
+                // Scroll suave do TOC no mobile
+                if (isMobile && link.parentElement) {
+                    link.parentElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }
+            }
+        });
+    }
+
+    // =============================================
+    // 7. ANIMAÇÃO DE DIGITAÇÃO (Opcional)
+    // =============================================
+    function typeWriter(element, text, speed = 50) {
+        let i = 0;
+        element.innerHTML = '';
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    }
+
+    // =============================================
+    // 8. OTIMIZAÇÕES DE PERFORMANCE MOBILE
+    // =============================================
+    function initPerformanceOptimizations() {
+        // Prevenir múltiplos resizes
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateProgressBar();
+                toggleTopButton();
+            }, 250);
+        });
+        
+        // Load crítico primeiro
+        const criticalImages = document.querySelectorAll('img[data-src]');
+        criticalImages.forEach(img => {
+            if (img.getBoundingClientRect().top < window.innerHeight * 2) {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+            }
+        });
+    }
+
+    // =============================================
+    // 9. GESTOS TOUCH
+    // =============================================
+    function initTouchGestures() {
+        if (!isTouchDevice) return;
+        
+        let startY;
+        
+        document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        // Swipe down para mostrar botão topo
+        document.addEventListener('touchend', (e) => {
+            if (!startY) return;
+            
+            const endY = e.changedTouches[0].clientY;
+            const diff = startY - endY;
+            
+            if (diff < -50 && window.pageYOffset > 100) {
+                topBtn.classList.add('show');
+            }
+            
+            startY = null;
+        }, { passive: true });
+    }
+
+    // =============================================
+    // 10. ATUALIZAR ANO NO FOOTER
+    // =============================================
+    function updateYear() {
+        document.getElementById('year').textContent = new Date().getFullYear();
+    }
+
+    // =============================================
+    // 11. INICIALIZAÇÃO GERAL
+    // =============================================
+    document.addEventListener('DOMContentLoaded', () => {
+        // Atualizar ano
+        updateYear();
+        
+        // Inicializar componentes
+        initSmoothScroll();
+        initPerformanceOptimizations();
+        initTouchGestures();
+        
+        // Inicializar highlight do TOC
+        highlightCurrentSection();
+        window.addEventListener('scroll', throttle(highlightCurrentSection, 50));
+        
+        // Ajustes específicos para mobile
+        if (isMobile) {
+            // Remover animações pesadas em dispositivos lentos
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion) {
+                document.querySelectorAll('article').forEach(article => {
+                    article.style.animation = 'none';
+                    article.style.opacity = '1';
+                    article.style.transform = 'none';
+                });
+            }
+            
+            // Otimizar vídeos
+            const videos = document.querySelectorAll('iframe');
+            videos.forEach(video => {
+                video.setAttribute('loading', 'lazy');
+            });
+        }
+        
+        // Animação de digitação opcional no hero (apenas desktop)
+        const heroTitle = document.getElementById('hero-title');
+        if (heroTitle && !isMobile) {
+            const originalText = heroTitle.textContent;
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 70);
+            }, 1000);
+        }
+        
+        console.log('🚀 Elliot Project - Scripts carregados com sucesso!');
+        console.log('📱 Mobile:', isMobile, 'Touch:', isTouchDevice);
+    });
+
+    // =============================================
+    // 12. OFFLINE SUPPORT (Opcional)
+    // =============================================
+    if ('serviceWorker' in navigator && isMobile) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => console.log('SW registered: ', registration))
+                .catch(registrationError => console.log('SW registration failed: ', registrationError));
+        });
+    }
+  </script>
 </body>
 </html>
