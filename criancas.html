@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elliot Kids — Histórias para Crianças Curiosas</title>
+  <meta name="description" content="Histórias divertidas sobre amizade, natureza e descobertas para crianças" />
+  <meta name="keywords" content="histórias crianças, educação valores, natureza crianças">
+  <meta name="author" content="Jonathas Felipe">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Overrides para versão infantil */
+    .book-wrap {
+      background: linear-gradient(180deg, rgba(30,20,50,0.8), rgba(15,10,30,0.9));
+    }
+    
+    .historia-crianca {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      border-left: 6px solid #e6c07b;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .moral {
+      background: rgba(230, 192, 123, 0.15);
+      padding: 1.2rem;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      border: 2px dashed #e6c07b;
+      font-style: italic;
+      text-align: center;
+    }
+    
+    .emoji-title {
+      font-size: 1.8rem;
+      text-align: center;
+      margin: 2rem 0;
+      color: #e6c07b;
+    }
+    
+    .nav-criancas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    
+    .btn-crianca {
+      background: rgba(230, 192, 123, 0.2);
+      color: #e6c07b;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #e6c07b;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-crianca:hover {
+      background: #e6c07b;
+      color: #111;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de Progresso -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="topBtn" class="top-btn" title="Voltar ao topo">↑</button>
+
+  <div class="book-wrap" role="document">
+
+    <header>
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>
+          <h1>Elliot Kids</h1>
+          <div class="subtitle">Histórias para crianças curiosas</div>
+        </div>
+      </div>
+      <nav aria-label="principal">
+        <a href="#inicio">Início</a>
+        <a href="#historias">Histórias</a>
+        <a href="../index.html">Versão Adulta</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- Hero Section Infantil -->
+      <section id="inicio">
+        <div class="emoji-title">📚✨🎈</div>
+        <h2 style="text-align: center;">Bem-vindo ao Mundo das Histórias!</h2>
+        <p class="meta" style="text-align: center;">Para crianças que amam perguntar "por quê?"</p>
+
+        <article style="text-align: center;">
+          <p>Este é um lugar especial com histórias sobre <mark>amizade</mark>, <mark>natureza</mark> e <mark>descobertas</mark>!</p>
+          <p>Você pode ler sozinho ou pedir para alguém ler com você. 🎉</p>
+        </article>
+        
+        <div class="nav-criancas">
+          <a href="#historias" class="btn-crianca">📖 Ver Histórias</a>
+          <a href="../index.html" class="btn-crianca">🌙 Versão Adulta</a>
+        </div>
+      </section>
+
+      <!-- ==================== -->
+      <!-- HISTÓRIAS INFANTIS -->
+      <!-- ==================== -->
+
+      <section id="historias">
+        <div class="emoji-title">🎭 Histórias Divertidas 🎭</div>
+      </section>
+
+      <!-- HISTÓRIA 1 -->
+      <article id="historia-1" class="historia-crianca">
+        <h2>🌠 O Menino e as Estrelas</h2>
+        <p class="meta">Uma história sobre perguntas e descobertas</p>
+        
+        <p>Era uma vez um menino chamado Lucas que adorava olhar para as estrelas. Todas as noites, ele subia na varanda de casa e ficava horas olhando para o céu escuro cheio de luzinhas brilhantes.</p>
+        
+        <p>Um dia, ele perguntou para seu avô:</p>
+        
+        <div class="blockquote">
+          "Vovô, como as estrelas ficam no céu sem cair?"
+        </div>
+        
+        <p>O avô, que era muito sábio, sorriu e respondeu:</p>
+        
+        <div class="blockquote">
+          "Assim como o amor fica no nosso coração sem cair, meu neto. Existem coisas que a gente não vê, mas que são muito reais."
+        </div>
+        
+        <p>Lucas pensou um pouco e disse:</p>
+        
+        <div class="blockquote">
+          "Então o amor é como a gravidade? A gente não vê, mas segura tudo no lugar?"
+        </div>
+        
+        <p>O avô deu um abraço bem forte nele e respondeu:</p>
+        
+        <div class="blockquote">
+          "Exatamente! E assim como cada estrela brilha do seu jeito, cada um de nós também tem seu próprio brilho especial."
+        </div>
+        
+        <div class="moral">
+          🎯 <strong>Lição da História:</strong> Fazer perguntas é como acender luzinhas no escuro. Cada pergunta nos ajuda a ver o mundo com mais clareza!
+        </div>
+      </article>
+
+      <!-- HISTÓRIA 2 -->
+      <article id="historia-2" class="historia-crianca">
+        <h2>🌱 A Semente e a Paciência</h2>
+        <p class="meta">Uma história sobre confiança e tempo</p>
+        
+        <p>Maria ganhou da professora uma sementinha de girassol. Chegando em casa, ela plantou a semente no jardim com muito cuidado.</p>
+        
+        <p>No primeiro dia, ela cavou a terra para ver se já tinha nascido. Nada.</p>
+        <p>No segundo dia, fez a mesma coisa. Nada.</p>
+        <p>No terceiro dia, também cavou. Nada!</p>
+        
+        <p>Sua mãe viu isso e disse com voz calma:</p>
+        
+        <div class="blockquote">
+          "Querida, algumas coisas precisam de tempo no escuro para crescer fortes. A semente está se preparando para virar uma linda planta!"
+        </div>
+        
+        <p>Maria entendeu e parou de cavar. Ela passou a regar a plantinha todos os dias e até conversava com ela:</p>
+        
+        <div class="blockquote">
+          "Bom dia, sementinha! Espero que você cresça forte e feliz!"
+        </div>
+        
+        <p>Duas semanas depois, uma plantinha verde bem pequena apareceu! Maria ficou tão feliz que chamou toda a família para ver.</p>
+        
+        <p>Ela aprendeu que:</p>
+        <ul>
+          <li>🌱 <strong>Algumas coisas boas demoram para crescer</strong></li>
+          <li>💧 <strong>Cuidado diário é importante</strong></li>
+          <li>☀️ <strong>Confiança faz milagres</strong></li>
+          <li>⏳ <strong>Tudo tem seu tempo certo</strong></li>
+        </ul>
+        
+        <div class="moral">
+          🎯 <strong>Lição da História:</strong> Assim como as plantas, nossos sonhos e amizades precisam de tempo, cuidado e confiança para crescerem fortes e bonitos!
+        </div>
+      </article>
+
+      <!-- HISTÓRIA 3 -->
+      <article id="historia-3" class="historia-crianca">
+        <h2>🐦 Os Dois Pássaros Diferentes</h2>
+        <p class="meta">Uma história sobre amizade e diferenças</p>
+        
+        <p>Num galho bem alto de uma árvore centenária, viviam dois pássaros. Pipo era azul e adorava cantar bem alto de manhã. Pipa era vermelha e preferia o silêncio para observar o mundo.</p>
+        
+        <p>No início, eles não se entendiam:</p>
+        
+        <div class="blockquote">
+          "Por que você canta tão alto de manhã?" perguntou Pipa, cobrindo os ouvidos com as asas.
+        </div>
+        
+        <div class="blockquote">
+          "Por que você fica tão quieta o tempo todo?" perguntou Pipo, curioso.
+        </div>
+        
+        <p>Eles quase não se falavam, cada um no seu canto do galho.</p>
+        
+        <p>Um dia, uma tempestade muito forte chegou. O vento uivava e a chuva caía com força. Os dois pássaros, assustados, procuraram abrigo.</p>
+        
+        <p>Pipa conhecia um galho grosso e protegido. Pipo cantou uma música suave para acalmar o medo. Juntos, eles se protegeram da tempestade.</p>
+        
+        <p>Depois que a tempestade passou, eles descobriram que:</p>
+        <ul>
+          <li>🎵 <strong>As músicas de Pipo alegravam os dias tristes</strong></li>
+          <li>🔍 <strong>A observação de Pipa encontrava os melhores alimentos</strong></li>
+          <li>🤝 <strong>Juntos, eles eram muito mais fortes</strong></li>
+        </ul>
+        
+        <div class="moral">
+          🎯 <strong>Lição da História:</strong> Nossas diferenças nos completam, não nos separam! Cada pessoa tem algo especial para oferecer.
+        </div>
+      </article>
+
+      <!-- HISTÓRIA 4 -->
+      <article id="historia-4" class="historia-crianca">
+        <h2>👨‍👧‍👦 O Amigo de Todos</h2>
+        <p class="meta">Uma história sobre Jesus para crianças</p>
+        
+        <p>Há muito tempo, em uma terra distante, viveu um homem muito especial chamado Jesus. Ele era diferente de todos os outros homens.</p>
+        
+        <p>O que Jesus fazia de especial:</p>
+        <ul>
+          <li>❤️ <strong>Abraçava pessoas</strong> que ninguém mais queria abraçar</li>
+          <li>🏥 <strong>Ajudava pessoas doentes</strong> a se sentirem melhor</li>
+          <li>📖 <strong>Contava histórias</strong> que ensinavam a ser bom e gentil</li>
+          <li>🌊 <strong>Andava com pescadores</strong> e trabalhadores simples</li>
+          <li>👶 <strong>Amava as crianças</strong> e as escutava com atenção</li>
+        </ul>
+        
+        <p>Um dia, algumas crianças queriam ver Jesus de perto. Os adultos disseram:</p>
+        
+        <div class="blockquote">
+          "Não incomodem Jesus! Ele tem coisas importantes para fazer com os adultos."
+        </div>
+        
+        <p>Mas Jesus ouviu e disse algo surpreendente:</p>
+        
+        <div class="blockquote">
+          "Deixem as crianças virem até mim. Não as impeçam, pois o Reino de Deus pertence às pessoas que são como elas."
+        </div>
+        
+        <p>Ele se ajoelhou, abraçou cada criança e as abençoou. Jesus mostrou que:</p>
+        
+        <div class="blockquote">
+          "O mais importante não é ser forte, rico ou inteligente, mas ter um coração puro e bom."
+        </div>
+        
+        <div class="moral">
+          🎯 <strong>Lição da História:</strong> Jesus nos ensinou que o amor, a simplicidade e a bondade são as coisas mais importantes da vida!
+        </div>
+      </article>
+
+      <!-- HISTÓRIA 5 -->
+      <article id="historia-5" class="historia-crianca">
+        <h2>🔦 A Lanterna Mágica</h2>
+        <p class="meta">Uma história sobre tecnologia de forma simples</p>
+        
+        <p>Pedro adorava sua lanterna nova. À noite, ele apontava para o escuro e criava caminhos de luz pelo quarto. Era como ter um pedaço de estrela na mão!</p>
+        
+        <p>Seu pai, vendo a fascinação do filho, explicou:</p>
+        
+        <div class="blockquote">
+          "A lanterna é como nossas ideias, Pedro. Elas iluminam o que não conseguimos ver no escuro."
+        </div>
+        
+        <p>Pedro, que era muito esperto, perguntou:</p>
+        
+        <div class="blockquote">
+          "Então os celulares, tablets e computadores são como lanternas maiores e mais inteligentes?"
+        </div>
+        
+        <p>O pai riu e respondeu:</p>
+        
+        <div class="blockquote">
+          "Isso mesmo! Eles são ferramentas que nos ajudam a ver mais longe, aprender coisas novas e conversar com pessoas que estão longe."
+        </div>
+        
+        <p>Mas o pai também explicou algo importante:</p>
+        
+        <div class="blockquote">
+          "Assim como a lanterna, precisamos saber para onde apontar a tecnologia. Ela pode iluminar coisas boas - como aprender e se conectar - ou pode nos distrair do que é realmente importante."
+        </div>
+        
+        <p>Pedro entendeu que:</p>
+        <ul>
+          <li>💡 <strong>Tecnologia é uma ferramenta</strong>, como martelo ou lápis</li>
+          <li>🎯 <strong>Precisamos usar com sabedoria</strong></li>
+          <li>❤️ <strong>Nada substitui abraços e conversas olho no olho</strong></li>
+        </ul>
+        
+        <div class="moral">
+          🎯 <strong>Lição da História:</strong> A tecnologia é uma ferramenta maravilhosa, mas nosso coração é quem decide como usá-la para o bem!
+        </div>
+      </article>
+
+      <!-- CHAMADA PARA AÇÃO -->
+      <section style="text-align: center; margin: 4rem 0;">
+        <div class="emoji-title">🎨✨🤔</div>
+        <h3>Gostou das histórias?</h3>
+        <p>Compartilhe com seus amigos ou peça para lerem com você!</p>
+        <div class="nav-criancas">
+  <a href="#inicio" class="btn-crianca">📚 Ler Todas Novamente</a>
+  <a href="../adulto.html" class="btn-crianca">🌙 Ver Versão para Adultos</a>  <!-- ← JÁ TEM! -->
+</div>
+      </section>
+
+    </main>
+
+    <aside>
+      <div class="meta">Navegação Rápida</div>
+      <ul class="toc">
+        <li><a href="#inicio">🏠 Início</a></li>
+        <li><strong>📖 Histórias:</strong></li>
+        <li><a href="#historia-1">1. O Menino e as Estrelas</a></li>
+        <li><a href="#historia-2">2. A Semente e a Paciência</a></li>
+        <li><a href="#historia-3">3. Os Dois Pássaros</a></li>
+        <li><a href="#historia-4">4. O Amigo de Todos</a></li>
+        <li><a href="#historia-5">5. A Lanterna Mágica</a></li>
+      </ul>
+
+      <div style="margin-top:2rem">
+        <div class="meta">Pensamento do Dia</div>
+        <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
+          "Toda criança traz um pouco de Deus para o mundo." ✨
+        </p>
+      </div>
+
+      <div style="margin-top:1rem">
+        <div class="meta">Para os Pais</div>
+        <a class="cta" href="../index.html">Versão Completa para Adultos</a>
+      </div>
+    </aside>
+
+    <footer>
+      © <span id="year">2025</span> Jonathas Felipe — Feito com ❤️ para todas as crianças
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
