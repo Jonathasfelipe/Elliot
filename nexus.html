@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YASUKETV — Pergaminho de Animes</title>
-  <meta name="description" content="Pergaminho samurai com análises filosóficas de animes por Jonathas Felipe" />
+  <title>YASUKETV — Nexus de Projetos</title>
+  <meta name="description" content="Pergaminho samurai com links para todos os projetos por Jonathas Felipe" />
   
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -114,368 +114,126 @@
       line-height: 1.7;
     }
 
-    /* Navegação */
-    .samurai-nav {
+    /* Grid de Projetos */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .project-card {
+      background: rgba(139, 115, 85, 0.05);
+      border: 2px solid var(--border);
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blood);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--blood);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-emoji {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      filter: grayscale(0.3);
+      transition: filter 0.3s ease;
+    }
+
+    .project-card:hover .project-emoji {
+      filter: grayscale(0);
+    }
+
+    .project-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--blood);
+      margin: 0 0 1rem 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    /* Seção de Acesso Rápido */
+    .quick-access {
+      margin: 3rem 0;
+      padding: 2rem;
+      border: 2px dashed var(--border);
+      background: rgba(139, 115, 85, 0.05);
+      text-align: center;
+    }
+
+    .access-title {
+      color: var(--blood);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .access-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 2rem 0;
       flex-wrap: wrap;
     }
 
-    .nav-scroll {
+    .access-link {
       color: var(--ink);
       text-decoration: none;
       padding: 0.75rem 1.5rem;
       border: 2px solid var(--border);
-      border-radius: 0;
       background: transparent;
       font-family: 'Libre Baskerville', serif;
       transition: all 0.3s ease;
-      position: relative;
     }
 
-    .nav-scroll:hover {
+    .access-link:hover {
       background: var(--blood);
       color: var(--parchment);
       border-color: var(--blood);
-    }
-
-    /* Sistema de Classificação */
-    .rating-system {
-      text-align: center;
-      margin: 2rem 0 3rem;
-      padding: 1.5rem;
-      border: 2px dashed var(--border);
-      background: rgba(139, 115, 85, 0.05);
-    }
-
-    .rating-title {
-      color: var(--blood);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-family: 'Libre Baskerville', serif;
-    }
-
-    .rating-criteria {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .criterion {
-      flex: 1;
-      min-width: 200px;
-      text-align: left;
-      padding: 1rem;
-      border-left: 3px solid var(--blood);
-      background: rgba(139, 0, 0, 0.03);
-    }
-
-    .criterion-title {
-      font-weight: 700;
-      color: var(--blood);
-      margin-bottom: 0.5rem;
-      font-family: 'Libre Baskerville', serif;
-    }
-
-    /* Seção YouTube */
-    .youtube-section {
-      margin: 3rem 0;
-      text-align: center;
-    }
-
-    .youtube-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .youtube-card {
-      background: rgba(139, 115, 85, 0.05);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .youtube-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    .youtube-thumbnail {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--aged);
-      position: relative;
-      overflow: hidden;
-      border: 2px solid var(--border);
-    }
-
-    .youtube-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .youtube-card:hover .youtube-thumbnail img {
-      transform: scale(1.05);
-    }
-
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(139, 0, 0, 0.8);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .play-button:hover {
-      background: var(--blood);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    .youtube-info {
-      padding: 1rem 0 0;
-      text-align: left;
-    }
-
-    .youtube-title {
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .youtube-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--gold);
-    }
-
-    /* Modal para vídeos */
-    .video-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
-      background: var(--parchment);
-      padding: 2rem;
-      border: 3px solid var(--border);
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      background: var(--blood);
-      color: var(--parchment);
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--border);
-    }
-
-    /* Galeria de Imagens */
-    .gallery-section {
-      margin: 3rem 0;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      aspect-ratio: 1;
-      overflow: hidden;
-      border: 2px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.05);
-      border-color: var(--blood);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    /* Lista de Animes - Estilo Pergaminho */
-    .scroll-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .scroll-item {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 1rem;
-      align-items: center;
-      padding: 1rem;
-      background: transparent;
-      border-bottom: 1px dashed var(--border);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .scroll-item:hover {
-      background: rgba(139, 0, 0, 0.05);
-    }
-
-    .scroll-item::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--blood);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .scroll-item:hover::before {
-      opacity: 1;
-    }
-
-    .rank-seal {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--blood);
-      min-width: 40px;
-      text-align: center;
-      border: 2px solid var(--blood);
-      padding: 0.5rem;
-      background: var(--parchment);
-    }
-
-    .anime-emoji {
-      font-size: 1.8rem;
-      min-width: 50px;
-      text-align: center;
-      filter: grayscale(0.3);
-    }
-
-    .anime-info {
-      flex: 1;
-    }
-
-    .anime-title {
-      font-weight: 700;
-      margin: 0 0 0.25rem 0;
-      color: var(--ink);
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.1rem;
-    }
-
-    .anime-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-family: 'Inter', sans-serif;
-      margin-bottom: 0.5rem;
-    }
-
-    .anime-genre {
-      color: var(--blood);
-      font-weight: 600;
-    }
-
-    .anime-year {
-      color: var(--border);
-    }
-
-    .anime-description {
-      font-size: 0.9rem;
-      color: var(--ink);
-      line-height: 1.5;
-      font-style: italic;
-      margin-top: 0.5rem;
-    }
-
-    .rating-seal {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-    }
-
-    .rating-stars {
-      color: var(--gold);
-      font-size: 1rem;
-    }
-
-    .rating-value {
-      color: var(--blood);
-      font-family: 'Libre Baskerville', serif;
-      font-weight: 700;
+      text-decoration: none;
     }
 
     /* Seções */
@@ -542,325 +300,185 @@
         font-size: 2.5rem;
       }
       
-      .samurai-nav {
-        gap: 0.5rem;
-      }
-      
-      .nav-scroll {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
-      
-      .rating-criteria {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .scroll-item {
-        grid-template-columns: auto 1fr;
-        gap: 0.5rem;
-      }
-      
-      .rating-seal {
-        grid-column: 1 / -1;
-        justify-self: start;
-        margin-top: 0.5rem;
-      }
-      
-      .anime-meta {
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-
-      .youtube-grid {
+      .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .access-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .access-link {
+        width: 100%;
+        max-width: 250px;
       }
 
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      .section-title::before,
+      .section-title::after {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Modal para vídeos -->
-  <div class="video-modal" id="videoModal">
-    <div class="modal-content">
-      <button class="close-modal" id="closeModal">×</button>
-      <div class="video-container" id="videoContainer">
-        <!-- iframe do YouTube será injetado aqui -->
-      </div>
-    </div>
-  </div>
-
   <!-- Container Principal -->
   <div class="scroll-container">
     <!-- Header -->
     <header class="samurai-header">
       <h1 class="yasuke-logo">YASUKETV</h1>
-      <p class="yasuke-subtitle">Pergaminho de Animes - Visão Pessoal</p>
+      <p class="yasuke-subtitle">Nexus de Projetos - Pergaminho Pessoal</p>
       <p class="yasuke-description">
-        Uma jornada filosófica através das narrativas animadas do Japão. 
-        Cada obra é avaliada por sua profundidade temática, impacto emocional 
-        e contribuição cultural, seguindo o caminho do guerreiro.
+        Um pergaminho contendo todos os caminhos disponíveis. 
+        Cada projeto é uma jornada única através de diferentes aspectos da cultura e conhecimento.
       </p>
     </header>
 
-    <!-- Navegação -->
-    <nav class="samurai-nav">
-      <a href="#s-tier" class="nav-scroll">S-TIER</a>
-      <a href="#a-tier" class="nav-scroll">A-TIER</a>
-      <a href="#b-tier" class="nav-scroll">B-TIER</a>
-      <a href="#youtube" class="nav-scroll">YOUTUBE</a>
-      <a href="#gallery" class="nav-scroll">GALERIA</a>
-    </nav>
-
-    <!-- Sistema de Classificação -->
-    <section class="rating-system" id="rating-system">
-      <h2 class="rating-title">⚔️ Sistema de Classificação</h2>
-      <p>Baseado nos princípios do Bushido: Integridade, Coragem, Benevolência, Respeito, Honestidade, Honra e Lealdade.</p>
-      
-      <div class="rating-criteria">
-        <div class="criterion">
-          <div class="criterion-title">Narrativa & Profundidade</div>
-          <p>Complexidade da trama, desenvolvimento de personagens e temas filosóficos abordados.</p>
-        </div>
-        <div class="criterion">
-          <div class="criterion-title">Impacto Emocional</div>
-          <p>Capacidade de evocar emoções genuínas e deixar uma impressão duradoura.</p>
-        </div>
-        <div class="criterion">
-          <div class="criterion-title">Originalidade & Inovação</div>
-          <p>Contribuições únicas para o medium e abordagens criativas à narrativa.</p>
-        </div>
-        <div class="criterion">
-          <div class="criterion-title">Execução Técnica</div>
-          <p>Qualidade da animação, direção, trilha sonora e elementos visuais.</p>
-        </div>
+    <!-- Acesso Rápido -->
+    <section class="quick-access">
+      <h2 class="access-title">⚡ Acesso Rápido</h2>
+      <div class="access-links">
+        <a href="../index.html" class="access-link">Elliot Blog</a>
+        <a href="criancas.html" class="access-link">Elliot Kids</a>
+        <a href="animes.html" class="access-link">YASUKETV Animes</a>
       </div>
     </section>
 
-    <!-- S-TIER -->
-    <section class="scroll-section" id="s-tier">
-      <h2 class="section-title">⚡ S-TIER - OBRA-PRIMA</h2>
-      <div class="scroll-list">
-        <!-- Hunter x Hunter -->
-        <div class="scroll-item">
-          <div class="rank-seal">1</div>
-          <div class="anime-emoji">🎯</div>
-          <div class="anime-info">
-            <h3 class="anime-title">Hunter x Hunter</h3>
-            <div class="anime-meta">
-              <span class="anime-genre">Shonen • Aventura</span>
-              <span class="anime-year">2011</span>
-            </div>
-            <p class="anime-description">
-              Uma obra-prima narrativa que descontrói o gênero shonen enquanto explora 
-              temas complexos de humanidade, moralidade e o custo do poder. O sistema Nen 
-              é uma das construções de poder mais criativas já concebidas.
-            </p>
-          </div>
-          <div class="rating-seal">
-            <span class="rating-stars">★★★★★</span>
-            <span class="rating-value">9.8</span>
-          </div>
-        </div>
-
-        <!-- Berserk -->
-        <div class="scroll-item">
-          <div class="rank-seal">2</div>
-          <div class="anime-emoji">⚔️</div>
-          <div class="anime-info">
-            <h3 class="anime-title">Berserk</h3>
-            <div class="anime-meta">
-              <span class="anime-genre">Seinen • Fantasia Sombria</span>
-              <span class="anime-year">1997</span>
-            </div>
-            <p class="anime-description">
-              Uma jornada visceral através da escuridão da alma humana. A luta de Guts 
-              contra o destino é uma meditação poderosa sobre trauma, perseverança e 
-              a busca por significado em um mundo indiferente.
-            </p>
-          </div>
-          <div class="rating-seal">
-            <span class="rating-stars">★★★★★</span>
-            <span class="rating-value">9.7</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção YouTube -->
-    <section class="youtube-section" id="youtube">
-      <h2 class="section-title">🎬 Análises em Vídeo</h2>
-      <p>Conteúdo exclusivo do canal YASUKETV no YouTube</p>
+    <!-- Grid de Projetos -->
+    <section class="scroll-section">
+      <h2 class="section-title">📜 Todos os Pergaminhos</h2>
       
-      <div class="youtube-grid">
-        <!-- Vídeo 1 -->
-        <div class="youtube-card" data-video-id="VIDEO_ID_1">
-          <div class="youtube-thumbnail">
-            <!-- Imagem otimizada com placeholder -->
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23d4b78c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%238b0000'%3EThumbnail Hunter x Hunter%3C/text%3E%3C/svg%3E" 
-                 alt="Análise Hunter x Hunter" loading="lazy">
-            <button class="play-button">▶</button>
+      <div class="projects-grid">
+        <!-- Elliot Blog -->
+        <a href="../index.html" class="project-card">
+          <div class="project-emoji">📝</div>
+          <h3 class="project-title">Elliot Blog</h3>
+          <p class="project-description">
+            Blog pessoal com reflexões filosóficas, análises culturais e pensamentos sobre tecnologia, 
+            sociedade e o significado da existência humana.
+          </p>
+          <div class="project-meta">
+            <span>Blog Pessoal</span>
+            <span>Ativo</span>
           </div>
-          <div class="youtube-info">
-            <h3 class="youtube-title">A Filosofia por trás de Hunter x Hunter</h3>
-            <div class="youtube-meta">
-              <span>25 min</span>
-              <span>2.5K views</span>
-            </div>
+        </a>
+
+        <!-- Elliot Kids -->
+        <a href="criancas.html" class="project-card">
+          <div class="project-emoji">👶</div>
+          <h3 class="project-title">Elliot Kids</h3>
+          <p class="project-description">
+            Conteúdo educativo e divertido para crianças. Histórias interativas, 
+            atividades criativas e aprendizado através de brincadeiras.
+          </p>
+          <div class="project-meta">
+            <span>Educação Infantil</span>
+            <span>Ativo</span>
+          </div>
+        </a>
+
+        <!-- YASUKETV Animes -->
+        <a href="animes.html" class="project-card">
+          <div class="project-emoji">🎌</div>
+          <h3 class="project-title">YASUKETV Animes</h3>
+          <p class="project-description">
+            Análises filosóficas de animes seguindo o caminho do guerreiro. 
+            Avaliações baseadas nos princípios do Bushido e profundidade narrativa.
+          </p>
+          <div class="project-meta">
+            <span>Análise de Animes</span>
+            <span>Ativo</span>
+          </div>
+        </a>
+
+        <!-- Projeto Futuro 1 -->
+        <div class="project-card">
+          <div class="project-emoji">🔮</div>
+          <h3 class="project-title">Projeto Futuro</h3>
+          <p class="project-description">
+            Um novo pergaminho está sendo escrito. Em breve, novas jornadas e descobertas 
+            serão reveladas neste espaço reservado.
+          </p>
+          <div class="project-meta">
+            <span>Em Desenvolvimento</span>
+            <span>Em Breve</span>
           </div>
         </div>
 
-        <!-- Vídeo 2 -->
-        <div class="youtube-card" data-video-id="VIDEO_ID_2">
-          <div class="youtube-thumbnail">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23d4b78c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%238b0000'%3EThumbnail Berserk%3C/text%3E%3C/svg%3E" 
-                 alt="Análise Berserk" loading="lazy">
-            <button class="play-button">▶</button>
-          </div>
-          <div class="youtube-info">
-            <h3 class="youtube-title">Berserk: A Jornada do Guerreiro Ferido</h3>
-            <div class="youtube-meta">
-              <span>32 min</span>
-              <span>1.8K views</span>
-            </div>
+        <!-- Projeto Futuro 2 -->
+        <div class="project-card">
+          <div class="project-emoji">🌌</div>
+          <h3 class="project-title">Expansão Cósmica</h3>
+          <p class="project-description">
+            Explorando os limites do conhecimento e da criatividade. 
+            Um projeto ambicioso que conecta diferentes dimensões do pensamento.
+          </p>
+          <div class="project-meta">
+            <span>Em Planejamento</span>
+            <span>Futuro</span>
           </div>
         </div>
 
-        <!-- Vídeo 3 -->
-        <div class="youtube-card" data-video-id="VIDEO_ID_3">
-          <div class="youtube-thumbnail">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23d4b78c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%238b0000'%3EThumbnail One Piece%3C/text%3E%3C/svg%3E" 
-                 alt="Análise One Piece" loading="lazy">
-            <button class="play-button">▶</button>
-          </div>
-          <div class="youtube-info">
-            <h3 class="youtube-title">One Piece: A Liberdade como Ideal Supremo</h3>
-            <div class="youtube-meta">
-              <span>45 min</span>
-              <span>3.2K views</span>
-            </div>
+        <!-- Projeto Futuro 3 -->
+        <div class="project-card">
+          <div class="project-emoji">🎵</div>
+          <h3 class="project-title">Harmonia Musical</h3>
+          <p class="project-description">
+            Uma jornada através dos sons e ritmos que movem a alma. 
+            Análises de trilhas sonoras e composições que transcendem o tempo.
+          </p>
+          <div class="project-meta">
+            <span>Ideia</span>
+            <span>Talvez</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Galeria de Imagens -->
-    <section class="gallery-section" id="gallery">
-      <h2 class="section-title">🖼️ Galeria de Cenas</h2>
-      <p>Momentos icônicos e arte conceitual</p>
+    <!-- Status do Sistema -->
+    <section class="scroll-section">
+      <h2 class="section-title">⚙️ Status do Sistema</h2>
       
-      <div class="gallery-grid">
-        <!-- Imagem 1 - SVG placeholder -->
-        <div class="gallery-item">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f5e8c8'/%3E%3Cpath d='M50,50 L150,50 L150,150 L50,150 Z' fill='none' stroke='%238b0000' stroke-width='2'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%238b0000'%3EHunter x Hunter%3C/text%3E%3C/svg%3E" 
-               alt="Cena Hunter x Hunter" loading="lazy">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
+          <div style="font-size: 2rem; color: var(--blood);">3</div>
+          <div style="font-size: 0.9rem; color: var(--ink);">Projetos Ativos</div>
         </div>
-
-        <!-- Imagem 2 -->
-        <div class="gallery-item">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%232c1810'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%238b0000'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='%23f5e8c8'%3EBerserk%3C/text%3E%3C/svg%3E" 
-               alt="Cena Berserk" loading="lazy">
+        
+        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
+          <div style="font-size: 2rem; color: var(--gold);">2</div>
+          <div style="font-size: 0.9rem; color: var(--ink);">Em Desenvolvimento</div>
         </div>
-
-        <!-- Imagem 3 -->
-        <div class="gallery-item">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23b8860b'/%3E%3Cpolygon points='100,50 150,150 50,150' fill='%238b0000'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='%23f5e8c8'%3EMonster%3C/text%3E%3C/svg%3E" 
-               alt="Cena Monster" loading="lazy">
+        
+        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
+          <div style="font-size: 2rem; color: var(--border);">1</div>
+          <div style="font-size: 0.9rem; color: var(--ink);">Em Planejamento</div>
         </div>
-
-        <!-- Imagem 4 -->
-        <div class="gallery-item">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%238b7355'/%3E%3Crect x='60' y='60' width='80' height='80' fill='%238b0000'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='%23f5e8c8'%3EOne Piece%3C/text%3E%3C/svg%3E" 
-               alt="Cena One Piece" loading="lazy">
+        
+        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
+          <div style="font-size: 2rem; color: var(--blood);">100%</div>
+          <div style="font-size: 0.9rem; color: var(--ink);">Disponibilidade</div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="samurai-footer">
-      <div class="footer-logo">YASUKETV</div>
-      <p>Pergaminho pessoal de Jonathas Felipe</p>
+      <div class="footer-logo">YASUKETV NEXUS</div>
+      <p>Pergaminho Mestre de Jonathas Felipe</p>
       <div style="margin-top: 1rem; font-size: 0.9rem;">
         <a href="../index.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">Elliot Blog</a> • 
-        <a href="criancas.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">Elliot Kids</a>
+        <a href="criancas.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">Elliot Kids</a> •
+        <a href="animes.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">YASUKETV Animes</a>
       </div>
       <p style="margin-top: 2rem; font-style: italic; color: var(--blood);">
-        "Cada anime é uma lição, cada lição é um corte de katana" ⚔️
+        "Muitos caminhos, um só guerreiro. Muitos pergaminhos, uma só jornada." ⚔️
       </p>
     </footer>
   </div>
 
   <script>
-    // Sistema de navegação suave
-    document.querySelectorAll('.nav-scroll').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        window.scrollTo({
-          top: targetElement.offsetTop - 20,
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // Sistema de modal para vídeos do YouTube
-    const videoModal = document.getElementById('videoModal');
-    const videoContainer = document.getElementById('videoContainer');
-    const closeModal = document.getElementById('closeModal');
-
-    document.querySelectorAll('.youtube-card').forEach(card => {
-      card.addEventListener('click', function() {
-        const videoId = this.getAttribute('data-video-id');
-        
-        // Substitua VIDEO_ID_1, VIDEO_ID_2, etc pelos IDs reais dos seus vídeos
-        const actualVideoId = getActualVideoId(videoId);
-        
-        if (actualVideoId) {
-          videoContainer.innerHTML = `
-            <iframe 
-              src="https://www.youtube.com/embed/${actualVideoId}?autoplay=1" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          `;
-          videoModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-
-    // Função para mapear placeholders para IDs reais do YouTube
-    function getActualVideoId(placeholderId) {
-      const videoMap = {
-        'VIDEO_ID_1': 'dQw4w9WgXcQ', // Substitua pelo ID real
-        'VIDEO_ID_2': 'dQw4w9WgXcQ', // Substitua pelo ID real  
-        'VIDEO_ID_3': 'dQw4w9WgXcQ'  // Substitua pelo ID real
-      };
-      return videoMap[placeholderId] || null;
-    }
-
-    // Fechar modal
-    closeModal.addEventListener('click', function() {
-      videoModal.classList.remove('active');
-      videoContainer.innerHTML = '';
-      document.body.style.overflow = 'auto';
-    });
-
-    // Fechar modal ao clicar fora
-    videoModal.addEventListener('click', function(e) {
-      if (e.target === videoModal) {
-        videoModal.classList.remove('active');
-        videoContainer.innerHTML = '';
-        document.body.style.overflow = 'auto';
-      }
-    });
-
     // Efeito de revelação ao scroll
     const observerOptions = {
       threshold: 0.1,
@@ -876,15 +494,15 @@
       });
     }, observerOptions);
 
-    // Aplicar efeito aos itens
-    document.querySelectorAll('.scroll-item, .youtube-card, .gallery-item').forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
-      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(item);
+    // Aplicar efeito aos cards de projeto
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(card);
     });
 
-    console.log('🎌 YASUKETV Pergaminho - Carregado!');
+    console.log('📜 YASUKETV Nexus - Pergaminho Mestre Carregado!');
   </script>
 </body>
 </html>
