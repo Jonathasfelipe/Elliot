@@ -203,7 +203,7 @@
       to { opacity: 1; }
     }
 
-    /* Header Mobile */
+    /* Header Mobile - SIMPLIFICADO */
     header {
       display: flex;
       flex-direction: column;
@@ -251,8 +251,8 @@
       text-align: center;
     }
 
-    /* Navegação Mobile */
-    nav {
+    /* NAVEGAÇÃO SIMPLIFICADA - APENAS LINKS ESSENCIAIS */
+    .main-nav {
       display: flex;
       gap: 0.5rem;
       align-items: center;
@@ -263,20 +263,22 @@
       margin-top: 1rem;
     }
 
-    nav a {
+    .main-nav a {
       color: var(--muted);
       text-decoration: none;
       font-size: 0.85rem;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       padding: 0.4rem 0.8rem;
       border-radius: 6px;
       background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    nav a:hover,
-    nav a:active {
+    .main-nav a:hover,
+    .main-nav a:active {
       color: var(--accent);
       background: rgba(230, 192, 123, 0.1);
+      border-color: var(--accent);
     }
 
     /* Layout do conteúdo principal Mobile */
@@ -715,11 +717,11 @@
         font-size: 1.5rem;
       }
       
-      nav {
+      .main-nav {
         gap: 0.75rem;
       }
       
-      nav a {
+      .main-nav a {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
       }
@@ -769,7 +771,7 @@
         margin-left: auto;
       }
       
-      nav {
+      .main-nav {
         order: 0;
         width: auto;
         margin-top: 0;
@@ -819,7 +821,7 @@
       .top-btn,
       .theme-btn,
       .cta,
-      nav a {
+      .main-nav a {
         cursor: pointer;
       }
       
@@ -855,14 +857,13 @@
         </div>
       </div>
       
-      <nav aria-label="principal">
-        <a href="#hero">Início</a>
-        <a href="#ensaios">Ensaios</a>
-        <a href="#dialogos">Diálogos</a>
-        <a href="#yasuke-promo">YASUKETV</a>
-        <a href="#videos-recomendados">Vídeos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
+      <!-- NAVEGAÇÃO SIMPLIFICADA - APENAS 4 LINKS ESSENCIAIS -->
+      <nav class="main-nav" aria-label="principal">
+        <a href="nexus.html">⚔️ YASUKETV</a>
+        <a href="criancas.html">👶 Elliot Kids</a>
+        <a href="https://jonathasfelipe.github.io/HTML-CSS/">💻 Projetos</a>
+        <a href="#sobre">👨‍💻 Sobre</a>
+        <a href="tecnologia.html">📜 Linha do Tempo Tech</a>
       </nav>
       
       <!-- Seletor de Tema -->
@@ -1208,7 +1209,7 @@
               <div class="video-info">
                 <h3>Inteligência Artificial e Consciência</h3>
                 <p>Como a IA está nos forçando a repensar o que significa ser humano</p>
-                <a href= target="_blank" class="cta">Assistir</a>
+                <a href="https://www.youtube.com/watch?v=example1" target="_blank" class="cta">Assistir</a>
               </div>
             </div>
             
@@ -1226,7 +1227,7 @@
               <div class="video-info">
                 <h3>Física Quântica e Espiritualidade</h3>
                 <p>As conexões surpreendentes entre ciência moderna e sabedoria ancestral</p>
-                <a href="" target="_blank" class="cta">Assistir</a>
+                <a href="https://www.youtube.com/watch?v=example3" target="_blank" class="cta">Assistir</a>
               </div>
             </div>
           </div>
@@ -1361,7 +1362,7 @@
         <div style="margin-top:2rem">
           <div class="meta">Meus Outros Projetos</div>
           <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
-            <a href="animes.html" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
+            <a href="nexus.html" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
               ⚔️ YASUKETV
             </a>
             <a href="criancas.html" class="cta" style="text-align: center; font-size: 0.9rem;">
@@ -1404,7 +1405,7 @@
       © <span id="year">2025</span> Jonathas Felipe — 
       <a href="https://github.com/Jonathasfelipe" style="color: var(--muted); text-decoration: none;">GitHub</a> • 
       <a href="https://jonathasfelipe.github.io/HTML-CSS/" style="color: var(--muted); text-decoration: none;">Projetos</a> • 
-      <a href="animes.html" style="color: var(--muted); text-decoration: none;">YASUKETV</a> • 
+      <a href="nexus.html" style="color: var(--muted); text-decoration: none;">YASUKETV</a> • 
       <a href="criancas.html" style="color: var(--muted); text-decoration: none;">Versão Kids</a>
     </footer>
   </div>
@@ -1732,5 +1733,4 @@
     }
   </script>
 </body>
-
 </html>
