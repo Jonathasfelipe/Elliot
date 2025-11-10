@@ -122,7 +122,7 @@ body::before {
 .kids-version {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   z-index: 1001;
   background: var(--glass);
   backdrop-filter: blur(10px);
@@ -523,4 +523,5 @@ footer a:hover {
     margin: 0 auto 1rem;
     width: 100%;
   }
+
 }
