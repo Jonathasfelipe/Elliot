@@ -632,6 +632,69 @@
       margin-bottom: 1rem;
     }
 
+    /* ===== NOVOS ESTILOS PARA YASUKETV ===== */
+    .yasuke-promo {
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(184, 134, 11, 0.05));
+      border: 2px solid rgba(139, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yasuke-promo::before {
+      content: "⚔️";
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 1.5rem;
+      opacity: 0.3;
+    }
+
+    .yasuke-promo::after {
+      content: "🎌";
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      opacity: 0.3;
+    }
+
+    .yasuke-logo-small {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2rem;
+      color: #8b0000;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    }
+
+    .yasuke-description {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .samurai-btn {
+      background: linear-gradient(135deg, #8b0000, #a52a2a);
+      color: #f5e8c8;
+      border: 2px solid #8b7355;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .samurai-btn:hover {
+      background: linear-gradient(135deg, #a52a2a, #8b0000);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+    }
+
     /* ===== MEDIA QUERIES ===== */
 
     /* Tablets pequenos */
@@ -796,6 +859,7 @@
         <a href="#hero">Início</a>
         <a href="#ensaios">Ensaios</a>
         <a href="#dialogos">Diálogos</a>
+        <a href="#yasuke-promo">YASUKETV</a>
         <a href="#videos-recomendados">Vídeos</a>
         <a href="#sobre">Sobre</a>
         <a href="#projetos">Projetos</a>
@@ -866,6 +930,14 @@
           <p>A sabedoria nasce do atrito entre quem você é e o que o mundo exige. Cresce nas falhas, nos silêncios, nos questionamentos. Ela não protege da dor — dá sentido a ela. E é isso que nos mantém humanos.</p>
           <p>Sabedoria não é perfeição. É verdade.</p>
         </article>
+
+        <!-- NOVA SEÇÃO: YASUKETV PROMO -->
+        <section id="yasuke-promo" class="yasuke-promo">
+          <div class="yasuke-logo-small">YASUKETV</div>
+          <p class="yasuke-description">Pergaminho Samurai de Animes — Análises Filosóficas</p>
+          <p>Explore meu projeto de análises profundas de animes, onde cada obra é avaliada por sua profundidade temática, impacto emocional e contribuição cultural, seguindo o caminho do guerreiro.</p>
+          <a href="nexus.html" class="samurai-btn">⚔️ Acessar YASUKETV</a>
+        </section>
 
         <!-- NOVA SEÇÃO: DIÁLOGOS AUTÊNTICOS -->
         <section id="dialogos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
@@ -1077,7 +1149,7 @@
           <h2>Inteligência Artificial, Sabedoria Humana</h2>
           <p class="meta">Preparando-nos para o futuro que já chegou</p>
           
-          <p>As IAs podem escrever, pintar, compor e programar. Mas podem amar? Podem ter compaixão? Podem entender o significado profundo da existência?</p>
+          <p>As IAs podem escrever, pintar, compor e programar. Mas podem amar? Podem ter compaixão? Podem entender o significado profunda da existência?</p>
           
           <p>Enquanto desenvolvemos inteligências cada vez mais poderosas, <mark>a sabedoria humana se torna nosso bem mais precioso</mark>.</p>
           
@@ -1239,6 +1311,20 @@
           </div>
           
           <!-- PROJETO 2 -->
+          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b0000; margin-bottom: 1.5rem;">
+            <h3 style="margin-top: 0;">⚔️ YASUKETV</h3>
+            <p>Pergaminho Samurai de Animes - Análises filosóficas e classificações pessoais. Um projeto com design temático único e foco em conteúdo profundo.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <a href="nexus.html" class="cta" style="display: inline-block; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
+                🎌 Acessar YASUKETV
+              </a>
+              <a href="https://github.com/Jonathasfelipe/Elliot" class="cta" style="display: inline-block; background: rgba(107, 114, 128, 0.2); color: var(--muted);">
+                📁 Código Fonte
+              </a>
+            </div>
+          </div>
+          
+          <!-- PROJETO 3 -->
           <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #60a5fa; margin-bottom: 1.5rem;">
             <h3 style="margin-top: 0;">💻 Projetos HTML/CSS</h3>
             <p>Estudos e experimentos em desenvolvimento web front-end. Exercícios, layouts e aplicações práticas.</p>
@@ -1247,7 +1333,7 @@
             </a>
           </div>
           
-          <!-- PROJETO 3 -->
+          <!-- PROJETO 4 -->
           <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;">
             <h3 style="margin-top: 0;">🔬 Módulo 2 - Estudos Avançados</h3>
             <p>Projetos mais complexos em HTML, CSS e introdução a JavaScript. Formulários, layouts responsivos e mais.</p>
@@ -1265,6 +1351,7 @@
         <ul class="toc">
           <li><a href="#hero">Início</a></li>
           <li><a href="#ensaios">Ensaios</a></li>
+          <li><a href="#yasuke-promo">YASUKETV</a></li>
           <li><a href="#dialogos">Diálogos Autênticos</a></li>
           <li><a href="#videos-recomendados">Vídeos Recomendados</a></li>
           <li><a href="#sobre">Sobre</a></li>
@@ -1274,6 +1361,9 @@
         <div style="margin-top:2rem">
           <div class="meta">Meus Outros Projetos</div>
           <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+            <a href="nexus.html" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
+              ⚔️ YASUKETV
+            </a>
             <a href="criancas.html" class="cta" style="text-align: center; font-size: 0.9rem;">
               👶 Elliot Kids
             </a>
@@ -1314,6 +1404,7 @@
       © <span id="year">2025</span> Jonathas Felipe — 
       <a href="https://github.com/Jonathasfelipe" style="color: var(--muted); text-decoration: none;">GitHub</a> • 
       <a href="https://jonathasfelipe.github.io/HTML-CSS/" style="color: var(--muted); text-decoration: none;">Projetos</a> • 
+      <a href="nexus.html" style="color: var(--muted); text-decoration: none;">YASUKETV</a> • 
       <a href="criancas.html" style="color: var(--muted); text-decoration: none;">Versão Kids</a>
     </footer>
   </div>
