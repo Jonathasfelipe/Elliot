@@ -125,30 +125,39 @@ body::before {
   transform: scale(0.95);
 }
 
-/* Versão Kids Mobile */
-.kids-version {
-  position: relative;
+/* Botão do Tema Atualizado */
+.theme-switcher {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+
+.theme-btn {
   background: var(--glass);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 0.75rem;
-  border: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-  margin: 0 auto 1.5rem;
-  max-width: 100%;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.kids-version .meta {
-  font-size: 0.75rem;
-  margin-bottom: 0.5rem;
-  color: var(--muted);
+.theme-btn:hover {
+  background: var(--accent);
+  color: #111;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(230, 192, 123, 0.3);
 }
 
-.kids-version .cta {
-  font-size: 0.85rem;
-  padding: 0.6rem 1rem;
-  display: block;
-  width: 100%;
+.theme-btn:active {
+  transform: scale(0.95);
 }
 
 /* Container Principal Mobile */
@@ -186,6 +195,8 @@ header {
   gap: 1rem;
   padding: 0.5rem;
   margin-bottom: 1rem;
+  position: relative;
+  min-height: 80px;
 }
 
 .brand {
@@ -194,6 +205,7 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex: 1;
 }
 
 .logo {
@@ -231,6 +243,9 @@ nav {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  order: 3;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 nav a {
@@ -247,29 +262,6 @@ nav a:hover,
 nav a:active {
   color: var(--accent);
   background: rgba(230, 192, 123, 0.1);
-}
-
-/* Botão do Tema Mobile */
-.theme-switcher {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.theme-btn {
-  background: var(--glass);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  touch-action: manipulation;
-}
-
-.theme-btn:active {
-  transform: scale(0.95);
 }
 
 /* Layout do conteúdo principal Mobile */
@@ -307,10 +299,13 @@ article {
   }
 }
 
-/* Delay progressivo para os artigos - menos delays no mobile */
-article:nth-child(-n+10) { 
-  animation-delay: calc(0.1s * var(--i, 1)); 
-}
+/* Delay progressivo para os artigos */
+article:nth-child(1) { animation-delay: 0.1s; }
+article:nth-child(2) { animation-delay: 0.2s; }
+article:nth-child(3) { animation-delay: 0.3s; }
+article:nth-child(4) { animation-delay: 0.4s; }
+article:nth-child(5) { animation-delay: 0.5s; }
+article:nth-child(6) { animation-delay: 0.6s; }
 
 article h2 {
   font-family: 'Libre Baskerville', serif;
@@ -426,6 +421,10 @@ aside {
   font-weight: 600;
 }
 
+.toc a:hover {
+  color: var(--accent);
+}
+
 /* Componentes Mobile */
 .meta {
   font-size: 0.8rem;
@@ -472,6 +471,10 @@ footer a {
   margin: 0 0.25rem;
   display: inline-block;
   padding: 0.25rem;
+}
+
+footer a:hover {
+  color: var(--accent);
 }
 
 /* Vídeo YouTube Mobile */
@@ -551,6 +554,7 @@ footer a {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    min-height: auto;
   }
   
   .brand {
@@ -566,16 +570,17 @@ footer a {
     text-align: left;
   }
   
-  nav {
-    justify-content: flex-end;
+  .theme-switcher {
+    position: static;
+    margin-left: auto;
   }
   
-  .kids-version {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    max-width: 180px;
-    margin: 0;
+  nav {
+    order: 0;
+    width: auto;
+    margin-top: 0;
+    margin-left: 2rem;
+    justify-content: flex-end;
   }
   
   aside {
@@ -630,6 +635,63 @@ footer a {
   input,
   select,
   textarea {
-    font-size: 16px; /* Previne zoom no iOS */
+    font-size: 16px;
   }
+}
+
+/* Estilos específicos para Elliot Kids */
+.character {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.character-img {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.story-card {
+  background: var(--glass);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 3px solid var(--accent);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+}
+
+.activity {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 5px solid var(--accent);
+}
+
+.emoji-large {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.kids-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.kids-nav a {
+  background: var(--accent);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.kids-nav a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }

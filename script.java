@@ -1,5 +1,4 @@
-// script.js - Versão Mobile-Optimized
-
+// script.js - Elliot Project - Mobile Optimized
 // =============================================
 // 1. DETECÇÃO DE MOBILE E TOUCH
 // =============================================
@@ -32,7 +31,7 @@ function throttle(func, limit) {
     }
 }
 
-window.addEventListener('scroll', throttle(updateProgressBar, 16)); // ~60fps
+window.addEventListener('scroll', throttle(updateProgressBar, 16));
 
 // =============================================
 // 3. BOTÃO VOLTAR AO TOPO MOBILE
@@ -40,7 +39,7 @@ window.addEventListener('scroll', throttle(updateProgressBar, 16)); // ~60fps
 const topBtn = document.getElementById('topBtn');
 
 function toggleTopButton() {
-    if (window.pageYOffset > 200) { // Menor threshold no mobile
+    if (window.pageYOffset > 200) {
         topBtn.classList.add('show');
     } else {
         topBtn.classList.remove('show');
@@ -69,30 +68,54 @@ if (isTouchDevice) {
 }
 
 // =============================================
-// 4. SISTEMA DE TEMAS MOBILE
+// 4. SISTEMA DE TEMAS (LÂMPADA)
 // =============================================
 const themeBtn = document.getElementById('themeBtn');
 const currentTheme = localStorage.getItem('theme') || 'dark';
 
+// Aplicar tema salvo ao carregar
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    themeBtn.textContent = theme === 'light' ? '☀️' : '🌙';
+    
+    // Ícone da lâmpada - 💡 acesa para light, 🔦 apagada para dark
+    themeBtn.innerHTML = theme === 'light' ? '💡' : '🔦';
+    themeBtn.setAttribute('title', theme === 'light' ? 'Modo Claro' : 'Modo Escuro');
+    
     localStorage.setItem('theme', theme);
     
     // Atualizar meta theme-color para mobile
     const themeColor = theme === 'light' ? '#f5f2e9' : '#07060a';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor);
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    
+    if (!metaThemeColor) {
+        metaThemeColor = document.createElement('meta');
+        metaThemeColor.name = 'theme-color';
+        document.head.appendChild(metaThemeColor);
+    }
+    metaThemeColor.setAttribute('content', themeColor);
 }
 
 // Aplicar tema inicial
 applyTheme(currentTheme);
 
-// Evento otimizado para touch
-const themeHandler = isTouchDevice ? 'touchend' : 'click';
-themeBtn.addEventListener(themeHandler, (e) => {
-    if (isTouchDevice) e.preventDefault();
+// Alternar tema ao clicar
+themeBtn.addEventListener('click', () => {
     const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     applyTheme(newTheme);
+    
+    // Feedback visual
+    themeBtn.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        themeBtn.style.transform = 'scale(1)';
+    }, 200);
+});
+
+// Suporte a preferência do sistema
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+prefersDark.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+    }
 });
 
 // =============================================
@@ -108,7 +131,7 @@ function initSmoothScroll() {
             const target = document.querySelector(href);
             if (target) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 10; // Menor offset no mobile
+                const targetPosition = target.offsetTop - headerHeight - 10;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -128,14 +151,14 @@ function initSmoothScroll() {
 }
 
 // =============================================
-// 6. TOC INTERATIVO MOBILE
+// 6. TOC INTERATIVO
 // =============================================
 const sections = document.querySelectorAll('article[id], section[id]');
 const navLinks = document.querySelectorAll('.toc a');
 
 function highlightCurrentSection() {
     let current = '';
-    const scrollPosition = window.scrollY + (window.innerHeight * 0.3); // Ajuste mobile
+    const scrollPosition = window.scrollY + (window.innerHeight * 0.3);
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -163,7 +186,24 @@ function highlightCurrentSection() {
 }
 
 // =============================================
-// 7. OTIMIZAÇÕES DE PERFORMANCE MOBILE
+// 7. ANIMAÇÃO DE DIGITAÇÃO (Opcional)
+// =============================================
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+// =============================================
+// 8. OTIMIZAÇÕES DE PERFORMANCE MOBILE
 // =============================================
 function initPerformanceOptimizations() {
     // Prevenir múltiplos resizes
@@ -187,7 +227,7 @@ function initPerformanceOptimizations() {
 }
 
 // =============================================
-// 8. GESTOS TOUCH
+// 9. GESTOS TOUCH
 // =============================================
 function initTouchGestures() {
     if (!isTouchDevice) return;
@@ -205,7 +245,7 @@ function initTouchGestures() {
         const endY = e.changedTouches[0].clientY;
         const diff = startY - endY;
         
-        if (diff < -50 && window.pageYOffset > 100) { // Swipe para baixo
+        if (diff < -50 && window.pageYOffset > 100) {
             topBtn.classList.add('show');
         }
         
@@ -214,11 +254,18 @@ function initTouchGestures() {
 }
 
 // =============================================
-// 9. INICIALIZAÇÃO MOBILE
+// 10. ATUALIZAR ANO NO FOOTER
+// =============================================
+function updateYear() {
+    document.getElementById('year').textContent = new Date().getFullYear();
+}
+
+// =============================================
+// 11. INICIALIZAÇÃO GERAL
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
     // Atualizar ano
-    document.getElementById('year').textContent = new Date().getFullYear();
+    updateYear();
     
     // Inicializar componentes
     initSmoothScroll();
@@ -248,15 +295,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    console.log('📱 Elliot Project - Mobile optimized scripts loaded!');
+    // Animação de digitação opcional no hero (apenas desktop)
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle && !isMobile) {
+        const originalText = heroTitle.textContent;
+        setTimeout(() => {
+            typeWriter(heroTitle, originalText, 70);
+        }, 1000);
+    }
+    
+    console.log('🚀 Elliot Project - Scripts carregados com sucesso!');
+    console.log('📱 Mobile:', isMobile, 'Touch:', isTouchDevice);
 });
 
 // =============================================
-// 10. OFFLINE SUPPORT
+// 12. OFFLINE SUPPORT (Opcional)
 // =============================================
-// Service Worker simples para cache
 if ('serviceWorker' in navigator && isMobile) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(console.error);
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered: ', registration))
+            .catch(registrationError => console.log('SW registration failed: ', registrationError));
     });
 }

@@ -3,67 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elliot Kids — Histórias para Crianças Curiosas</title>
-  <meta name="description" content="Histórias divertidas sobre amizade, natureza e descobertas para crianças" />
-  <meta name="keywords" content="histórias crianças, educação valores, natureza crianças">
+  <title>Elliot Kids - Aventuras em Tecnologia e Sabedoria</title>
+  <meta name="description" content="Versão infantil do Elliot - histórias e aventuras sobre tecnologia, amizade e aprendizado para crianças." />
+  <meta property="og:title" content="Elliot Kids - Aventuras em Tecnologia e Sabedoria" />
+  <meta property="og:description" content="Versão infantil do Elliot - histórias e aventuras sobre tecnologia, amizade e aprendizado para crianças." />
+  <meta property="og:type" content="website" />
+  <meta name="keywords" content="crianças, educação, tecnologia, histórias, aprendizado, valores">
   <meta name="author" content="Jonathas Felipe">
   
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Overrides para versão infantil */
+    /* Estilos específicos para a versão kids */
+    :root {
+      --accent: #FF6B6B;
+      --bg: #0A2342;
+      --panel: #1E3D6F;
+    }
+
+    [data-theme="light"] {
+      --accent: #FF6B6B;
+      --bg: #E8F4F8;
+      --panel: #FFFFFF;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #1E3D6F 0%, #0A2342 60%);
+      font-family: 'Comic Neue', cursive;
+    }
+
+    [data-theme="light"] body {
+      background: radial-gradient(ellipse at center, #BDE0FE 0%, #E8F4F8 60%);
+    }
+
     .book-wrap {
-      background: linear-gradient(180deg, rgba(30,20,50,0.8), rgba(15,10,30,0.9));
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
     }
-    
-    .historia-crianca {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      border-left: 6px solid #e6c07b;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+
+    h1, h2, h3 {
+      font-family: 'Comic Neue', cursive;
+      color: var(--accent);
     }
-    
-    .moral {
-      background: rgba(230, 192, 123, 0.15);
-      padding: 1.2rem;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-      border: 2px dashed #e6c07b;
-      font-style: italic;
-      text-align: center;
+
+    .logo {
+      background: linear-gradient(135deg, #FF6B6B, #FF9E6B);
+      font-size: 1.5rem;
     }
-    
-    .emoji-title {
-      font-size: 1.8rem;
+
+    .character {
       text-align: center;
       margin: 2rem 0;
-      color: #e6c07b;
     }
-    
-    .nav-criancas {
+
+    .character-img {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .story-card {
+      background: var(--glass);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+    }
+
+    .activity {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 5px solid var(--accent);
+    }
+
+    .emoji-large {
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .kids-nav {
       display: flex;
       gap: 1rem;
       justify-content: center;
+      flex-wrap: wrap;
       margin: 2rem 0;
     }
-    
-    .btn-crianca {
-      background: rgba(230, 192, 123, 0.2);
-      color: #e6c07b;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
+
+    .kids-nav a {
+      background: var(--accent);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: bold;
-      border: 2px solid #e6c07b;
       transition: all 0.3s ease;
     }
-    
-    .btn-crianca:hover {
-      background: #e6c07b;
-      color: #111;
-      transform: scale(1.05);
+
+    .kids-nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
     }
   </style>
 </head>
@@ -75,280 +115,301 @@
   <button id="topBtn" class="top-btn" title="Voltar ao topo">↑</button>
 
   <div class="book-wrap" role="document">
-
     <header>
       <div class="brand">
         <div class="logo">E</div>
         <div>
           <h1>Elliot Kids</h1>
-          <div class="subtitle">Histórias para crianças curiosas</div>
+          <div class="subtitle">Aventuras em tecnologia e sabedoria</div>
         </div>
       </div>
+      
       <nav aria-label="principal">
         <a href="#inicio">Início</a>
         <a href="#historias">Histórias</a>
-        <a href="../index.html">Versão Adulta</a>
+        <a href="#atividades">Atividades</a>
+        <a href="#diversao">Diversão</a>
       </nav>
+      
+      <!-- Seletor de Tema -->
+      <div class="theme-switcher">
+        <button id="themeBtn" class="theme-btn" title="Mudar tema">🔦</button>
+      </div>
     </header>
 
-    <main>
+    <div class="content-wrapper">
+      <main>
+        <!-- Hero Section Kids -->
+        <section id="inicio" aria-labelledby="hero-title">
+          <div class="character">
+            <div class="character-img">🤖✨</div>
+            <h2 id="hero-title">Bem-vindo ao Mundo do Elliot Kids!</h2>
+            <p>Onde a tecnologia encontra a imaginação e cada dia é uma nova aventura!</p>
+          </div>
 
-      <!-- Hero Section Infantil -->
-      <section id="inicio">
-        <div class="emoji-title">📚✨🎈</div>
-        <h2 style="text-align: center;">Bem-vindo ao Mundo das Histórias!</h2>
-        <p class="meta" style="text-align: center;">Para crianças que amam perguntar "por quê?"</p>
+          <div class="story-card">
+            <h3>🎈 Nossa Missão</h3>
+            <p>Aquí no Elliot Kids, nós acreditamos que aprender sobre tecnologia pode ser tão divertido quanto brincar! Vamos juntos descobrir:</p>
+            <ul>
+              <li>🤖 Como os computadores pensam</li>
+              <li>💡 Como criar coisas incríveis</li>
+              <li>❤️ Como ser um bom amigo</li>
+              <li>🌍 Como cuidar do nosso planeta</li>
+            </ul>
+          </div>
+        </section>
 
-        <article style="text-align: center;">
-          <p>Este é um lugar especial com histórias sobre <mark>amizade</mark>, <mark>natureza</mark> e <mark>descobertas</mark>!</p>
-          <p>Você pode ler sozinho ou pedir para alguém ler com você. 🎉</p>
+        <!-- Navegação Kids -->
+        <div class="kids-nav">
+          <a href="#historias">📚 Ler Histórias</a>
+          <a href="#atividades">🎨 Fazer Atividades</a>
+          <a href="#diversao">🎮 Se Divertir</a>
+          <a href="index.html">👨‍💻 Versão Adulto</a>
+        </div>
+
+        <!-- Seção de Histórias -->
+        <section id="historias" style="margin-top: 3rem;">
+          <h2 style="text-align: center; color: var(--accent);">📚 Histórias Divertidas</h2>
+          <p class="meta" style="text-align: center;">Aventuras para ler e imaginar</p>
+        </section>
+
+        <!-- HISTÓRIA 1 -->
+        <article id="historia-1" class="story-card">
+          <h2>🤖 A Amizade do Robô Zureta</h2>
+          <p class="meta">Uma história sobre tecnologia e amizade</p>
+          
+          <p>Zureta era um robô muito inteligente que sabia fazer cálculos complicados e resolver problemas difíceis. Mas havia uma coisa que Zureta não entendia: <strong>amizade</strong>.</p>
+          
+          <p>Um dia, Zureta conheceu a Lara, uma menina cheia de energia e sorrisos. Lara mostrou para Zureta que amizade não era algo que se calcula, mas algo que se sente.</p>
+          
+          <div class="emoji-large">💝 + 🤖 = ✨</div>
+          
+          <p>Juntos, eles descobriram que a tecnologia é mais legal quando compartilhada com amigos!</p>
+          
+          <div class="activity">
+            <h4>🎯 Pergunta para Pensar:</h4>
+            <p><em>"O que você gostaria de ensinar para um robô amigo?"</em></p>
+          </div>
         </article>
-        
-        <div class="nav-criancas">
-          <a href="#historias" class="btn-crianca">📖 Ver Histórias</a>
-          <a href="../index.html" class="btn-crianca">🌙 Versão Adulta</a>
-        </div>
-      </section>
 
-      <!-- ==================== -->
-      <!-- HISTÓRIAS INFANTIS -->
-      <!-- ==================== -->
+        <!-- HISTÓRIA 2 -->
+        <article id="historia-2" class="story-card">
+          <h2>🌍 A Missão do Planeta Verde</h2>
+          <p class="meta">Uma aventura ecológica</p>
+          
+          <p>Pedro adorava jogar no tablet, mas passava tanto tempo olhando para a tela que quase não notava o mundo ao seu redor.</p>
+          
+          <p>Até que um dia, seu tablet ganhou vida e lhe mostrou um jogo especial: <strong>"Salve o Planeta Verde"</strong>.</p>
+          
+          <p>Para vencer o jogo, Pedro precisava:</p>
+          <ul>
+            <li>🌱 Plantar uma árvore de verdade</li>
+            <li>💧 Economizar água</li>
+            <li>♻️ Reciclar o lixo</li>
+            <li>☀️ Usar energia do sol</li>
+          </ul>
+          
+          <p>Pedro descobriu que tecnologia e natureza podem ser melhores amigas!</p>
+          
+          <div class="activity">
+            <h4>🌱 Desafio da Semana:</h4>
+            <p><em>"Encontre uma planta na sua casa e cuide dela por uma semana!"</em></p>
+          </div>
+        </article>
 
-      <section id="historias">
-        <div class="emoji-title">🎭 Histórias Divertidas 🎭</div>
-      </section>
+        <!-- HISTÓRIA 3 -->
+        <article id="historia-3" class="story-card">
+          <h2>💭 A Menina das Ideias Brilhantes</h2>
+          <p class="meta">Sobre criatividade e inovação</p>
+          
+          <p>Clara tinha um superpoder: suas ideias brilhavam como luzinhas coloridas! 💡</p>
+          
+          <p>Um dia, ela percebeu que podia usar suas ideias brilhantes para:</p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+            <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+              <div style="font-size: 2rem;">🎨</div>
+              <p>Criar arte digital</p>
+            </div>
+            <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+              <div style="font-size: 2rem;">🎵</div>
+              <p>Compor músicas</p>
+            </div>
+            <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+              <div style="font-size: 2rem;">📱</div>
+              <p>Inventar apps</p>
+            </div>
+            <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+              <div style="font-size: 2rem;">🤝</div>
+              <p>Ajudar pessoas</p>
+            </div>
+          </div>
+          
+          <p>Clara aprendeu que as melhores invenções nascem quando unimos tecnologia com criatividade!</p>
+        </article>
 
-      <!-- HISTÓRIA 1 -->
-      <article id="historia-1" class="historia-crianca">
-        <h2>🌠 O Menino e as Estrelas</h2>
-        <p class="meta">Uma história sobre perguntas e descobertas</p>
-        
-        <p>Era uma vez um menino chamado Lucas que adorava olhar para as estrelas. Todas as noites, ele subia na varanda de casa e ficava horas olhando para o céu escuro cheio de luzinhas brilhantes.</p>
-        
-        <p>Um dia, ele perguntou para seu avô:</p>
-        
-        <div class="blockquote">
-          "Vovô, como as estrelas ficam no céu sem cair?"
-        </div>
-        
-        <p>O avô, que era muito sábio, sorriu e respondeu:</p>
-        
-        <div class="blockquote">
-          "Assim como o amor fica no nosso coração sem cair, meu neto. Existem coisas que a gente não vê, mas que são muito reais."
-        </div>
-        
-        <p>Lucas pensou um pouco e disse:</p>
-        
-        <div class="blockquote">
-          "Então o amor é como a gravidade? A gente não vê, mas segura tudo no lugar?"
-        </div>
-        
-        <p>O avô deu um abraço bem forte nele e respondeu:</p>
-        
-        <div class="blockquote">
-          "Exatamente! E assim como cada estrela brilha do seu jeito, cada um de nós também tem seu próprio brilho especial."
-        </div>
-        
-        <div class="moral">
-          🎯 <strong>Lição da História:</strong> Fazer perguntas é como acender luzinhas no escuro. Cada pergunta nos ajuda a ver o mundo com mais clareza!
-        </div>
-      </article>
+        <!-- Seção de Atividades -->
+        <section id="atividades" style="margin-top: 4rem; padding-top: 2rem; border-top: 3px dashed var(--accent);">
+          <h2 style="text-align: center; color: var(--accent);">🎨 Atividades Criativas</h2>
+          <p class="meta" style="text-align: center;">Mãos na massa! Vamos criar juntos</p>
+        </section>
 
-      <!-- HISTÓRIA 2 -->
-      <article id="historia-2" class="historia-crianca">
-        <h2>🌱 A Semente e a Paciência</h2>
-        <p class="meta">Uma história sobre confiança e tempo</p>
-        
-        <p>Maria ganhou da professora uma sementinha de girassol. Chegando em casa, ela plantou a semente no jardim com muito cuidado.</p>
-        
-        <p>No primeiro dia, ela cavou a terra para ver se já tinha nascido. Nada.</p>
-        <p>No segundo dia, fez a mesma coisa. Nada.</p>
-        <p>No terceiro dia, também cavou. Nada!</p>
-        
-        <p>Sua mãe viu isso e disse com voz calma:</p>
-        
-        <div class="blockquote">
-          "Querida, algumas coisas precisam de tempo no escuro para crescer fortes. A semente está se preparando para virar uma linda planta!"
-        </div>
-        
-        <p>Maria entendeu e parou de cavar. Ela passou a regar a plantinha todos os dias e até conversava com ela:</p>
-        
-        <div class="blockquote">
-          "Bom dia, sementinha! Espero que você cresça forte e feliz!"
-        </div>
-        
-        <p>Duas semanas depois, uma plantinha verde bem pequena apareceu! Maria ficou tão feliz que chamou toda a família para ver.</p>
-        
-        <p>Ela aprendeu que:</p>
-        <ul>
-          <li>🌱 <strong>Algumas coisas boas demoram para crescer</strong></li>
-          <li>💧 <strong>Cuidado diário é importante</strong></li>
-          <li>☀️ <strong>Confiança faz milagres</strong></li>
-          <li>⏳ <strong>Tudo tem seu tempo certo</strong></li>
+        <!-- ATIVIDADE 1 -->
+        <article id="atividade-1" class="activity">
+          <h3>🖼️ Crie seu Avatar Digital</h3>
+          <p><strong>Materiais necessários:</strong> Papel, lápis de cor e muita imaginação!</p>
+          
+          <p><strong>Passo a passo:</strong></p>
+          <ol>
+            <li>Desenhe um personagem que represente você</li>
+            <li>Pense em um superpoder especial para ele</li>
+            <li>Escolha cores que representem sua personalidade</li>
+            <li>Dê um nome criativo para seu avatar</li>
+          </ol>
+          
+          <div class="emoji-large">🎨 → 👤 → ✨</div>
+          
+          <p><strong>Dica:</strong> Seu avatar pode ter partes de robô, asas de anjo, ou qualquer coisa que você imaginar!</p>
+        </article>
+
+        <!-- ATIVIDADE 2 -->
+        <article id="atividade-2" class="activity">
+          <h3>🏗️ Construa uma Cidade do Futuro</h3>
+          <p>Vamos imaginar como será o mundo daqui a 100 anos!</p>
+          
+          <p><strong>O que sua cidade precisa ter?</strong></p>
+          <ul>
+            <li>🚗 Carros que voam</li>
+            <li>🏠 Casas inteligentes</li>
+            <li>🌳 Muitas áreas verdes</li>
+            <li>🤖 Robôs amigos</li>
+            <li>⚡ Energia limpa</li>
+          </ul>
+          
+          <p><strong>Desafio extra:</strong> Desenhe um invento que ajude as pessoas a serem mais felizes!</p>
+        </article>
+
+        <!-- ATIVIDADE 3 -->
+        <article id="atividade-3" class="activity">
+          <h3>💻 Aprendendo a Programar</h3>
+          <p>Vamos brincar de dar instruções para o computador!</p>
+          
+          <p><strong>Jogo do Robô Obediente:</strong></p>
+          <p>Peça para um amigo ou familiar ser seu "robô". Diga comandos simples como:</p>
+          
+          <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+            <p>🤖 <strong>Comandos:</strong></p>
+            <p>"Ande 3 passos para frente"</p>
+            <p>"Vire para a direita"</p>
+            <p>"Pegue o lápis"</p>
+            <p>"Desenhe um círculo"</p>
+          </div>
+          
+          <p>Assim como programamos robôs, podemos programar computadores para fazer coisas incríveis!</p>
+        </article>
+
+        <!-- Seção de Diversão -->
+        <section id="diversao" style="margin-top: 4rem; padding-top: 2rem; border-top: 3px dashed var(--accent);">
+          <h2 style="text-align: center; color: var(--accent);">🎮 Momento Diversão</h2>
+          <p class="meta" style="text-align: center;">Jogos e brincadeiras educativas</p>
+        </section>
+
+        <!-- JOGO 1 -->
+        <article id="jogo-1" class="story-card">
+          <h3>🔍 Caça aos Emojis Tecnológicos</h3>
+          <p>Encontre estes emojis escondidos pela página!</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; margin: 1rem 0;">
+            <div>🤖 <br><small>Robô</small></div>
+            <div>💻 <br><small>Computador</small></div>
+            <div>📱 <br><small>Celular</small></div>
+            <div>🕹️ <br><small>Controle</small></div>
+            <div>🔋 <br><small>Bateria</small></div>
+            <div>💡 <br><small>Ideia</small></div>
+          </div>
+          
+          <p><strong>Regras:</strong> Conte quantos de cada emoji você encontra na página!</p>
+        </article>
+
+        <!-- JOGO 2 -->
+        <article id="jogo-2" class="activity">
+          <h3>🎯 Verdadeiro ou Falso Tecnológico</h3>
+          
+          <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+            <p><strong>1. Computadores precisam de eletricidade para funcionar.</strong></p>
+            <p style="color: #4CAF50; font-weight: bold;">✅ VERDADEIRO! Assim como nós precisamos de comida, computadores precisam de energia.</p>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+            <p><strong>2. Robôs podem sentir emoções como humanos.</strong></p>
+            <p style="color: #FF6B6B; font-weight: bold;">❌ FALSO! Robôs não sentem emoções, mas podem ser programados para ajudar pessoas.</p>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+            <p><strong>3. A internet conecta pessoas de todo o mundo.</strong></p>
+            <p style="color: #4CAF50; font-weight: bold;">✅ VERDADEIRO! É como uma teia gigante que une o planeta todo.</p>
+          </div>
+        </article>
+
+        <!-- Mensagem Final -->
+        <article id="mensagem-final" class="story-card" style="text-align: center; margin-top: 3rem;">
+          <div class="emoji-large">🌟</div>
+          <h3>Você é um Pequeno Inovador!</h3>
+          <p>Lembre-se: toda tecnologia incrível começou com uma ideia simples. Continue imaginando, criando e explorando!</p>
+          <p>O futuro precisa de mentes brilhantes como a sua! 🚀</p>
+          
+          <div style="margin-top: 2rem;">
+            <a href="index.html" class="cta" style="display: inline-block; margin: 0.5rem;">
+              👨‍💻 Ver Versão para Adultos
+            </a>
+            <a href="#inicio" class="cta" style="display: inline-block; margin: 0.5rem; background: rgba(255,255,255,0.2);">
+              🔄 Começar Novamente
+            </a>
+          </div>
+        </article>
+
+      </main>
+
+      <aside>
+        <div class="meta">Navegação Rápida</div>
+        <ul class="toc">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#historias">Histórias</a></li>
+          <li><a href="#atividades">Atividades</a></li>
+          <li><a href="#diversao">Diversão</a></li>
         </ul>
-        
-        <div class="moral">
-          🎯 <strong>Lição da História:</strong> Assim como as plantas, nossos sonhos e amizades precisam de tempo, cuidado e confiança para crescerem fortes e bonitos!
-        </div>
-      </article>
 
-      <!-- HISTÓRIA 3 -->
-      <article id="historia-3" class="historia-crianca">
-        <h2>🐦 Os Dois Pássaros Diferentes</h2>
-        <p class="meta">Uma história sobre amizade e diferenças</p>
-        
-        <p>Num galho bem alto de uma árvore centenária, viviam dois pássaros. Pipo era azul e adorava cantar bem alto de manhã. Pipa era vermelha e preferia o silêncio para observar o mundo.</p>
-        
-        <p>No início, eles não se entendiam:</p>
-        
-        <div class="blockquote">
-          "Por que você canta tão alto de manhã?" perguntou Pipa, cobrindo os ouvidos com as asas.
+        <div style="margin-top:2rem">
+          <div class="meta">Personagens Favoritos</div>
+          <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+            <div style="text-align: center; padding: 1rem; background: var(--glass); border-radius: 10px;">
+              <div style="font-size: 2rem;">🤖</div>
+              <p>Robô Zureta</p>
+            </div>
+            <div style="text-align: center; padding: 1rem; background: var(--glass); border-radius: 10px;">
+              <div style="font-size: 2rem;">👧</div>
+              <p>Menina Clara</p>
+            </div>
+          </div>
         </div>
-        
-        <div class="blockquote">
-          "Por que você fica tão quieta o tempo todo?" perguntou Pipo, curioso.
-        </div>
-        
-        <p>Eles quase não se falavam, cada um no seu canto do galho.</p>
-        
-        <p>Um dia, uma tempestade muito forte chegou. O vento uivava e a chuva caía com força. Os dois pássaros, assustados, procuraram abrigo.</p>
-        
-        <p>Pipa conhecia um galho grosso e protegido. Pipo cantou uma música suave para acalmar o medo. Juntos, eles se protegeram da tempestade.</p>
-        
-        <p>Depois que a tempestade passou, eles descobriram que:</p>
-        <ul>
-          <li>🎵 <strong>As músicas de Pipo alegravam os dias tristes</strong></li>
-          <li>🔍 <strong>A observação de Pipa encontrava os melhores alimentos</strong></li>
-          <li>🤝 <strong>Juntos, eles eram muito mais fortes</strong></li>
-        </ul>
-        
-        <div class="moral">
-          🎯 <strong>Lição da História:</strong> Nossas diferenças nos completam, não nos separam! Cada pessoa tem algo especial para oferecer.
-        </div>
-      </article>
 
-      <!-- HISTÓRIA 4 -->
-      <article id="historia-4" class="historia-crianca">
-        <h2>👨‍👧‍👦 O Amigo de Todos</h2>
-        <p class="meta">Uma história sobre Jesus para crianças</p>
-        
-        <p>Há muito tempo, em uma terra distante, viveu um homem muito especial chamado Jesus. Ele era diferente de todos os outros homens.</p>
-        
-        <p>O que Jesus fazia de especial:</p>
-        <ul>
-          <li>❤️ <strong>Abraçava pessoas</strong> que ninguém mais queria abraçar</li>
-          <li>🏥 <strong>Ajudava pessoas doentes</strong> a se sentirem melhor</li>
-          <li>📖 <strong>Contava histórias</strong> que ensinavam a ser bom e gentil</li>
-          <li>🌊 <strong>Andava com pescadores</strong> e trabalhadores simples</li>
-          <li>👶 <strong>Amava as crianças</strong> e as escutava com atenção</li>
-        </ul>
-        
-        <p>Um dia, algumas crianças queriam ver Jesus de perto. Os adultos disseram:</p>
-        
-        <div class="blockquote">
-          "Não incomodem Jesus! Ele tem coisas importantes para fazer com os adultos."
+        <div style="margin-top:2rem">
+          <div class="meta">Próximas Aventuras</div>
+          <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
+            "Em breve: A missão do planeta água e os guardiões da internet!"
+          </p>
         </div>
-        
-        <p>Mas Jesus ouviu e disse algo surpreendente:</p>
-        
-        <div class="blockquote">
-          "Deixem as crianças virem até mim. Não as impeçam, pois o Reino de Deus pertence às pessoas que são como elas."
-        </div>
-        
-        <p>Ele se ajoelhou, abraçou cada criança e as abençoou. Jesus mostrou que:</p>
-        
-        <div class="blockquote">
-          "O mais importante não é ser forte, rico ou inteligente, mas ter um coração puro e bom."
-        </div>
-        
-        <div class="moral">
-          🎯 <strong>Lição da História:</strong> Jesus nos ensinou que o amor, a simplicidade e a bondade são as coisas mais importantes da vida!
-        </div>
-      </article>
 
-      <!-- HISTÓRIA 5 -->
-      <article id="historia-5" class="historia-crianca">
-        <h2>🔦 A Lanterna Mágica</h2>
-        <p class="meta">Uma história sobre tecnologia de forma simples</p>
-        
-        <p>Pedro adorava sua lanterna nova. À noite, ele apontava para o escuro e criava caminhos de luz pelo quarto. Era como ter um pedaço de estrela na mão!</p>
-        
-        <p>Seu pai, vendo a fascinação do filho, explicou:</p>
-        
-        <div class="blockquote">
-          "A lanterna é como nossas ideias, Pedro. Elas iluminam o que não conseguimos ver no escuro."
+        <div style="margin-top:1rem">
+          <div class="meta">Voltar para</div>
+          <a class="cta" href="index.html" style="text-align: center;">🏠 Elliot Adulto</a>
         </div>
-        
-        <p>Pedro, que era muito esperto, perguntou:</p>
-        
-        <div class="blockquote">
-          "Então os celulares, tablets e computadores são como lanternas maiores e mais inteligentes?"
-        </div>
-        
-        <p>O pai riu e respondeu:</p>
-        
-        <div class="blockquote">
-          "Isso mesmo! Eles são ferramentas que nos ajudam a ver mais longe, aprender coisas novas e conversar com pessoas que estão longe."
-        </div>
-        
-        <p>Mas o pai também explicou algo importante:</p>
-        
-        <div class="blockquote">
-          "Assim como a lanterna, precisamos saber para onde apontar a tecnologia. Ela pode iluminar coisas boas - como aprender e se conectar - ou pode nos distrair do que é realmente importante."
-        </div>
-        
-        <p>Pedro entendeu que:</p>
-        <ul>
-          <li>💡 <strong>Tecnologia é uma ferramenta</strong>, como martelo ou lápis</li>
-          <li>🎯 <strong>Precisamos usar com sabedoria</strong></li>
-          <li>❤️ <strong>Nada substitui abraços e conversas olho no olho</strong></li>
-        </ul>
-        
-        <div class="moral">
-          🎯 <strong>Lição da História:</strong> A tecnologia é uma ferramenta maravilhosa, mas nosso coração é quem decide como usá-la para o bem!
-        </div>
-      </article>
-
-      <!-- CHAMADA PARA AÇÃO -->
-      <section style="text-align: center; margin: 4rem 0;">
-        <div class="emoji-title">🎨✨🤔</div>
-        <h3>Gostou das histórias?</h3>
-        <p>Compartilhe com seus amigos ou peça para lerem com você!</p>
-        <div class="nav-criancas">
-  <a href="#inicio" class="btn-crianca">📚 Ler Todas Novamente</a>
-  <a href="../index.html" class="btn-crianca">🌙 Ver Versão para Adultos</a>  <!-- ← JÁ TEM! -->
-</div>
-      </section>
-
-    </main>
-
-    <aside>
-      <div class="meta">Navegação Rápida</div>
-      <ul class="toc">
-        <li><a href="#inicio">🏠 Início</a></li>
-        <li><strong>📖 Histórias:</strong></li>
-        <li><a href="#historia-1">1. O Menino e as Estrelas</a></li>
-        <li><a href="#historia-2">2. A Semente e a Paciência</a></li>
-        <li><a href="#historia-3">3. Os Dois Pássaros</a></li>
-        <li><a href="#historia-4">4. O Amigo de Todos</a></li>
-        <li><a href="#historia-5">5. A Lanterna Mágica</a></li>
-      </ul>
-
-      <div style="margin-top:2rem">
-        <div class="meta">Pensamento do Dia</div>
-        <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
-          "Toda criança traz um pouco de Deus para o mundo." ✨
-        </p>
-      </div>
-
-      <div style="margin-top:1rem">
-        <div class="meta">Para os Pais</div>
-        <a class="cta" href="../index.html">Versão Completa para Adultos</a>
-      </div>
-    </aside>
+      </aside>
+    </div>
 
     <footer>
-      © <span id="year">2025</span> Jonathas Felipe — Feito com ❤️ para todas as crianças
+      © <span id="year">2025</span> Elliot Kids — 
+      <span style="color: var(--muted);">Feito com ❤️ para mentes curiosas</span>
     </footer>
   </div>
 
