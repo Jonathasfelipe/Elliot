@@ -1,508 +1,1592 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YASUKETV </title>
-  <meta name="description" content="Pergaminho samurai com links para todos os projetos por Jonathas Felipe" />
-  
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --parchment: #f5e8c8;
-      --ink: #2c1810;
-      --blood: #8b0000;
-      --gold: #b8860b;
-      --aged: #d4b78c;
-      --border: #8b7355;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus: Jogos, Animes e a Construção do Eu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f1f1f1;
+            --dark: #0f0f1e;
+            --gaming: #00b4d8;
+            --anime: #ff6b6b;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.7;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(233, 69, 96, 0.05) 0%, transparent 20%);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: var(--light);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            border-left: 5px solid var(--accent);
+            padding-left: 1rem;
+            margin-top: 3rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-top: 2rem;
+        }
+        
+        .gaming-title {
+            color: var(--gaming);
+            border-left-color: var(--gaming);
+        }
+        
+        .anime-title {
+            color: var(--anime);
+            border-left-color: var(--anime);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #d1345e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn-gaming {
+            background-color: var(--gaming);
+        }
+        
+        .btn-gaming:hover {
+            background-color: #0093b8;
+        }
+        
+        .btn-anime {
+            background-color: var(--anime);
+        }
+        
+        .btn-anime:hover {
+            background-color: #e05555;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 30, 0.95);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            font-size: 0.95rem;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 5rem 0;
+        }
+        
+        section {
+            margin-bottom: 6rem;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            background-color: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Hero Quote */
+        .hero-quote {
+            text-align: center;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .hero-quote:before, .hero-quote:after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .hero-quote:before {
+            top: 0;
+            left: 20px;
+        }
+        
+        .hero-quote:after {
+            bottom: -20px;
+            right: 20px;
+        }
+        
+        .hero-quote p {
+            font-size: 1.8rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Character Analysis */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .character-card {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+            height: 100%;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .character-header {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .character-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid;
+            margin-bottom: 1rem;
+        }
+        
+        .character-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .character-source {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        .character-body {
+            padding: 1.5rem;
+        }
+        
+        .character-trait {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .trait-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .trait-positive {
+            background-color: rgba(0, 180, 216, 0.2);
+            color: var(--gaming);
+        }
+        
+        .trait-negative {
+            background-color: rgba(255, 107, 107, 0.2);
+            color: var(--anime);
+        }
+        
+        .trait-neutral {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Game Covers */
+        .game-covers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .game-cover {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-cover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        
+        .cover-image {
+            height: 200px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cover-title {
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Dual Nature Section */
+        .dual-nature {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .nature-card {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            border-top: 4px solid;
+            transition: var(--transition);
+        }
+        
+        .nature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .nature-card.positive {
+            border-top-color: var(--gaming);
+        }
+        
+        .nature-card.negative {
+            border-top-color: var(--anime);
+        }
+        
+        .nature-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .nature-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .nature-card.positive .nature-icon {
+            color: var(--gaming);
+        }
+        
+        .nature-card.negative .nature-icon {
+            color: var(--anime);
+        }
+        
+        /* Lesson List */
+        .lesson-list {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+        
+        .lesson-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .lesson-list li:before {
+            content: "◈";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .lesson-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 1rem;
+            max-width: 600px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(233, 69, 96, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(233, 69, 96, 0.8); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glowing {
+            animation: glow 2s infinite;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .nav-links li {
+                margin-left: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .character-grid, .dual-nature, .game-covers {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(15, 15, 30, 0.98);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                z-index: 1001;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 12px 20px;
+                font-size: 1rem;
+                border-left: 3px solid transparent;
+            }
+            
+            .nav-links a:hover {
+                background-color: rgba(233, 69, 96, 0.1);
+                border-left: 3px solid var(--accent);
+            }
+            
+            .hero-quote p {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .intro-text, .nature-card {
+                padding: 1.5rem;
+            }
+            
+            .hero-quote p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .character-grid, .dual-nature, .game-covers {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links li {
+                margin: 0.5rem 0;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        <style>
+    /* ATUALIZAÇÕES NO CSS PARA A SEÇÃO DE JOGOS */
 
-    * { 
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      margin: 0;
-      background: 
-        linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
-      background-size: 20px 20px;
-      background-color: var(--aged);
-      color: var(--ink);
-      font-family: 'Libre Baskerville', serif;
-      line-height: 1.6;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-    }
-
-    /* Container Principal - Pergaminho */
-    .scroll-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: 
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect width="100" height="100" fill="black"/></svg>'),
-        var(--parchment);
-      border: 15px solid transparent;
-      border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%238b7355"/></svg>') 30 round;
-      box-shadow: 
-        0 10px 30px rgba(0,0,0,0.3),
-        inset 0 0 50px rgba(139, 115, 85, 0.1);
-      position: relative;
-      padding: 3rem;
-    }
-
-    /* Efeito de borda desgastada */
-    .scroll-container::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border: 2px solid var(--border);
-      pointer-events: none;
-      opacity: 0.3;
-    }
-
-    /* Header Samurai */
-    .samurai-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 3px double var(--blood);
-      position: relative;
-    }
-
-    .samurai-header::before,
-    .samurai-header::after {
-      content: "⚔️";
-      position: absolute;
-      bottom: -15px;
-      font-size: 1.2rem;
-    }
-
-    .samurai-header::before {
-      left: 20%;
-    }
-
-    .samurai-header::after {
-      right: 20%;
-    }
-
-    .yasuke-logo {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 3.5rem;
-      margin: 0;
-      color: var(--blood);
-      text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-      letter-spacing: 2px;
-    }
-
-    .yasuke-subtitle {
-      color: var(--gold);
-      font-style: italic;
-      margin: 0.5rem 0 0 0;
-      font-size: 1.1rem;
-    }
-
-    .yasuke-description {
-      max-width: 600px;
-      margin: 1.5rem auto 0;
-      font-size: 1rem;
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    /* Grid de Projetos */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .project-card {
-      background: rgba(139, 115, 85, 0.05);
-      border: 2px solid var(--border);
-      padding: 2rem;
-      transition: all 0.3s ease;
-      position: relative;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--blood);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--blood);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .project-emoji {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      filter: grayscale(0.3);
-      transition: filter 0.3s ease;
-    }
-
-    .project-card:hover .project-emoji {
-      filter: grayscale(0);
-    }
-
-    .project-title {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.5rem;
-      color: var(--blood);
-      margin: 0 0 1rem 0;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
-    }
-
-    .project-description {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--ink);
-      text-align: center;
-    }
-
-    .project-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border);
-      font-size: 0.85rem;
-      color: var(--gold);
-    }
-
-    /* Seção de Acesso Rápido */
-    .quick-access {
-      margin: 3rem 0;
-      padding: 2rem;
-      border: 2px dashed var(--border);
-      background: rgba(139, 115, 85, 0.05);
-      text-align: center;
-    }
-
-    .access-title {
-      color: var(--blood);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-family: 'Libre Baskerville', serif;
-    }
-
-    .access-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .access-link {
-      color: var(--ink);
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--border);
-      background: transparent;
-      font-family: 'Libre Baskerville', serif;
-      transition: all 0.3s ease;
-    }
-
-    .access-link:hover {
-      background: var(--blood);
-      color: var(--parchment);
-      border-color: var(--blood);
-      text-decoration: none;
-    }
-
-    /* Seções */
-    .scroll-section {
-      margin: 3rem 0;
-      position: relative;
-    }
-
-    .section-title {
-      color: var(--blood);
-      border-bottom: 2px solid var(--blood);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.8rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .section-title::before {
-      content: "🎌";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .section-title::after {
-      content: "🎌";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* Footer */
-    .samurai-footer {
-      text-align: center;
-      padding: 3rem 0 1rem 0;
-      color: var(--border);
-      border-top: 2px double var(--border);
-      margin-top: 4rem;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .footer-logo {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--blood);
-    }
-
-    /* Responsivo */
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem 0.5rem;
-      }
-      
-      .scroll-container {
-        padding: 1.5rem;
-      }
-      
-      .yasuke-logo {
-        font-size: 2.5rem;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
+    .game-covers {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1.5rem;
-      }
-      
-      .access-links {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .access-link {
-        width: 100%;
-        max-width: 250px;
-      }
-
-      .section-title::before,
-      .section-title::after {
-        display: none;
-      }
+        margin-top: 2rem;
     }
-  </style>
+    
+    .game-cover {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: var(--transition);
+        border: 1px solid rgba(255,255,255,0.1);
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .game-cover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        border-color: var(--accent);
+    }
+    
+    .cover-header {
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cover-image {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.5s ease;
+    }
+    
+    .game-cover:hover .cover-image {
+        transform: scale(1.05);
+    }
+    
+    .cover-title {
+        padding: 1rem;
+        text-align: left;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .cover-title h4 {
+        margin-bottom: 0.5rem;
+        color: var(--gaming);
+        font-size: 1.1rem;
+    }
+    
+    .cover-title p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        color: #ddd;
+    }
+    
+    .game-lesson {
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-top: 0.5rem;
+        border-top: 1px dashed rgba(255,255,255,0.1);
+        padding-top: 0.5rem;
+    }
+    
+    /* Para garantir que o texto não ultrapasse os limites */
+    .cover-title {
+        overflow: hidden;
+    }
+    
+    .cover-title p, .game-lesson {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+</style>
+    </style>
 </head>
 <body>
-  <!-- Container Principal -->
-  <div class="scroll-container">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="nexus.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Nexus<span>Gaming</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="nexus.html" class="glowing"><i class="fas fa-dragon"></i> Nexus Gaming</a></li>
+                <li><a href="elliot.html"><i class="fas fa-user"></i> Elliot</a></li>
+                <li><a href="#analise"><i class="fas fa-brain"></i> Análise</a></li>
+                <li><a href="#personagens"><i class="fas fa-users"></i> Personagens</a></li>
+                <li><a href="#jogos"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                <li><a href="#licoes"><i class="fas fa-graduation-cap"></i> Lições</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Header -->
-    <header class="samurai-header">
-      <h1 class="yasuke-logo">YASUKETV</h1>
-      <p class="yasuke-subtitle"> Pergaminho Pessoal</p>
-      <p class="yasuke-description">
-        Um pergaminho contendo todos os caminhos disponíveis. 
-        Cada projeto é uma jornada única através de diferentes aspectos da cultura e conhecimento.
-      </p>
+    <header>
+        <div class="header-content">
+            <h1>NEXUS GAMING</h1>
+            <p class="subtitle">Onde Jogos e Animes Moldaram um Caráter</p>
+            <p>Uma análise introspectiva sobre como pixels e animações japonesas formaram minha ética, meus hábitos e minha visão de mundo.</p>
+            <p><em>"Não escolhemos nossos mentores; eles nos encontram nas telas"</em></p>
+            <a href="#analise" class="btn">Minha Análise</a>
+            <a href="#personagens" class="btn btn-gaming">Personagens</a>
+            <a href="#jogos" class="btn btn-anime">Jogos Marcantes</a>
+        </div>
     </header>
 
-    <!-- Acesso Rápido -->
-    <section class="quick-access">
-      <h2 class="access-title">⚡ Acesso Rápido</h2>
-      <div class="access-links">
-        <a href="../index.html" class="access-link">Elliot Blog</a>
-        <a href="criancas.html" class="access-link">Elliot Kids</a>
-        <a href="animes.html" class="access-link">YASUKETV Animes</a>
-      </div>
-    </section>
-
-    <!-- Grid de Projetos -->
-    <section class="scroll-section">
-      <h2 class="section-title">📜 Todos os Pergaminhos</h2>
-      
-      <div class="projects-grid">
-        <!-- Elliot Blog -->
-        <a href="../index.html" class="project-card">
-          <div class="project-emoji">📝</div>
-          <h3 class="project-title">Elliot Blog</h3>
-          <p class="project-description">
-            Blog pessoal com reflexões filosóficas, análises culturais e pensamentos sobre tecnologia, 
-            sociedade e o significado da existência humana.
-          </p>
-          <div class="project-meta">
-            <span>Blog Pessoal</span>
-            <span>Ativo</span>
-          </div>
-        </a>
-
-        <!-- Elliot Kids -->
-        <a href="criancas.html" class="project-card">
-          <div class="project-emoji">👶</div>
-          <h3 class="project-title">Elliot Kids</h3>
-          <p class="project-description">
-            Conteúdo educativo e divertido para crianças. Histórias interativas, 
-            atividades criativas e aprendizado através de brincadeiras.
-          </p>
-          <div class="project-meta">
-            <span>Educação Infantil</span>
-            <span>Ativo</span>
-          </div>
-        </a>
-
-        <!-- YASUKETV Animes -->
-        <a href="animes.html" class="project-card">
-          <div class="project-emoji">🎌</div>
-          <h3 class="project-title">YASUKETV Animes</h3>
-          <p class="project-description">
-            Análises filosóficas de animes seguindo o caminho do guerreiro. 
-            Avaliações baseadas nos princípios do Bushido e profundidade narrativa.
-          </p>
-          <div class="project-meta">
-            <span>Análise de Animes</span>
-            <span>Ativo</span>
-          </div>
-        </a>
-
-        <!-- Projeto Futuro 1 -->
-        <div class="project-card">
-          <div class="project-emoji">🤓</div>
-          <h3 class="project-title">Projeto Futuro</h3>
-          <p class="project-description">
-            Um novo pergaminho está sendo escrito. Em breve, novas jornadas e descobertas 
-            serão reveladas neste espaço reservado.
-          </p>
-          <div class="project-meta">
-            <span>Em Desenvolvimento</span>
-            <span>Em Breve</span>
-          </div>
-        </div>
-
-        <!-- Projeto Futuro 2 -->
-        <div class="project-card">
-          <div class="project-emoji">🌌</div>
-          <h3 class="project-title">Expansão Cósmica</h3>
-          <p class="project-description">
-            Explorando os limites do conhecimento e da criatividade. 
-            Um projeto ambicioso que conecta diferentes dimensões do pensamento.
-          </p>
-          <div class="project-meta">
-            <span>Em Planejamento</span>
-            <span>Futuro</span>
-          </div>
-        </div>
-
-        <!-- Projeto Futuro 3 -->
-        <div class="project-card">
-          <div class="project-emoji">🎵</div>
-          <h3 class="project-title">Harmonia Musical</h3>
-          <p class="project-description">
-            Uma jornada através dos sons e ritmos que movem a alma. 
-            Análises de trilhas sonoras e composições que transcendem o tempo.
-          </p>
-          <div class="project-meta">
-            <span>Ideia</span>
-            <span>Talvez</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Status do Sistema -->
-    <section class="scroll-section">
-      <h2 class="section-title">⚙️ Status do Sistema</h2>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
-        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
-          <div style="font-size: 2rem; color: var(--blood);">3</div>
-          <div style="font-size: 0.9rem; color: var(--ink);">Projetos Ativos</div>
+    <!-- Main Content -->
+    <main>
+        <!-- Análise Pessoal -->
+        <section id="analise" class="container">
+            <h2>ANÁLISE: QUEM SOU ATRAVÉS DOS PIXELS</h2>
+            
+            <div class="intro-text fade-in">
+                <p>Sou um produto de milhares de horas em frente a telas, controles nas mãos, imerso em mundos que me ensinaram mais sobre ética, resiliência e humanidade do que qualquer instituição formal. Meu caráter foi forjado não apenas na realidade, mas nas batalhas digitais, nas jornadas épicas e nos dilemas morais enfrentados por personagens que se tornaram meus mentores silenciosos.</p>
+                
+                <p>Os jogos não foram escape da realidade; foram extensões dela. Cada vitória contra um chefe impossível ensinou persistência. Cada escolha moral em RPGs moldou meu discernimento ético. Cada derrota repetitiva até o sucesso final forjou resiliência que aplico na vida real.</p>
+            </div>
+            
+            <div class="hero-quote fade-in">
+                <p>"Os jogos não nos mostram quem queremos ser; eles revelam quem já somos, mas não tínhamos coragem de reconhecer."</p>
+            </div>
+            
+            <div class="dual-nature fade-in">
+                <!-- Natureza Positiva -->
+                <div class="nature-card positive">
+                    <div class="nature-header">
+                        <div class="nature-icon">🛡️</div>
+                        <h3>HÁBITOS CONSTRUÍDOS</h3>
+                    </div>
+                    <p>Os jogos me ensinaram disciplina de formas que a vida cotidiana nunca conseguiria:</p>
+                    <ul class="lesson-list">
+                        <li><strong>Persistência</strong> - Recomeçar após 100 game overs</li>
+                        <li><strong>Pensamento estratégico</strong> - Enxergar 10 movimentos à frente</li>
+                        <li><strong>Gestão de recursos</strong> - Otimização do limitado</li>
+                        <li><strong>Trabalho em equipe</strong> - Raids onde cada um tem seu papel</li>
+                        <li><strong>Resiliência emocional</strong> - Derrotas como parte do processo</li>
+                        <li><strong>Criatividade sob pressão</strong> - Soluções com recursos limitados</li>
+                    </ul>
+                </div>
+                
+                <!-- Natureza Negativa -->
+                <div class="nature-card negative">
+                    <div class="nature-header">
+                        <div class="nature-icon">⚔️</div>
+                        <h3>SOMBRAS APRENDIDAS</h3>
+                    </div>
+                    <p>Também absorvi aspectos menos nobres que precisei aprender a dominar:</p>
+                    <ul class="lesson-list">
+                        <li><strong>Perfeccionismo tóxico</strong> - 100% de conclusão a qualquer custo</li>
+                        <li><strong>Competitividade excessiva</strong> - Vitória como única medida</li>
+                        <li><strong>Isolamento social</strong> - Mundos virtuais como refúgio</li>
+                        <li><strong>Impaciência com erros alheios</strong> - Expectativas irrealistas</li>
+                        <li><strong>Vício em recompensas imediatas</strong> - Dopamina de conquistas</li>
+                        <li><strong>Ceticismo excessivo</strong> - Desconfiança de narrativas simples</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Personagens -->
+        <section id="personagens" class="container">
+            <h2 class="gaming-title">MENTORES DIGITAIS: PERSONAGENS QUE MOLDARAM MEU CARÁTER</h2>
+            
+            <div class="character-grid">
+                <!-- Batman -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(20,20,30,0.9) 100%);">
+                        <div class="character-image" style="border-color: #1a1a2e; background-color: #0f0f1e; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            🦇
+                        </div>
+                        <div class="character-name">Batman</div>
+                        <div class="character-source">DC Comics / Arkham Series</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">✓</div>
+                            <div><strong>Preparação:</strong> Nunca entrar em batalha sem plano</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">💪</div>
+                            <div><strong>Autossuficiência:</strong> Transformar trauma em força</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">🌑</div>
+                            <div><strong>Isolamento:</strong> Dificuldade em confiar e delegar</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"O Batman me ensinou que o medo pode ser tanto uma prisão quanto uma arma. A diferença está em quem o controla."</p>
+                    </div>
+                </div>
+                
+                <!-- Trevor Belmont -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(139, 0, 0, 0.8) 0%, rgba(50, 0, 0, 0.9) 100%);">
+                        <div class="character-image" style="border-color: #8b0000; background-color: #320000; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            ⛓️
+                        </div>
+                        <div class="character-name">Trevor Belmont</div>
+                        <div class="character-source">Castlevania</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">⚔️</div>
+                            <div><strong>Dever acima de tudo:</strong> Missão como propósito</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">🛡️</div>
+                            <div><strong>Proteção dos fracos:</strong> Força para defender</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">😠</div>
+                            <div><strong>Rigidez moral:</strong> Dificuldade com nuances</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"Trevor me mostrou que heranças familiares podem ser tanto um fardo quanto uma bênção. A escolha é nossa."</p>
+                    </div>
+                </div>
+                
+                <!-- Gojo Satoru -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(100, 149, 237, 0.8) 0%, rgba(30, 144, 255, 0.9) 100%);">
+                        <div class="character-image" style="border-color: #6495ed; background-color: #1e90ff; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            👁️
+                        </div>
+                        <div class="character-name">Gojo Satoru</div>
+                        <div class="character-source">Jujutsu Kaisen</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">😎</div>
+                            <div><strong>Confiança sem arrogância:</strong> Poder com humildade</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">👨‍🏫</div>
+                            <div><strong>Mentoria:</strong> Fortalecer a próxima geração</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">🏔️</div>
+                            <div><strong>Solidão do pico:</strong> Isolamento pelo poder</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"Gojo ensina que o verdadeiro poder está não em dominar, mas em capacitar outros a crescerem."</p>
+                    </div>
+                </div>
+                
+                <!-- Eren Yeager -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(34, 139, 34, 0.8) 0%, rgba(0, 100, 0, 0.9) 100%);">
+                        <div class="character-image" style="border-color: #228b22; background-color: #006400; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            ⚔️
+                        </div>
+                        <div class="character-name">Eren Yeager</div>
+                        <div class="character-source">Attack on Titan</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">🔥</div>
+                            <div><strong>Determinação absoluta:</strong> Foco no objetivo final</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">💀</div>
+                            <div><strong>Custo da liberdade:</strong> Preço das convicções</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-neutral">⚖️</div>
+                            <div><strong>Complexidade moral:</strong> Nenhuma escolha é simples</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"Eren é a personificação da pergunta: 'Até onde você iria pelo que acredita?' A resposta sempre assusta."</p>
+                    </div>
+                </div>
+                
+                <!-- Alucard -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(75, 0, 130, 0.8) 0%, rgba(148, 0, 211, 0.9) 100%);">
+                        <div class="character-image" style="border-color: #4b0082; background-color: #9400d3; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            🧛
+                        </div>
+                        <div class="character-name">Alucard</div>
+                        <div class="character-source">Castlevania / Hellsing</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">🎭</div>
+                            <div><strong>Dualidade:</strong> Conseguir harmonizar opostos</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">⏳</div>
+                            <div><strong>Paciência eterna:</strong> Perspectiva de longo prazo</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">🧠</div>
+                            <div><strong>Cansaço existencial:</strong> Fardo da imortalidade</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"Alucard vive a tensão entre heranças contraditórias, me ensinando que identidade é escolha, não destino."</p>
+                    </div>
+                </div>
+                
+                <!-- Wolverine -->
+                <div class="character-card fade-in">
+                    <div class="character-header" style="background: linear-gradient(135deg, rgba(255, 69, 0, 0.8) 0%, rgba(178, 34, 34, 0.9) 100%);">
+                        <div class="character-image" style="border-color: #ff4500; background-color: #b22222; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            🐺
+                        </div>
+                        <div class="character-name">Wolverine</div>
+                        <div class="character-source">X-Men</div>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">💔</div>
+                            <div><strong>Resiliência:</strong> Curar de qualquer ferida</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-positive">🤝</div>
+                            <div><strong>Lealdade feroz:</strong> Proteger os seus a qualquer custo</div>
+                        </div>
+                        <div class="character-trait">
+                            <div class="trait-icon trait-negative">😡</div>
+                            <div><strong>Raiva incontrolável:</strong> Berserker interior</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">"Wolverine me ensinou que a força maior não está nas garras, mas na capacidade de controlar a fera dentro."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Jogos Marcantes -->
+        <section id="jogos" class="container">
+    <h2 class="anime-title">MEUS PROFESSORES DIGITAIS</h2>
+    
+    <div class="intro-text fade-in">
+        <p>Estes não são apenas jogos; são simuladores de realidade, espelhos distorcidos do nosso mundo que me ensinaram sobre estratégia, ética, economia, psicologia humana e a complexidade das relações sociais. Cada título foi um professor silencioso, revelando verdades sobre o funcionamento do mundo através de mecânicas e narrativas.</p>
+        <p><strong>Os jogos me mostraram o que as instituições escondem:</strong> como sistemas (econômicos, políticos, sociais) podem ser manipulados, como o poder corrompe, como a cooperação é essencial para a sobrevivência, e como a narrativa é uma ferramenta poderosa para controle e libertação. Tudo isso sem doutrinação política ou religiosa, apenas através da experiência interativa.</p>
+    </div>
+    
+    <div class="game-covers fade-in">
+        <!-- Naraka: Bladepoint -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #8b0000 0%, #5a0000 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                NARAKA:<br>BLADEPOINT
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Timing perfeito, leitura de oponentes, paciência agressiva, adaptação ao caos</p>
+                <p><strong>Reflexo do mundo:</strong> A competição como arena onde só os mais adaptados sobrevivem, mas onde alianças temporárias podem ser a chave.</p>
+            </div>
         </div>
         
-        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
-          <div style="font-size: 2rem; color: var(--gold);">2</div>
-          <div style="font-size: 0.9rem; color: var(--ink);">Em Desenvolvimento</div>
+        <!-- Dragon Ball Z: Budokai Tenkaichi 3 -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%); color: #1a1a2e; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                DBZ:<br>BUDOKAI TENKAICHI 3
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Superação constante, evolução através do treino, rivalidade como combustível, ética mesmo na batalha</p>
+                <p><strong>Reflexo do mundo:</strong> A busca pelo poder pessoal e a responsabilidade que vem com ele. Como a competição pode elevar ambos os competidores.</p>
+            </div>
         </div>
         
-        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
-          <div style="font-size: 2rem; color: var(--border);">1</div>
-          <div style="font-size: 0.9rem; color: var(--ink);">Em Planejamento</div>
+        <!-- Naruto (PS2 games) -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%); color: white; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                NARUTO<br>PS2 SERIES
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Perseverança, trabalho em equipe, redenção, sacrifício pelo coletivo</p>
+                <p><strong>Reflexo do mundo:</strong> Como comunidades (a vila) moldam indivíduos e como indivíduos moldam comunidades. O ciclo de ódio e como quebrá-lo.</p>
+            </div>
         </div>
         
-        <div style="text-align: center; padding: 1rem; border: 1px solid var(--border); background: rgba(139, 115, 85, 0.05);">
-          <div style="font-size: 2rem; color: var(--blood);">100%</div>
-          <div style="font-size: 0.9rem; color: var(--ink);">Disponibilidade</div>
+        <!-- God of War -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #8b0000 0%, #660000 100%); color: white; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                GOD OF WAR
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Consequências da vingança, culpa, paternidade, controle da raiva, redenção</p>
+                <p><strong>Reflexo do mundo:</strong> Como sistemas de poder (olimpianos) exploram os fracos. Como a busca por justiça pode se tornar o próprio monstro.</p>
+            </div>
         </div>
-      </div>
-    </section>
+        
+        <!-- Jovens Titans (Teen Titans?) -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #00bfff 0%, #0066cc 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                TEEN TITANS
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Diversidade como força, amizade como base, cada membro tem um papel único</p>
+                <p><strong>Reflexo do mundo:</strong> A importância da colaboração entre diferentes habilidades e personalidades para resolver problemas complexos.</p>
+            </div>
+        </div>
+        
+        <!-- Midnight Club 3 -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #4b0082 0%, #2e0042 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                MIDNIGHT CLUB 3
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Customização como expressão, conhecer seu veículo, riscos calculados, adaptação à cidade</p>
+                <p><strong>Reflexo do mundo:</strong> Subculturas urbanas e como elas criam identidade. A rua como palco de competição e autoexpressão.</p>
+            </div>
+        </div>
+        
+        <!-- Need for Speed -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #0000ff 0%, #000066 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                NEED FOR SPEED
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Gerenciamento de recursos (carro), fugir de autoridade, personalização, risco vs. recompensa</p>
+                <p><strong>Reflexo do mundo:</strong> A atração pela adrenalina e como sistemas de controle (polícia) são desafiados por subculturas.</p>
+            </div>
+        </div>
+        
+        <!-- Castle Clash -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #32cd32 0%, #228b22 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                CASTLE CLASH
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Estratégia de longo prazo, alianças, gerenciamento de recursos, paciência para crescimento</p>
+                <p><strong>Reflexo do mundo:</strong> Como impérios são construídos e mantidos através de estratégia, diplomacia e, às vezes, traição.</p>
+            </div>
+        </div>
+        
+        <!-- GTA 5, San Andreas e Online -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #008000 0%, #004d00 100%); color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                GTA SAGA
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Complexidade moral, sátira social, consequências das escolhas, economia informal, sobrevivência urbana</p>
+                <p><strong>Reflexo do mundo:</strong> Uma crítica mordaz ao "sonho americano", ao capitalismo desenfreado, à corrupção policial e à desigualdade social.</p>
+            </div>
+        </div>
+        
+        <!-- Outros milhares de jogos -->
+        <div class="game-cover">
+            <div class="cover-image" style="background: linear-gradient(135deg, #333 0%, #000 100%); color: white; font-weight: bold; font-size: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+                +1.000<br>OUTROS JOGOS
+            </div>
+            <div class="cover-title">
+                <h4>Lições:</h4>
+                <p>Cada jogo uma lição única sobre algum aspecto da condição humana e da sociedade</p>
+                <p><strong>Reflexo do mundo:</strong> A diversidade de experiências humanas representadas em diferentes mecânicas, narrativas e sistemas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-text fade-in" style="margin-top: 2rem;">
+        <h3>O PlayStation 2 Como Portal Filosófico</h3>
+        <p>O PS2 foi mais que um console; foi meu primeiro contato com narrativas complexas, dilemas éticos e desafios que exigiam mais do que reflexos rápidos. Cada jogo era um universo completo com suas próprias regras, moralidades e sistemas de valor.</p>
+        
+        <p>Os RPGs especialmente me ensinaram que escolhas têm consequências, que personagens têm motivações complexas, e que o "bem" e o "mal" são muitas vezes pontos de vista. A estética PS2 - com suas texturas granuladas, load times extensos e trilhas sonoras memoráveis - criou uma atmosfera de imersão que jogos modernos raramente replicam.</p>
+        
+        <h3>Jogos Como Simuladores Sociais Não-Filtrados</h3>
+        <p>Cada jogo listado acima funciona como um simulador de algum aspecto da realidade que a educação formal não ousa ensinar:</p>
+        <ul class="lesson-list">
+            <li><strong>GTA</strong> simula a economia informal, a corrupção sistêmica e como a violência emerge da desigualdade estrutural.</li>
+            <li><strong>Castle Clash</strong> simula a geopolítica real: alianças instáveis, traições calculadas, e como recursos limitados geram conflito.</li>
+            <li><strong>Need for Speed</strong> simula como subculturas criam seus próprios códigos para desafiar autoridade estabelecida.</li>
+            <li><strong>God of War</strong> simula como mitologias são usadas para justificar hierarquias de poder e controle social.</li>
+            <li><strong>Naruto</strong> simula como comunidades usam narrativas coletivas para processar trauma e construir identidade.</li>
+            <li><strong>Naraka</strong> simula a luta pela sobrevivência em sistemas meritocráticos disfarçados de arenas justas.</li>
+        </ul>
+        
+        <p>Estes jogos me ensinaram a enxergar os sistemas invisíveis que governam nosso mundo: econômicos, políticos, sociais. Eles me mostraram que toda regra pode ser questionada, todo sistema pode ser hackeado, e que a verdadeira liberdade vem da compreensão desses sistemas, não da ignorância sobre eles.</p>
+        
+        <div style="background: rgba(233, 69, 96, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--accent);">
+            <h4>A VERDADE QUE OS JOGOS ME ENSINARAM:</h4>
+            <p>"O mundo real opera com as mesmas mecânicas dos jogos: sistemas de recompensa/punição, economia de recursos, hierarquias de poder, narrativas de justificação. A única diferença é que no mundo real, as regras estão ocultas, os desenvolvedores são anônimos, e o 'game over' é permanente."</p>
+            <p>Os jogos me deram o olhar cético necessário para ver além das narrativas oficiais. Me ensinaram que todo sistema (político, econômico, social) é, em última análise, um conjunto de regras criado por alguém, para algum propósito. E quem entende as regras, mesmo que não as tenha escrito, pode jogar de forma mais consciente e menos manipulada.</p>
+        </div>
+        
+        <h3>Lição Final: Tudo é um Sistema</h3>
+        <p>A maior lição que tirei de milhares de horas jogando é simples e perturbadora: <strong>tudo é um sistema</strong>. Religião, política, economia, educação, relações sociais - tudo opera com regras, feedback loops, pontos de entrada e saída, recompensas e punições.</p>
+        
+        <p>Os jogos me ensinaram a analisar esses sistemas de forma neutra, sem cair na armadilha ideológica de "bom vs. mal". Um jogo não é moralmente bom ou ruim; é apenas bem ou mal projetado. Da mesma forma, os sistemas sociais não são "justos" ou "injustos" por natureza; são apenas mais ou menos eficientes em alcançar seus objetivos (declarados ou ocultos).</p>
+        
+        <p>Essa perspectiva sistêmica, aprendida nas arenas digitais, me permite navegar no mundo real sem ser capturado pelas narrativas que tentam definir grupos sociais para controle. Vejo as ferramentas políticas, religiosas e sociais pelo que são: mecânicas de jogos complexos onde alguns escrevem as regras e outros apenas jogam.</p>
+        
+        <p>E a lição mais valiosa de todas: <strong>você não precisa ser o desenvolvedor para hackear o sistema</strong>. Basta entender suas mecânicas melhor do que a maioria dos jogadores.</p>
+    </div>
+</section>
+            <section id="jogos" class="container">
+    <h2 class="anime-title">MEUS PROFESSORES DIGITAIS</h2>
+    
+    <div class="intro-text fade-in">
+        <p>Estes não são apenas jogos; são simuladores de realidade, espelhos distorcidos do nosso mundo que me ensinaram sobre estratégia, ética, economia, psicologia humana e a complexidade das relações sociais. Cada título foi um professor silencioso, revelando verdades sobre o funcionamento do mundo através de mecânicas e narrativas.</p>
+        <p><strong>Os jogos me mostraram o que as instituições escondem:</strong> como sistemas (econômicos, políticos, sociais) podem ser manipulados, como o poder corrompe, como a cooperação é essencial para a sobrevivência, e como a narrativa é uma ferramenta poderosa para controle e libertação. Tudo isso sem doutrinação política ou religiosa, apenas através da experiência interativa.</p>
+    </div>
+    
+    <div class="game-covers fade-in">
+        <!-- Naraka: Bladepoint -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>NARAKA: BLADEPOINT</h4>
+                    <p><strong>Lições:</strong> Timing perfeito, leitura de oponentes, paciência agressiva, adaptação ao caos.</p>
+                    <p><strong>Reflexo do mundo:</strong> Competição como arena onde só os adaptados sobrevivem, mas alianças temporárias podem ser a chave.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Meritocracia ilusória em sistemas que fingem justiça.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dragon Ball Z: Budokai Tenkaichi 3 -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>DBZ: BUDOKAI TENKAICHI 3</h4>
+                    <p><strong>Lições:</strong> Superação constante, evolução pelo treino, rivalidade como combustível, ética na batalha.</p>
+                    <p><strong>Reflexo do mundo:</strong> Busca pelo poder pessoal e a responsabilidade que vem com ele.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Competição pode elevar ambos os lados quando há respeito mútuo.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Naruto (PS2 games) -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=1351&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>NARUTO PS2 SERIES</h4>
+                    <p><strong>Lições:</strong> Perseverança, trabalho em equipe, redenção, sacrifício pelo coletivo.</p>
+                    <p><strong>Reflexo do mundo:</strong> Comunidades moldam indivíduos e indivíduos moldam comunidades.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Ciclos de ódio podem ser quebrados com compreensão.
+                </div>
+            </div>
+        </div>
+        
+        <!-- God of War -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>GOD OF WAR</h4>
+                    <p><strong>Lições:</strong> Consequências da vingança, culpa, paternidade, controle da raiva, redenção.</p>
+                    <p><strong>Reflexo do mundo:</strong> Sistemas de poder exploram os fracos.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Busca por justiça pode criar novos monstros.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teen Titans -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1531259683007-016a7b628fc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>TEEN TITANS</h4>
+                    <p><strong>Lições:</strong> Diversidade como força, amizade como base, cada membro tem papel único.</p>
+                    <p><strong>Reflexo do mundo:</strong> Colaboração entre diferentes para resolver problemas complexos.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Equipes diversas superam indivíduos excepcionais.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Midnight Club 3 -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>MIDNIGHT CLUB 3</h4>
+                    <p><strong>Lições:</strong> Customização como expressão, conhecer seu veículo, riscos calculados.</p>
+                    <p><strong>Reflexo do mundo:</strong> Subculturas urbanas criam identidade.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Rua como palco de competição e autoexpressão.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Need for Speed -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); background-position: center 30%;"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>NEED FOR SPEED</h4>
+                    <p><strong>Lições:</strong> Gerenciamento de recursos, fugir de autoridade, personalização, risco vs. recompensa.</p>
+                    <p><strong>Reflexo do mundo:</strong> Atração pela adrenalina e sistemas de controle desafiados.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Autoridade sempre será desafiada por quem busca liberdade.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Castle Clash -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=1351&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>CASTLE CLASH</h4>
+                    <p><strong>Lições:</strong> Estratégia de longo prazo, alianças, gerenciamento de recursos, paciência.</p>
+                    <p><strong>Reflexo do mundo:</strong> Impérios são construídos com estratégia, diplomacia e às vezes traição.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Geopolítica real: alianças instáveis em recursos limitados.
+                </div>
+            </div>
+        </div>
+        
+        <!-- GTA Saga -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>GTA SAGA</h4>
+                    <p><strong>Lições:</strong> Complexidade moral, sátira social, consequências, economia informal, sobrevivência.</p>
+                    <p><strong>Reflexo do mundo:</strong> Crítica ao "sonho americano", capitalismo desenfreado, corrupção.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> Violência emerge da desigualdade estrutural.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Outros milhares de jogos -->
+        <div class="game-cover">
+            <div class="cover-header">
+                <div class="cover-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); filter: grayscale(50%);"></div>
+            </div>
+            <div class="cover-title">
+                <div>
+                    <h4>+1.000 OUTROS JOGOS</h4>
+                    <p><strong>Lições:</strong> Cada jogo uma lição única sobre aspectos da condição humana e sociedade.</p>
+                    <p><strong>Reflexo do mundo:</strong> Diversidade de experiências humanas em diferentes mecânicas.</p>
+                </div>
+                <div class="game-lesson">
+                    <strong>Verdade revelada:</strong> A realidade é um sistema complexo de jogos sobrepostos.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-text fade-in" style="margin-top: 2rem;">
+        <h3>O PlayStation 2 Como Portal Filosófico</h3>
+        <p>O PS2 foi mais que um console; foi meu primeiro contato com narrativas complexas, dilemas éticos e desafios que exigiam mais do que reflexos rápidos. Cada jogo era um universo completo com suas próprias regras, moralidades e sistemas de valor.</p>
+        
+        <p>Os RPGs especialmente me ensinaram que escolhas têm consequências, que personagens têm motivações complexas, e que o "bem" e o "mal" são muitas vezes pontos de vista. A estética PS2 - com suas texturas granuladas, load times extensos e trilhas sonoras memoráveis - criou uma atmosfera de imersão que jogos modernos raramente replicam.</p>
+        
+        <h3>Jogos Como Simuladores Sociais Não-Filtrados</h3>
+        <p>Cada jogo listado acima funciona como um simulador de algum aspecto da realidade que a educação formal não ousa ensinar:</p>
+        <ul class="lesson-list">
+            <li><strong>GTA</strong> simula a economia informal, a corrupção sistêmica e como a violência emerge da desigualdade estrutural.</li>
+            <li><strong>Castle Clash</strong> simula a geopolítica real: alianças instáveis, traições calculadas, e como recursos limitados geram conflito.</li>
+            <li><strong>Need for Speed</strong> simula como subculturas criam seus próprios códigos para desafiar autoridade estabelecida.</li>
+            <li><strong>God of War</strong> simula como mitologias são usadas para justificar hierarquias de poder e controle social.</li>
+            <li><strong>Naruto</strong> simula como comunidades usam narrativas coletivas para processar trauma e construir identidade.</li>
+            <li><strong>Naraka</strong> simula a luta pela sobrevivência em sistemas meritocráticos disfarçados de arenas justas.</li>
+        </ul>
+        
+        <p>Estes jogos me ensinaram a enxergar os sistemas invisíveis que governam nosso mundo: econômicos, políticos, sociais. Eles me mostraram que toda regra pode ser questionada, todo sistema pode ser hackeado, e que a verdadeira liberdade vem da compreensão desses sistemas, não da ignorância sobre eles.</p>
+        
+        <div style="background: rgba(233, 69, 96, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--accent);">
+            <h4>A VERDADE QUE OS JOGOS ME ENSINARAM:</h4>
+            <p>"O mundo real opera com as mesmas mecânicas dos jogos: sistemas de recompensa/punição, economia de recursos, hierarquias de poder, narrativas de justificação. A única diferença é que no mundo real, as regras estão ocultas, os desenvolvedores são anônimos, e o 'game over' é permanente."</p>
+            <p>Os jogos me deram o olhar cético necessário para ver além das narrativas oficiais. Me ensinaram que todo sistema (político, econômico, social) é, em última análise, um conjunto de regras criado por alguém, para algum propósito. E quem entende as regras, mesmo que não as tenha escrito, pode jogar de forma mais consciente e menos manipulada.</p>
+        </div>
+        
+        <h3>Lição Final: Tudo é um Sistema</h3>
+        <p>A maior lição que tirei de milhares de horas jogando é simples e perturbadora: <strong>tudo é um sistema</strong>. Religião, política, economia, educação, relações sociais - tudo opera com regras, feedback loops, pontos de entrada e saída, recompensas e punições.</p>
+        
+        <p>Os jogos me ensinaram a analisar esses sistemas de forma neutra, sem cair na armadilha ideológica de "bom vs. mal". Um jogo não é moralmente bom ou ruim; é apenas bem ou mal projetado. Da mesma forma, os sistemas sociais não são "justos" ou "injustos" por natureza; são apenas mais ou menos eficientes em alcançar seus objetivos (declarados ou ocultos).</p>
+        
+        <p>Essa perspectiva sistêmica, aprendida nas arenas digitais, me permite navegar no mundo real sem ser capturado pelas narrativas que tentam definir grupos sociais para controle. Vejo as ferramentas políticas, religiosas e sociais pelo que são: mecânicas de jogos complexos onde alguns escrevem as regras e outros apenas jogam.</p>
+        
+        <p>E a lição mais valiosa de todas: <strong>você não precisa ser o desenvolvedor para hackear o sistema</strong>. Basta entender suas mecânicas melhor do que a maioria dos jogadores.</p>
+    </div>
+</section>
+            <div class="intro-text fade-in" style="margin-top: 2rem;">
+                <h3>O PlayStation 2 Como Portal Filosófico</h3>
+                <p>O PS2 foi mais que um console; foi meu primeiro contato com narrativas complexas, dilemas éticos e desafios que exigiam mais do que reflexos rápidos. Cada jogo era um universo completo com suas próprias regras, moralidades e sistemas de valor.</p>
+                
+                <p>Os RPGs especialmente me ensinaram que escolhas têm consequências, que personagens têm motivações complexas, e que o "bem" e o "mal" são muitas vezes pontos de vista. A estética PS2 - com suas texturas granuladas, load times extensos e trilhas sonoras memoráveis - criou uma atmosfera de imersão que jogos modernos raramente replicam.</p>
+            </div>
+        </section>
+        
+        <!-- Lições Aprendidas -->
+        <section id="licoes" class="container">
+            <h2>LIÇÕES QUE LEVO DA TELA PARA A VIDA</h2>
+            
+            <div class="dual-nature fade-in">
+                <!-- Lições Éticas -->
+                <div class="nature-card positive">
+                    <div class="nature-header">
+                        <div class="nature-icon">📜</div>
+                        <h3>CÓDIGO DE CONDUTA APRENDIDO</h3>
+                    </div>
+                    <ul class="lesson-list">
+                        <li><strong>O herói ajuda sem esperar recompensa</strong> - Zelda ensinou altruísmo</li>
+                        <li><strong>O poder exige responsabilidade</strong> - Homem-Aranha definiu meu senso de dever</li>
+                        <li><strong>Rivalidade pode elevar ambos os lados</strong> - Goku e Vegeta mostraram crescimento mútuo</li>
+                        <li><strong>Sacrifício pelo maior bem</strong> - Attack on Titan ensinou custo real de convicções</li>
+                        <li><strong>Redenção é sempre possível</strong> - Vader mostrou que ninguém está perdido</li>
+                        <li><strong>Liderança é serviço, não poder</strong> - Capitão América modelou verdadeira liderança</li>
+                    </ul>
+                </div>
+                
+                <!-- Lições Práticas -->
+                <div class="nature-card" style="border-top-color: var(--gaming);">
+                    <div class="nature-header">
+                        <div class="nature-icon">🎮</div>
+                        <h3>HABILIDADES TRANSFERIDAS</h3>
+                    </div>
+                    <ul class="lesson-list">
+                        <li><strong>Gestão de recursos limitados</strong> - RPGs de sobrevivência</li>
+                        <li><strong>Tomada de decisão sob pressão</strong> - Jogos de ritmo rápido</li>
+                        <li><strong>Análise de padrões complexos</strong> - Puzzles e chefes com fases</li>
+                        <li><strong>Comunicação eficiente em equipe</strong> - Raids de MMO</li>
+                        <li><strong>Aprendizado por tentativa e erro</strong> - Roguelikes como metodologia</li>
+                        <li><strong>Paciência para processos longos</strong> - Grinds que valem a pena</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="intro-text fade-in" style="margin-top: 2rem;">
+                <h3>O Paradoxo do Jogador</h3>
+                <p>Vivo uma dualidade constante: sou ao mesmo tempo o estrategista paciente de XCOM e o berserker impulsivo de God of War. Sou o diplomata de Mass Effect e o justiceiro violento de Max Payne. Esta não é esquizofrenia, mas complexidade humana aprendida através de avatares digitais.</p>
+                
+                <p>Os jogos me permitiram explorar extremos do espectro humano em ambientes seguros. Pude ser um ditador em Civilization, um santo em Journey, um trapaceiro em Among Us, e um salvador em Final Fantasy. Cada papel me ensinou sobre facetas da condição humana que a vida real raramente permite explorar sem consequências graves.</p>
+                
+                <p>Hoje, quando enfrento desafios reais, meu cérebro acessa não apenas experiências passadas, mas também memórias musculares de controles, estratégias vencedoras de batalhas digitais, e a resiliência emocional construída em milhares de "Game Over" que precederam vitórias épicas.</p>
+            </div>
+            
+            <div class="hero-quote fade-in" style="margin-top: 3rem;">
+                <p>"Não jogo para escapar da realidade; jogo para entender melhor como enfrentá-la."</p>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="samurai-footer">
-      <div class="footer-logo">YASUKETV NEXUS</div>
-      <p>Pergaminho Mestre de Jonathas Felipe</p>
-      <div style="margin-top: 1rem; font-size: 0.9rem;">
-        <a href="../index.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">Elliot Blog</a> • 
-        <a href="criancas.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">Elliot Kids</a> •
-        <a href="animes.html" style="color: var(--border); text-decoration: none; margin: 0 0.5rem;">YASUKETV Animes</a>
-      </div>
-      <p style="margin-top: 2rem; font-style: italic; color: var(--blood);">
-        "Muitos caminhos, um só guerreiro. Muitos pergaminhos, uma só jornada." ⚔️
-      </p>
+    <footer>
+        <div class="container footer-content">
+            <h3>NEXUS GAMING</h3>
+            <p>Onde pixels formam caráter e controles ensinam ética</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="elliot.html">Elliot</a></li>
+                <li><a href="nexus.html">Nexus Gaming</a></li>
+                <li><a href="#analise">Minha Análise</a></li>
+                <li><a href="#personagens">Personagens</a></li>
+                <li><a href="#jogos">Jogos Marcantes</a></li>
+                <li><a href="#licoes">Lições</a></li>
+            </ul>
+            <div class="copyright">
+                <p>© 2023 Elliot - Nexus Gaming. Análise introspectiva sobre formação de caráter através de mídias interativas.</p>
+                <p class="disclaimer">Todos os personagens e jogos mencionados são propriedade de seus respectivos criadores. Esta é uma análise pessoal de influências culturais na formação ética e psicológica.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // Efeito de revelação ao scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
+            });
         }
-      });
-    }, observerOptions);
 
-    // Aplicar efeito aos cards de projeto
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(card);
-    });
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
 
-    console.log('📜 YASUKETV Nexus - Pergaminho Mestre Carregado!');
-  </script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Only handle anchor links (starting with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = href;
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        function checkFadeIn() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial check
+        checkFadeIn();
+
+        // Check on scroll
+        window.addEventListener('scroll', checkFadeIn);
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Character card hover effect enhancement
+        document.querySelectorAll('.character-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
