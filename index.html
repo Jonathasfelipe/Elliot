@@ -1,1736 +1,1270 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elliot — Blog Pessoal: Tecnologia, Fé & Sabedoria</title>
-  <meta name="description" content="Reflexões pessoais sobre tecnologia, espiritualidade e a busca por significado. Diálogos autênticos e recomendações." />
-  <meta property="og:title" content="Elliot — Blog Pessoal: Tecnologia, Fé & Sabedoria" />
-  <meta property="og:description" content="Reflexões pessoais sobre tecnologia, espiritualidade e a busca por significado." />
-  <meta property="og:type" content="website" />
-  <meta name="keywords" content="tecnologia, sabedoria, fé, filosofia, autoconhecimento, desenvolvimento pessoal, blog pessoal">
-  <meta name="author" content="Jonathas Felipe">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #07060a;
-      --panel: #0f1720;
-      --muted: #9aa4b2;
-      --accent: #e6c07b;
-      --glass: rgba(255,255,255,0.03);
-      --max-width: 1000px;
-      --book-pad: 1rem;
-    }
-
-    /* Variáveis para Modo Claro */
-    [data-theme="light"] {
-      --bg: #f5f2e9;
-      --panel: #ffffff;
-      --muted: #6b7280;
-      --accent: #8b5cf6;
-      --text: #1f2937;
-      --glass: rgba(0,0,0,0.03);
-    }
-
-    /* Reset Mobile-Friendly */
-    * { 
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body { 
-      height: 100%;
-      overflow-x: hidden;
-    }
-
-    body {
-      margin: 0;
-      background: radial-gradient(ellipse at center, rgba(20,24,30,1) 0%, rgba(7,6,10,1) 60%);
-      color: #eef2f6;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-      padding: 0.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      transition: background 0.3s ease;
-      min-height: 100vh;
-    }
-
-    /* Ajustes para modo claro */
-    [data-theme="light"] body {
-      background: radial-gradient(ellipse at center, #e2e8f0 0%, #f5f2e9 60%);
-      color: var(--text);
-    }
-
-    /* Starfield otimizado para mobile */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 0.5px, transparent 0.6px),
-        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.04) 0.6px, transparent 0.7px),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.03) 0.5px, transparent 0.6px);
-      background-size: 150px 150px, 200px 200px, 120px 120px;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.7;
-      animation: drift 120s linear infinite;
-      mix-blend-mode: screen;
-    }
-
-    [data-theme="light"] body::before {
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0.5px, transparent 0.6px),
-        radial-gradient(circle at 70% 40%, rgba(0,0,0,0.04) 0.6px, transparent 0.7px),
-        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.03) 0.5px, transparent 0.6px);
-      mix-blend-mode: multiply;
-    }
-
-    @keyframes drift {
-      from { transform: translateY(0); }
-      to { transform: translateY(-150px); }
-    }
-
-    /* Barra de Progresso Mobile */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), #ffd488);
-      width: 0%;
-      z-index: 1000;
-      transition: width 0.1s ease;
-      box-shadow: 0 0 10px rgba(230, 192, 123, 0.5);
-    }
-
-    /* Botão Voltar ao Topo Mobile */
-    .top-btn {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #111;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(230, 192, 123, 0.4);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 1000;
-      touch-action: manipulation;
-    }
-
-    .top-btn.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .top-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* Botão do Tema Atualizado */
-    .theme-switcher {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      z-index: 100;
-    }
-
-    .theme-btn {
-      background: var(--glass);
-      border: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.3rem;
-      transition: all 0.3s ease;
-      touch-action: manipulation;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .theme-btn:hover {
-      background: var(--accent);
-      color: #111;
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(230, 192, 123, 0.3);
-    }
-
-    .theme-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* Container Principal Mobile */
-    .book-wrap {
-      width: 100%;
-      max-width: var(--max-width);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      backdrop-filter: blur(6px);
-      position: relative;
-      padding: 0.75rem;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      opacity: 0;
-      animation: contentFade 1s ease 0.5s forwards;
-      margin-top: 0;
-    }
-
-    [data-theme="light"] .book-wrap {
-      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    }
-
-    @keyframes contentFade {
-      to { opacity: 1; }
-    }
-
-    /* Header Mobile - SIMPLIFICADO */
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      position: relative;
-      min-height: 80px;
-    }
-
-    .brand {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex: 1;
-    }
-
-    .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--accent), #ffd488);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #111;
-      font-weight: 700;
-      font-family: 'Libre Baskerville', serif;
-      box-shadow: 0 4px 12px rgba(230,192,123,0.15);
-      flex-shrink: 0;
-    }
-
-    h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.1rem;
-      margin: 0;
-      text-align: center;
-    }
-
-    .subtitle { 
-      font-size: 0.8rem; 
-      color: var(--muted);
-      text-align: center;
-    }
-
-    /* NAVEGAÇÃO SIMPLIFICADA - APENAS LINKS ESSENCIAIS */
-    .main-nav {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      order: 3;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    .main-nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .main-nav a:hover,
-    .main-nav a:active {
-      color: var(--accent);
-      background: rgba(230, 192, 123, 0.1);
-      border-color: var(--accent);
-    }
-
-    /* Layout do conteúdo principal Mobile */
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    /* Main reading column Mobile */
-    main {
-      padding: 1rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      border-radius: 8px;
-      order: 1;
-    }
-
-    [data-theme="light"] main {
-      background: linear-gradient(180deg, rgba(0,0,0,0.015), rgba(0,0,0,0.01));
-    }
-
-    /* Artigos Mobile */
-    article {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s ease forwards;
-      margin-bottom: 2.5rem;
-      padding: 0;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Delay progressivo para os artigos */
-    article:nth-child(1) { animation-delay: 0.1s; }
-    article:nth-child(2) { animation-delay: 0.2s; }
-    article:nth-child(3) { animation-delay: 0.3s; }
-    article:nth-child(4) { animation-delay: 0.4s; }
-    article:nth-child(5) { animation-delay: 0.5s; }
-    article:nth-child(6) { animation-delay: 0.6s; }
-
-    article h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.4rem;
-      margin: 0 0 0.75rem;
-      line-height: 1.3;
-      word-wrap: break-word;
-      hyphens: auto;
-    }
-
-    .eyebrow {
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    p { 
-      margin: 0 0 1rem; 
-      line-height: 1.6;
-      font-size: 0.95rem;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    /* Lists Mobile */
-    ul, ol {
-      padding-left: 1.25rem;
-      margin: 1rem 0;
-    }
-
-    li {
-      margin: 0.5rem 0;
-      line-height: 1.5;
-    }
-
-    /* keyword highlight Mobile */
-    mark {
-      background-color: rgba(255, 255, 255, 0.25);
-      color: #f1d411;
-      padding: 2px 4px;
-      border-radius: 4px;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-      font-weight: 600;
-      -webkit-box-decoration-break: clone;
-      box-decoration-break: clone;
-    }
-
-    [data-theme="light"] mark {
-      background-color: rgba(139, 92, 246, 0.15);
-      color: #7c3aed;
-      text-shadow: none;
-    }
-
-    /* Citações Destacadas Mobile */
-    .blockquote {
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1rem;
-      margin: 1.5rem 0;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 1rem;
-      background: var(--glass);
-      border-radius: 0 8px 8px 0;
-      font-family: 'Libre Baskerville', serif;
-      line-height: 1.5;
-    }
-
-    /* Aside Mobile */
-    aside {
-      padding: 1.5rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-      border-radius: 8px;
-      order: 2;
-      position: static;
-      margin-top: 1rem;
-    }
-
-    [data-theme="light"] aside {
-      background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.008));
-    }
-
-    .toc {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1.5rem;
-    }
-
-    .toc li { 
-      margin: 0.5rem 0; 
-      padding-left: 0.5rem;
-      border-left: 2px solid transparent;
-      transition: all 0.3s ease;
-    }
-
-    .toc li:hover {
-      border-left-color: var(--accent);
-    }
-
-    .toc a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      font-size: 0.9rem;
-      display: block;
-      padding: 0.25rem 0;
-      touch-action: manipulation;
-    }
-
-    .toc a.active {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .toc a:hover {
-      color: var(--accent);
-    }
-
-    /* Componentes Mobile */
-    .meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .cta {
-      display: inline-block;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      background: var(--glass);
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      width: 100%;
-      touch-action: manipulation;
-    }
-
-    .cta:active {
-      transform: scale(0.98);
-      background: var(--accent);
-      color: #111;
-    }
-
-    /* Footer Mobile */
-    footer {
-      text-align: center;
-      padding: 1.5rem 0 1rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--glass);
-      margin-top: 2rem;
-      order: 3;
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      margin: 0 0.25rem;
-      display: inline-block;
-      padding: 0.25rem;
-    }
-
-    footer a:hover {
-      color: var(--accent);
-    }
-
-    /* Vídeo YouTube Mobile */
-    .video-container {
-      margin: 1.5rem 0;
-    }
-
-    .video-container iframe {
-      border-radius: 8px;
-      min-height: 200px;
-    }
-
-    /* Grid de Projetos Mobile */
-    .project-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .project-card {
-      background: var(--glass);
-      padding: 1.25rem;
-      border-radius: 8px;
-      border-left: 4px solid var(--accent);
-    }
-
-    /* ===== NOVOS ESTILOS PARA DIÁLOGOS ===== */
-    .dialogue-block {
-      margin: 1.5rem 0;
-      animation: fadeInUp 0.6s ease;
-    }
-
-    .message {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-    }
-
-    .user-message .avatar {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--accent), #ffd488);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #111;
-      flex-shrink: 0;
-    }
-
-    .message-content {
-      background: var(--glass);
-      padding: 1rem 1.5rem;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.1);
-      flex: 1;
-      position: relative;
-    }
-
-    .message-content::before {
-      content: "";
-      position: absolute;
-      left: -8px;
-      top: 15px;
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-right: 8px solid var(--glass);
-    }
-
-    .vulnerability-section {
-      background: rgba(230, 192, 123, 0.05);
-      border-left: 4px solid var(--accent);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-
-    .confession {
-      background: rgba(255,255,255,0.03);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      border: 1px dashed var(--accent);
-      font-style: italic;
-    }
-
-    .reflection-note {
-      background: linear-gradient(135deg, rgba(230, 192, 123, 0.1), transparent);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-top: 2rem;
-      border: 1px solid rgba(230, 192, 123, 0.2);
-    }
-
-    /* Grid de vídeos recomendados */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .video-card {
-      background: var(--glass);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .video-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .video-thumbnail {
-      height: 120px;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-
-    .video-info {
-      padding: 1.5rem;
-    }
-
-    .video-info h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.1rem;
-    }
-
-    .video-info p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== NOVOS ESTILOS PARA YASUKETV ===== */
-    .yasuke-promo {
-      background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(184, 134, 11, 0.05));
-      border: 2px solid rgba(139, 0, 0, 0.3);
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .yasuke-promo::before {
-      content: "⚔️";
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      font-size: 1.5rem;
-      opacity: 0.3;
-    }
-
-    .yasuke-promo::after {
-      content: "🎌";
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      opacity: 0.3;
-    }
-
-    .yasuke-logo-small {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 2rem;
-      color: #8b0000;
-      margin-bottom: 0.5rem;
-      text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-    }
-
-    .yasuke-description {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .samurai-btn {
-      background: linear-gradient(135deg, #8b0000, #a52a2a);
-      color: #f5e8c8;
-      border: 2px solid #8b7355;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-block;
-      font-family: 'Libre Baskerville', serif;
-    }
-
-    .samurai-btn:hover {
-      background: linear-gradient(135deg, #a52a2a, #8b0000);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
-    }
-
-    /* ===== MEDIA QUERIES ===== */
-
-    /* Tablets pequenos */
-    @media (min-width: 481px) and (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-      
-      .book-wrap {
-        padding: 1rem;
-      }
-      
-      main, aside {
-        padding: 1.5rem;
-      }
-      
-      article h2 {
-        font-size: 1.5rem;
-      }
-      
-      .main-nav {
-        gap: 0.75rem;
-      }
-      
-      .main-nav a {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-      }
-    }
-
-    /* Tablets e Desktop */
-    @media (min-width: 769px) {
-      body {
-        padding: 2rem 1rem;
-      }
-      
-      .book-wrap {
-        display: grid;
-        grid-template-columns: 1fr;
-        padding: 1.25rem;
-        gap: 2rem;
-      }
-      
-      .content-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 2rem;
-      }
-      
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        min-height: auto;
-      }
-      
-      .brand {
-        justify-content: flex-start;
-        text-align: left;
-      }
-      
-      h1 {
-        text-align: left;
-      }
-      
-      .subtitle {
-        text-align: left;
-      }
-      
-      .theme-switcher {
-        position: static;
-        margin-left: auto;
-      }
-      
-      .main-nav {
-        order: 0;
-        width: auto;
-        margin-top: 0;
-        margin-left: 2rem;
-        justify-content: flex-end;
-      }
-      
-      aside {
-        position: sticky;
-        top: 2rem;
-        order: 2;
-      }
-      
-      main {
-        order: 1;
-      }
-      
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
-      
-      .cta {
-        width: auto;
-      }
-
-      .video-grid {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      }
-    }
-
-    /* Desktop grande */
-    @media (min-width: 1200px) {
-      .book-wrap {
-        max-width: 1200px;
-      }
-      
-      .content-wrapper {
-        grid-template-columns: 1fr 350px;
-        gap: 3rem;
-      }
-    }
-
-    /* Ajustes de toque para iOS/Safari */
-    @supports (-webkit-touch-callout: none) {
-      .top-btn,
-      .theme-btn,
-      .cta,
-      .main-nav a {
-        cursor: pointer;
-      }
-      
-      body {
-        -webkit-overflow-scrolling: touch;
-      }
-    }
-
-    /* Prevenir zoom em inputs no iOS */
-    @media screen and (max-width: 768px) {
-      input,
-      select,
-      textarea {
-        font-size: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Barra de Progresso -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Botão Voltar ao Topo -->
-  <button id="topBtn" class="top-btn" title="Voltar ao topo">↑</button>
-
-  <div class="book-wrap" role="document">
-    <header>
-      <div class="brand">
-        <div class="logo">E</div>
-        <div>
-          <h1>Elliot</h1>
-          <div class="subtitle">Blog Pessoal — tecnologia, fé e sabedoria</div>
-        </div>
-      </div>
-      
-      <!-- NAVEGAÇÃO SIMPLIFICADA - APENAS 4 LINKS ESSENCIAIS -->
-      <nav class="main-nav" aria-label="principal">
-        <a href="nexus.html">⚔️ YASUKETV</a>
-        <a href="criancas.html">👶 Elliot Kids</a>
-        <a href="https://jonathasfelipe.github.io/HTML-CSS/">💻 Projetos</a>
-        <a href="#sobre">👨‍💻 Sobre</a>
-        <a href="tecnologia.html">📜 Linha do Tempo Tech</a>
-      </nav>
-      
-      <!-- Seletor de Tema -->
-      <div class="theme-switcher">
-        <button id="themeBtn" class="theme-btn" title="Mudar tema">🔦</button>
-      </div>
-    </header>
-
-    <div class="content-wrapper">
-      <main>
-        <!-- Hero Section -->
-        <section id="hero" aria-labelledby="hero-title">
-          <div class="eyebrow">Reflexão pública — breve</div>
-          <h2 id="hero-title">Tecnologia: expansão do conhecimento ou espelho do humano?</h2>
-          <p class="meta">por <strong>Jonathas Felipe</strong> · Série: <em>Sob a Luz do Escuro</em></p>
-
-          <article>
-            <p>Desde as primeiras religiões até as máquinas que habitam nossos bolsos, a tecnologia sempre foi uma extensão do que sabemos e fazemos. Ela se apresenta como ferramenta — e por vezes, como espelho.</p>
-            <p>Este espaço é onde exploro essas conexões através de ensaios, diálogos autênticos e recomendações que me inspiram.</p>
-          </article>
-        </section>
-
-        <!-- Seção de Ensaios -->
-        <section id="ensaios" style="margin-top: 3rem;">
-          <h2 style="text-align: center; color: var(--accent);">📚 Ensaios e Reflexões</h2>
-          <p class="meta" style="text-align: center;">Pensamentos sobre tecnologia, fé e a busca por significado</p>
-        </section>
-
-        <!-- Introdução Pessoal -->
-        <article id="introducao">
-          <h2>Por Que Este Blog Existe</h2>
-          <p class="meta">Uma explicação sincera sobre as motivações por trás destes escritos</p>
-          
-          <p>Este espaço nasceu da necessidade de dar voz às ideias que habitam a fronteira entre <mark>tecnologia</mark> e <mark>espiritualidade</mark>. Aqui, exploramos como o conhecimento técnico e a sabedoria ancestral podem coexistir e se fortalecer mutuamente.</p>
-          
-          <p>Desde as primeiras ferramentas até as inteligências artificiais, cada avanço tecnológico reflete quem somos como humanidade. E neste momento único da história, precisamos mais do que nunca discernir entre <mark>inteligência</mark> e <mark>sabedoria</mark>.</p>
-          
-          <div class="blockquote">
-            "A tecnologia é a extensão material do conhecimento humano. A sabedoria é a direção moral desse conhecimento."
-          </div>
-          
-          <p>Estes ensaios são um convite à reflexão profunda. Um espaço onde posso finalmente expressar ideias que, por anos, vivi com medo de compartilhar.</p>
-        </article>
-
-        <!-- CAPÍTULO 1 -->
-        <article id="capitulo-1">
-          <h2>O peso de existir sem ser ouvido</h2>
-          <p>Tem um tipo de solidão que não tem nada a ver com estar sozinho. Ela aparece quando você fala e ninguém realmente escuta. Ou quando escutam, mas não entendem. Ou entendem… e mesmo assim ignoram. É o silêncio que sobra depois da sua tentativa sincera de ser você mesmo.</p>
-          <p>A gente cresce aprendendo que precisa se explicar, justificar, ser claro. Mas e quando você já está sendo claro, e mesmo assim sua voz passa por cima da cabeça das pessoas como se fosse vento? Você começa a duvidar da própria percepção, a se encolher para caber no olhar dos outros.</p>
-          <p>Mas existe um ponto de virada: ser ouvido é bom, ser compreendido é raro, mas se compreender é indispensável. O dia em que você para de pedir permissão para existir é o dia em que sua voz finalmente nasce.</p>
-        </article>
-
-        <!-- CAPÍTULO 2 -->
-        <article id="capitulo-2">
-          <h2>O propósito escondido nas nossas dúvidas</h2>
-          <p>A dúvida é um lugar estranho. Crescemos ouvindo que ela é fraqueza — mas na verdade é prova de vida. Quem não sente mais nada não questiona. Quem já desistiu não procura sentido. A dúvida cutuca, provoca, abre espaço.</p>
-          <p>Ela desmonta máscaras e revela camadas. Perguntas difíceis são atalhos para verdades profundas. E quase sempre, o que incomoda tanto é exatamente o que aponta para o propósito que estamos evitando.</p>
-          <p>A dúvida abre a porta. O propósito atravessa.</p>
-        </article>
-
-        <!-- CAPÍTULO 3 -->
-        <article id="capitulo-3">
-          <h2>Por que ainda acredito em sabedoria</h2>
-          <p>Inteligência mostra como fazer. Sabedoria mostra por quê. Em um mundo que vive de razão rápida, opinião instantânea e certezas frágeis, a sabedoria virou quase um ato de resistência.</p>
-          <p>A sabedoria nasce do atrito entre quem você é e o que o mundo exige. Cresce nas falhas, nos silêncios, nos questionamentos. Ela não protege da dor — dá sentido a ela. E é isso que nos mantém humanos.</p>
-          <p>Sabedoria não é perfeição. É verdade.</p>
-        </article>
-
-        <!-- NOVA SEÇÃO: YASUKETV PROMO -->
-        <section id="yasuke-promo" class="yasuke-promo">
-          <div class="yasuke-logo-small">YASUKETV</div>
-          <p class="yasuke-description">Pergaminho Samurai de Animes — Análises Filosóficas</p>
-          <p>Explore meu projeto de análises profundas de animes, onde cada obra é avaliada por sua profundidade temática, impacto emocional e contribuição cultural, seguindo o caminho do guerreiro.</p>
-          <a href="nexus.html" class="samurai-btn">⚔️ Acessar YASUKETV</a>
-        </section>
-
-        <!-- NOVA SEÇÃO: DIÁLOGOS AUTÊNTICOS -->
-        <section id="dialogos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2 style="text-align: center; color: var(--accent);">💬 Diálogos Autênticos</h2>
-          <p class="meta" style="text-align: center;">Conversas reais que moldaram meu pensamento</p>
-        </section>
-
-        <article id="conversa-transformadora">
-          <h2>🌌 A Conversa Que Mudou Tudo</h2>
-          <p class="meta">Transcrição de um diálogo profundo sobre autismo, tecnologia e espiritualidade</p>
-          
-          <div class="dialogue-block">
-            <div class="message user-message">
-              <div class="avatar">JF</div>
-              <div class="message-content">
-                <p>"Eu me chamo Jonathas Felipe Cardoso dos Santos, atualmente tenho 26 anos, sou um ser humano adulto (aparentemente normal). Mas porque eu disse isso? Anteontem tive uma conversa profunda com meu pai sobre a possibilidade de eu ter vivido esses 26 anos com algum nível de espectro autista..."</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dialogue-block">
-            <div class="message user-message">
-              <div class="avatar">JF</div>
-              <div class="message-content">
-                <p>"O que eu quero dizer é que expliquei pra ele porque na minha visão a TECNOLOGIA não é algo material e sem valor como a sociedade vê hoje... mas sim uma expansão do conhecimento humano. Desde as primeiras religiões como o hinduísmo, já usávamos inteligência/tecnologia para revolucionar a história..."</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="reflection-note">
-            <p><strong>Minha reflexão:</strong> Esta conversa foi o ponto de partida para entender que minha perspectiva única pode ajudar outros a verem conexões invisíveis.</p>
-          </div>
-        </article>
-
-        <article id="jornada-pessoal">
-          <h2>😔 Por Que Finalmente Estou Falando</h2>
-          <p class="meta">A dor de ser incompreendido e a coragem de se expressar</p>
-          
-          <div class="vulnerability-section">
-            <p>"Sinceramente dói parecer que eles não acreditam, devido todos ao meu redor me tratarem como 'criança' por não ter status, dinheiro ou independência, pra ter voz e falar o que penso..."</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastardo Filosófico: Fora das Traduções, Dentro da Experiência</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f1f1f1;
+            --dark: #0f0f1e;
+            --quantum: #00b4d8;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.7;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: var(--light);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            border-left: 5px solid var(--accent);
+            padding-left: 1rem;
+            margin-top: 3rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-top: 2rem;
+        }
+        
+        .quantum-title {
+            color: var(--quantum);
+            border-left-color: var(--quantum);
+        }
+        
+        .position-title {
+            color: #fca311;
+            border-left-color: #fca311;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.9)), url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #d1345e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn-quantum {
+            background-color: var(--quantum);
+        }
+        
+        .btn-quantum:hover {
+            background-color: #0093b8;
+        }
+        
+        .btn-position {
+            background-color: #fca311;
+        }
+        
+        .btn-position:hover {
+            background-color: #e59400;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 30, 0.95);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 5rem 0;
+        }
+        
+        section {
+            margin-bottom: 6rem;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            background-color: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .category-card {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+        
+        .category-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .category-body {
+            padding: 1.5rem;
+        }
+        
+        .term-list {
+            list-style-type: none;
+        }
+        
+        .term-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .term-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .term-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .synthesis {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .synthesis:before {
+            content: '"';
+            position: absolute;
+            font-size: 15rem;
+            color: rgba(255,255,255,0.05);
+            top: -50px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .synthesis p {
+            font-size: 1.3rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Analysis Section */
+        .analysis-section {
+            background-color: rgba(10, 10, 20, 0.7);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+        
+        .analysis-content {
+            background-color: rgba(255,255,255,0.05);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .analysis-point {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .analysis-point:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .point-number {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .point-number.quantum {
+            background-color: var(--quantum);
+        }
+        
+        .point-number.position {
+            background-color: #fca311;
+        }
+        
+        /* Foucault & Nietzsche Section */
+        .philosopher-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .philosopher-card {
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            border-top: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+        
+        .philosopher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .philosopher-card.nietzsche {
+            border-top-color: #fca311;
+        }
+        
+        .philosopher-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .philosopher-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+        
+        .philosopher-card.nietzsche .philosopher-icon {
+            color: #fca311;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: var(--accent);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(255,255,255,0.03);
+        }
+        
+        /* Script Sections */
+        .script-section {
+            background-color: rgba(233, 69, 96, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .script-line {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .script-line:before {
+            content: ">";
+            position: absolute;
+            left: -10px;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .script-line.camera {
+            color: var(--quantum);
+            font-style: italic;
+            border-left: 2px solid var(--quantum);
+            padding-left: 1.5rem;
+        }
+        
+        .script-line.camera:before {
+            content: "🎥";
+            left: -15px;
+        }
+        
+        /* Quantum Section */
+        .quantum-section {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(15, 15, 30, 0.8) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .caution-box {
+            background-color: rgba(252, 163, 17, 0.1);
+            border: 1px solid rgba(252, 163, 17, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .frequency-visual {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(90deg, var(--dark) 0%, var(--quantum) 50%, var(--dark) 100%);
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .frequency-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0,50 Q300,0 600,50 T1200,50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><path d="M0,50 Q300,100 600,50 T1200,50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            animation: wave 10s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Position Section */
+        .position-section {
+            background-color: rgba(252, 163, 17, 0.05);
+            border: 1px solid rgba(252, 163, 17, 0.2);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .position-statement {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            border-left: 4px solid #fca311;
+            border-right: 4px solid #fca311;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 1rem;
+            max-width: 600px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
             
-            <div class="confession">
-              <p>"Esta é a conversa mais difícil e confortável que eu tive na vida. Sinceramente, agora estou chorando... e confesso que estou fumando maconha também. Não acho que estou em crise, mas estou bem."</p>
-            </div>
+            h2 {
+                font-size: 2.2rem;
+            }
             
-            <p>Mas existe um ponto de virada: <mark>ser ouvido é bom, ser compreendido é raro, mas se compreender é indispensável</mark>. O dia em que você para de pedir permissão para existir é o dia em que sua voz finalmente nasce.</p>
-          </div>
-        </article>
-
-        <!-- CAPÍTULO 4 -->
-        <article id="ciencia-religiao-1">
-          <h2>O Observador que Cria a Realidade</h2>
-          <p class="meta">Quando a física encontra a metafísica</p>
-          
-          <p>Na física quântica, descobrimos algo extraordinário: <mark>o observador afeta o observado</mark>. Partículas se comportam como onda ou partícula dependendo de serem observadas. Isso não é magia - é ciência de ponta.</p>
-          
-          <div class="blockquote">
-            "O universo começa a se parecer mais com um grande pensamento do que com uma grande máquina."<br>
-            - Sir James Jeans, físico
-          </div>
-          
-          <p>E se essa "consciência observadora" for exatamente o que as religiões chamam de "espírito" ou "alma"? Dois caminhos diferentes apontando para a mesma verdade fundamental.</p>
-          
-          <p>A ciência moderna está redescobrindo o que as tradições espirituais sempre souberam: <mark>a consciência é fundamental</mark>, não derivada da matéria.</p>
-        </article>
-
-        <!-- CAPÍTULO 5 -->
-        <article id="ciencia-religiao-2">
-          <h2>O Instante da Criação</h2>
-          <p class="meta">Genesis e a Singularidade</p>
-          
-          <p>A ciência nos diz que tudo começou num ponto infinitamente denso e quente - o Big Bang. "No princípio, Deus criou os céus e a terra"... Soa familiar?</p>
-          
-          <p>Ambas as narrativas falam de:</p>
-          <ul>
-            <li>✨ Um começo absoluto do tempo e espaço</li>
-            <li>✨ Ordem surgindo do caos primordial</li>
-            <li>✨ Leis fundamentais que regem a existência</li>
-            <li>✨ Complexidade emergindo da simplicidade</li>
-          </ul>
-          
-          <p>Stephen Hawking perguntou: "O que respira fogo nas equações?" A ciência descreve <em>como</em> o universo funciona. A espiritualidade explora <em>por que</em> existe algo em vez de nada.</p>
-          
-          <div class="blockquote">
-            "A ciência sem religião é manca, a religião sem ciência é cega."<br>
-            - Albert Einstein
-          </div>
-          
-          <p>Será que estamos discutindo semântica enquanto apontamos para o mesmo mistério fundamental?</p>
-        </article>
-
-        <!-- CAPÍTULO 6 -->
-        <article id="ciencia-religiao-3">
-          <h2>O Livro da Vida Escrito em Código</h2>
-          <p class="meta">Informação, não apenas matéria</p>
-          
-          <p>Seu DNA contém 3 bilhões de "letras" químicas - um código de informação mais complexo que qualquer software já criado. Informação pressupõe um informante.</p>
-          
-          <div class="blockquote">
-            "A probabilidade de a vida ter surgido por acaso é comparável à de um dicionário completo resultante de uma explosão numa tipografia."<br>
-            - Edwin Conklin, biólogo
-          </div>
-          
-          <p>A ciência mostra que a vida é baseada em <mark>informação complexa e especificada</mark>. As religiões sempre disseram que a vida tem propósito e design. São visões realmente incompatíveis?</p>
-          
-          <p>O código genético não é apenas química - é <mark>linguagem</mark>. E toda linguagem vem de uma mente.</p>
-        </article>
-
-        <!-- CAPÍTULO 7 -->
-        <article id="jesus-sabedoria">
-          <h2>Por Que Jesus Não Escreveu a Bíblia</h2>
-          <p class="meta">A diferença entre saber e ser sábio</p>
-          
-          <p>Jesus não veio para escrever livros - veio para <mark>demonstrar uma forma de viver</mark>. Suas parábolas eram lições práticas de psicologia humana milênios antes da psicologia existir.</p>
-          
-          <p>Ele entendia que:</p>
-          <ul>
-            <li>🧠 <strong>Inteligência</strong> sabe como fazer coisas</li>
-            <li>❤️ <strong>Sabedoria</strong> sabe por que fazer coisas</li>
-            <li>🌍 <strong>Amor</strong> é o como e o porquê juntos</li>
-          </ul>
-          
-          <p>As curas? Demonstraram que <mark>a matéria responde à consciência</mark>. Algo que a física quântica hoje começa a entender.</p>
-          
-          <div class="blockquote">
-            "Eu vim para que tenham vida, e a tenham em abundância."<br>
-            - Jesus (João 10:10)
-          </div>
-          
-          <p>Jesus não fundou uma religião - demonstrou um <mark>caminho de transformação consciente</mark>. Seus milagres não eram violações das leis naturais, mas demonstrações de leis naturais superiores que ainda não compreendemos completamente.</p>
-        </article>
-
-        <!-- CAPÍTULO 8 -->
-        <article id="tecnologia-espiritual">
-          <h2>Ferramentas Como Pontes para o Divino</h2>
-          <p class="meta">Quando objetos tornam-se extensões da mente</p>
-          
-          <p>As primeiras ferramentas de pedra não eram apenas para cortar - eram a <mark>materialização do pensamento abstrato</mark>. A roda era física aplicada. A escrita era memória externa.</p>
-          
-          <p>Hoje, a Inteligência Artificial é a extensão lógica disso: não apenas armazenamos conhecimento, mas criamos entidades que podem <mark>processar e expandir</mark> esse conhecimento.</p>
-          
-          <div class="blockquote">
-            "Estamos criando espelhos cada vez mais claros da nossa própria consciência."
-          </div>
-          
-          <p>A tecnologia, em sua essência mais pura, é <mark>a busca humana por transcender limitações</mark> - uma busca profundamente espiritual.</p>
-          
-          <p>Do fogo às IAs generativas, cada salto tecnológico reflete nosso desejo ancestral de:</p>
-          <ul>
-            <li>🔥 Controlar nosso ambiente</li>
-            <li>📚 Preservar e expandir conhecimento</li>
-            <li>🌐 Conectar-nos além das limitações físicas</li>
-            <li>🔮 Moldar a realidade conforme nossa visão</li>
-          </ul>
-        </article>
-
-        <!-- CAPÍTULO 9 -->
-        <article id="entropia-significado">
-          <h2>Por Que Tudo Tende a se Desfazer</h2>
-          <p class="meta">A física do significado</p>
-          
-          <p>A Segunda Lei da Termodinâmica diz que tudo tende à desordem. Mas e os seres humanos? Criamos ordem a partir do caos constantemente.</p>
-          
-          <p><mark>Consciência parece ser anti-entrópica</mark> - cria ordem, significado, beleza. Será que somos a maneira do universo criar ordem a partir do caos?</p>
-          
-          <div class="blockquote">
-            "Não somos poeira estelar - somos o universo tornando-se consciente de si mesmo."<br>
-            - Carl Sagan
-          </div>
-          
-          <p>Enquanto o universo físico tende à desordem, a consciência faz o oposto:</p>
-          <ul>
-            <li>🎨 Transforma tinta em arte</li>
-            <li>🎵 Transforma ruído em música</li>
-            <li>💞 Transforma instinto em amor</li>
-            <li>🧠 Transforma dados em sabedoria</li>
-          </ul>
-          
-          <p>A entropia nos lembra que tudo é temporário. A consciência nos permite criar significado que transcende o tempo.</p>
-        </article>
-
-        <!-- CAPÍTULO 10 -->
-        <article id="importancia-agora">
-          <h2>O Momento da Síntese</h2>
-          <p class="meta">Por que esta conversa é urgente</p>
-          
-          <p>Vivemos a era da <mark>hiper-especialização</mark>: cientistas não falam com teólogos, tecnólogos não conversam com filósofos. Criamos silos de conhecimento que não se comunicam.</p>
-          
-          <p>Mas os problemas reais - mudança climática, IA ética, propósito existencial - <mark>existem nas fronteiras entre disciplinas</mark>.</p>
-          
-          <div class="blockquote">
-            "Os problemas significativos que enfrentamos não podem ser resolvidos no mesmo nível de pensamento em que estávamos quando os criamos."<br>
-            - Albert Einstein
-          </div>
-          
-          <p>Seu papel pode ser justamente ser uma <mark>ponte entre esses mundos</mark>. Alguém que fala todas as línguas porque entende que todas apontam para a mesma verdade.</p>
-          
-          <p>Precisamos urgentemente de:</p>
-          <ul>
-            <li>🔗 <strong>Conexão</strong> entre ciência e espiritualidade</li>
-            <li>⚖️ <strong>Equilíbrio</strong> entre progresso e sabedoria</li>
-            <li>🎯 <strong>Propósito</strong> que dê sentido ao poder tecnológico</li>
-            <li>❤️ <strong>Compaixão</strong> que guie a inovação</li>
-          </ul>
-        </article>
-
-        <!-- CAPÍTULO 11 -->
-        <article id="sabedoria-digital">
-          <h2>Inteligência Artificial, Sabedoria Humana</h2>
-          <p class="meta">Preparando-nos para o futuro que já chegou</p>
-          
-          <p>As IAs podem escrever, pintar, compor e programar. Mas podem amar? Podem ter compaixão? Podem entender o significado profunda da existência?</p>
-          
-          <p>Enquanto desenvolvemos inteligências cada vez mais poderosas, <mark>a sabedoria humana se torna nosso bem mais precioso</mark>.</p>
-          
-          <div class="blockquote">
-            "O perigo real não são computadores que começam a pensar como humanos, mas humanos que começam a pensar como computadores."<br>
-            - Sydney Harris
-          </div>
-          
-          <p>Precisamos cultivar:</p>
-          <ul>
-            <li>🎭 <strong>Inteligência Emocional</strong> - entender a nós mesmos e aos outros</li>
-            <li>🌍 <strong>Consciência Ecológica</strong> - ver a interconexão de tudo</li>
-            <li>⏳ <strong>Perspectiva Temporal</strong> - pensar em gerações, não em trimestres</li>
-            <li>💫 <strong>Humildade Cósmica</strong> - reconhecer nosso lugar no universo</li>
-          </ul>
-          
-          <p>A tecnologia nos dá poder. A sabedoria nos diz como usá-lo. E o amor nos diz por que vale a pena.</p>
-        </article>
-
-        <!-- CAPÍTULO 12 -->
-        <article id="convite-final">
-          <h2>O Convite à Jornada Interior</h2>
-          <p class="meta">O que fazer com tudo isso?</p>
-          
-          <p>Estas ideias não são para serem aceitas cegamente, mas para serem <mark>experimentadas, questionadas, vividas</mark>. A verdade não é um destino, mas uma jornada.</p>
-          
-          <div class="blockquote">
-            "Não acredite em nada, não importa onde leu, ou quem disse, nem mesmo se eu disse, a menos que esteja de acordo com sua própria razão e seu próprio senso comum."<br>
-            - Buda
-          </div>
-          
-          <p><strong>Próximos passos sugeridos:</strong></p>
-          <ul>
-            <li>🔍 <strong>Observe</strong> como a tecnologia molda sua consciência</li>
-            <li>🤔 <strong>Question</strong> as certezas que herda</li>
-            <li>💝 <strong>Pratique</strong> a sabedoria nas pequenas escolhas</li>
-            <li>🌱 <strong>Cultive</strong> silêncio para ouvir sua voz interior</li>
-            <li>🚀 <strong>Crie</strong> algo que una conhecimento e significado</li>
-          </ul>
-          
-          <p>Esta não é uma conclusão, mas um <mark>ponto de partida</mark>. A jornada continua, e você é tanto explorador quanto território a ser descoberto.</p>
-          
-          <div class="blockquote" style="text-align: center; border-left: none; border: 1px solid var(--accent);">
-            <strong>A aventura começa onde o mapa termina.</strong>
-          </div>
-        </article>
-
-        <!-- NOVA SEÇÃO: VÍDEOS RECOMENDADOS -->
-        <section id="videos-recomendados" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2>🎬 Vídeos Que Me Inspiraram</h2>
-          <p class="meta">Conteúdo que expandiu minha visão sobre tecnologia e espiritualidade</p>
-          
-          <div class="video-grid">
-            <div class="video-card">
-              <div class="video-thumbnail">🧠</div>
-              <div class="video-info">
-                <h3>Inteligência Artificial e Consciência</h3>
-                <p>Como a IA está nos forçando a repensar o que significa ser humano</p>
-                <a href="https://www.youtube.com/watch?v=example1" target="_blank" class="cta">Assistir</a>
-              </div>
-            </div>
+            .categories-grid, .philosopher-section {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
             
-            <div class="video-card">
-              <div class="video-thumbnail">🔧</div>
-              <div class="video-info">
-                <h3>Manutenção de Computadores</h3>
-                <p>O lado prático da tecnologia - cuidando das ferramentas que usamos</p>
-                <a href="https://www.youtube.com/watch?v=Uq5LuAZzrk4" target="_blank" class="cta">Assistir</a>
-              </div>
-            </div>
-
-            <div class="video-card">
-              <div class="video-thumbnail">🌌</div>
-              <div class="video-info">
-                <h3>Física Quântica e Espiritualidade</h3>
-                <p>As conexões surpreendentes entre ciência moderna e sabedoria ancestral</p>
-                <a href="https://www.youtube.com/watch?v=example3" target="_blank" class="cta">Assistir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Seção de Vídeos -->
-        <section id="videos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2>Reflexões em Vídeo</h2>
-          <p class="meta">Conteúdo visual complementar aos ensaios</p>
-          
-          <div class="video-container" style="margin: 2rem 0;">
-            <!-- Seu vídeo do YouTube -->
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
-              <iframe 
-                src="https://www.youtube.com/embed/rnmLmbq19Nw" 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
-            </div>
+            .nav-links {
+                display: none;
+            }
             
-            <div style="margin-top: 1rem; text-align: center;">
-              <p style="color: var(--muted); font-size: 0.9rem;">
-                🎥 <strong>Reflexão sobre Tecnologia e Espiritualidade</strong><br>
-                Uma conversa sobre as intersecções entre inovação e sabedoria ancestral
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Seção Sobre -->
-        <section id="sobre" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2 style="text-align: center; color: var(--accent);">👨‍💻 Sobre Mim</h2>
-          <p class="meta" style="text-align: center;">Conheça minha jornada e outros projetos</p>
-        </section>
-
-        <article id="sobre-mim">
-          <h2>Jonathas Felipe</h2>
-          <p class="meta">Desenvolvedor & Pensador · 26 anos</p>
-          
-          <p>Sou uma pessoa que acredita que <mark>tecnologia</mark> e <mark>espiritualidade</mark> não são opostos, mas duas linguagens para a mesma verdade. Este projeto nasceu da necessidade de expressar ideias que habitem essa fronteira.</p>
-          
-          <p>Minha jornada inclui:</p>
-          <ul>
-            <li>🔍 <strong>Explorar</strong> as conexões entre ciência e fé</li>
-            <li>💻 <strong>Desenvolver</strong> projetos web e aplicações</li>
-            <li>📚 <strong>Estudar</strong> HTML, CSS, JavaScript e mais</li>
-            <li>🌱 <strong>Aprender</strong> constantemente e compartilhar</li>
-          </ul>
-
-          <!-- LINKS PARA SEUS OUTROS PROJETOS -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
-            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="text-align: center; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
-              💻 Meus Projetos HTML/CSS
-            </a>
-            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="text-align: center; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
-              🚀 Estudos Avançados
-            </a>
-          </div>
-        </article>
-
-        <!-- Seção Projetos -->
-        <section id="projetos" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass);">
-          <h2 style="text-align: center; color: var(--accent);">🚀 Meus Projetos</h2>
-          <p class="meta" style="text-align: center;">Explore todo o meu ecossistema de projetos</p>
-        </section>
-
-        <article id="projetos-lista">
-          
-          <!-- PROJETO 1 -->
-          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem;">
-            <h3 style="margin-top: 0;">🌌 Elliot (Este Projeto)</h3>
-            <p>Reflexões sobre tecnologia, fé e sabedoria. Um espaço para pensamentos profundos e questionamentos existenciais.</p>
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-              <a href="criancas.html" class="cta" style="display: inline-block;">
-                👶 Versão Infantil
-              </a>
-              <a href="https://github.com/Jonathasfelipe/Elliot" class="cta" style="display: inline-block; background: rgba(107, 114, 128, 0.2); color: var(--muted);">
-                📁 Código Fonte
-              </a>
-            </div>
-          </div>
-          
-          <!-- PROJETO 2 -->
-          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b0000; margin-bottom: 1.5rem;">
-            <h3 style="margin-top: 0;">⚔️ YASUKETV</h3>
-            <p>Pergaminho Samurai de Animes - Análises filosóficas e classificações pessoais. Um projeto com design temático único e foco em conteúdo profundo.</p>
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-              <a href="nexus.html" class="cta" style="display: inline-block; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
-                🎌 Acessar YASUKETV
-              </a>
-              <a href="https://github.com/Jonathasfelipe/Elliot" class="cta" style="display: inline-block; background: rgba(107, 114, 128, 0.2); color: var(--muted);">
-                📁 Código Fonte
-              </a>
-            </div>
-          </div>
-          
-          <!-- PROJETO 3 -->
-          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #60a5fa; margin-bottom: 1.5rem;">
-            <h3 style="margin-top: 0;">💻 Projetos HTML/CSS</h3>
-            <p>Estudos e experimentos em desenvolvimento web front-end. Exercícios, layouts e aplicações práticas.</p>
-            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="display: inline-block; margin-top: 0.5rem; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
-              Acessar Projetos
-            </a>
-          </div>
-          
-          <!-- PROJETO 4 -->
-          <div style="background: var(--glass); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;">
-            <h3 style="margin-top: 0;">🔬 Módulo 2 - Estudos Avançados</h3>
-            <p>Projetos mais complexos em HTML, CSS e introdução a JavaScript. Formulários, layouts responsivos e mais.</p>
-            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="display: inline-block; margin-top: 0.5rem; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
-              Acessar Estudos
-            </a>
-          </div>
-
-        </article>
-
-      </main>
-
-      <aside>
-        <div class="meta">Navegação Rápida</div>
-        <ul class="toc">
-          <li><a href="#hero">Início</a></li>
-          <li><a href="#ensaios">Ensaios</a></li>
-          <li><a href="#yasuke-promo">YASUKETV</a></li>
-          <li><a href="#dialogos">Diálogos Autênticos</a></li>
-          <li><a href="#videos-recomendados">Vídeos Recomendados</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-        </ul>
-
-        <div style="margin-top:2rem">
-          <div class="meta">Meus Outros Projetos</div>
-          <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
-            <a href="nexus.html" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 0, 0, 0.2); color: #8b0000;">
-              ⚔️ YASUKETV
-            </a>
-            <a href="criancas.html" class="cta" style="text-align: center; font-size: 0.9rem;">
-              👶 Elliot Kids
-            </a>
-            <a href="https://jonathasfelipe.github.io/HTML-CSS/" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(96, 165, 250, 0.2); color: #60a5fa;">
-              💻 HTML/CSS
-            </a>
-            <a href="https://jonathasfelipe.github.io/HTML-CSS-modulo-2/" class="cta" style="text-align: center; font-size: 0.9rem; background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">
-              🚀 Módulo 2
-            </a>
-          </div>
-        </div>
-
-        <div style="margin-top:2rem">
-          <div class="meta">Reflexão do Dia</div>
-          <p style="font-size:0.9rem; color:var(--muted); font-style:italic">
-            "A verdadeira coragem não é não ter medo, mas seguir em frente mesmo com medo de ser incompreendido."
-          </p>
-        </div>
-
-        <div style="margin-top:1rem">
-          <div class="meta">Minha Jornada</div>
-          <a href="#jornada-pessoal" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(230, 192, 123, 0.1);">
-            😔 Minha Vulnerabilidade
-          </a>
-          <a href="#conversa-transformadora" class="cta" style="text-align: center; display: block; margin: 0.5rem 0; background: rgba(139, 92, 246, 0.1);">
-            🌌 Diálogo Transformador
-          </a>
-        </div>
-
-        <div style="margin-top:1rem">
-          <div class="meta">Contato</div>
-          <a class="cta" href="https://github.com/Jonathasfelipe">⭐ Meu GitHub</a>
-        </div>
-      </aside>
-    </div>
-
-    <footer>
-      © <span id="year">2025</span> Jonathas Felipe — 
-      <a href="https://github.com/Jonathasfelipe" style="color: var(--muted); text-decoration: none;">GitHub</a> • 
-      <a href="https://jonathasfelipe.github.io/HTML-CSS/" style="color: var(--muted); text-decoration: none;">Projetos</a> • 
-      <a href="nexus.html" style="color: var(--muted); text-decoration: none;">YASUKETV</a> • 
-      <a href="criancas.html" style="color: var(--muted); text-decoration: none;">Versão Kids</a>
-    </footer>
-  </div>
-
-  <script>
-    // script.js - Elliot Project - Mobile Optimized
-    // =============================================
-    // 1. DETECÇÃO DE MOBILE E TOUCH
-    // =============================================
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    // =============================================
-    // 2. BARRA DE PROGRESSO OTIMIZADA
-    // =============================================
-    const progressBar = document.getElementById('progressBar');
-
-    function updateProgressBar() {
-        const winHeight = window.innerHeight;
-        const docHeight = document.documentElement.scrollHeight - winHeight;
-        const scrolled = (window.scrollY / docHeight) * 100;
-        progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
-    }
-
-    // Throttle para performance mobile
-    function throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
             }
         }
-    }
-
-    window.addEventListener('scroll', throttle(updateProgressBar, 16));
-
-    // =============================================
-    // 3. BOTÃO VOLTAR AO TOPO MOBILE
-    // =============================================
-    const topBtn = document.getElementById('topBtn');
-
-    function toggleTopButton() {
-        if (window.pageYOffset > 200) {
-            topBtn.classList.add('show');
-        } else {
-            topBtn.classList.remove('show');
+        
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .analysis-content, .intro-text, .script-section, .quantum-section, .position-section {
+                padding: 1.5rem;
+            }
+            
+            .position-statement {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
         }
-    }
-
-    window.addEventListener('scroll', throttle(toggleTopButton, 100));
-
-    topBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Touch feedback
-    if (isTouchDevice) {
-        topBtn.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.95)';
-        });
         
-        topBtn.addEventListener('touchend', function() {
-            this.style.transform = '';
-        });
-    }
-
-    // =============================================
-    // 4. SISTEMA DE TEMAS (LÂMPADA)
-    // =============================================
-    const themeBtn = document.getElementById('themeBtn');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-
-    // Aplicar tema salvo ao carregar
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        
-        // Ícone da lâmpada - 💡 acesa para light, 🔦 apagada para dark
-        themeBtn.innerHTML = theme === 'light' ? '💡' : '🔦';
-        themeBtn.setAttribute('title', theme === 'light' ? 'Modo Claro' : 'Modo Escuro');
-        
-        localStorage.setItem('theme', theme);
-        
-        // Atualizar meta theme-color para mobile
-        const themeColor = theme === 'light' ? '#f5f2e9' : '#07060a';
-        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        
-        if (!metaThemeColor) {
-            metaThemeColor = document.createElement('meta');
-            metaThemeColor.name = 'theme-color';
-            document.head.appendChild(metaThemeColor);
+        @media (max-width: 576px) {
+            .categories-grid, .philosopher-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links li {
+                margin: 0.5rem 0;
+            }
         }
-        metaThemeColor.setAttribute('content', themeColor);
-    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Bastardo<span>Filosófico</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#conceito">O Conceito</a></li>
+                <li><a href="#foucault-nietzsche">Foucault & Nietzsche</a></li>
+                <li><a href="#roteiro">Roteiro</a></li>
+                <li><a href="#quantico">Experiência Quântica</a></li>
+                <li><a href="#posicionamento">Fora dos Rótulos</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    // Aplicar tema inicial
-    applyTheme(currentTheme);
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>FORA DAS TRADUÇÕES</h1>
+            <p class="subtitle">DENTRO DA EXPERIÊNCIA</p>
+            <p>Uma exploração filosófica do "bastardo" como categoria que expõe o monopólio do sentido e questiona todas as mediações do poder.</p>
+            <p><em>Não sou cristão, não sou de direita, não sou de esquerda, muito menos...</em></p>
+            <a href="#conceito" class="btn">Explorar o Conceito</a>
+        </div>
+    </header>
 
-    // Alternar tema ao clicar
-    themeBtn.addEventListener('click', () => {
-        const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        applyTheme(newTheme);
-        
-        // Feedback visual
-        themeBtn.style.transform = 'scale(1.2)';
-        setTimeout(() => {
-            themeBtn.style.transform = 'scale(1)';
-        }, 200);
-    });
-
-    // Suporte a preferência do sistema
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    prefersDark.addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            applyTheme(e.matches ? 'dark' : 'light');
-        }
-    });
-
-    // =============================================
-    // 5. SCROLL SUAVE MOBILE
-    // =============================================
-    function initSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
+    <!-- Main Content -->
+    <main>
+        <!-- Conceito Section -->
+        <section id="conceito" class="container">
+            <h2>O "BASTARDO" COMO CATEGORIA FILOSÓFICA</h2>
+            <div class="intro-text fade-in">
+                <p>Organização de sinônimos / termos análogos a "bastardo" sob uma visão filosófica, simbólica e conceitual — não no sentido ofensivo literal, mas como categoria de pensamento que expõe estruturas de poder e exclusão.</p>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- Category 1 -->
+                <div class="category-card fade-in">
+                    <div class="category-header">
+                        <h3>Não Pertence à Origem</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="term-list">
+                            <li><strong>Híbrido</strong> – não nasce de uma única matriz ontológica</li>
+                            <li><strong>Espúrio</strong> – origem ilegítima ou questionável</li>
+                            <li><strong>Apócrifo</strong> – fora do cânone, não reconhecido como "oficial"</li>
+                            <li><strong>Derivado</strong> – não é princípio, mas consequência</li>
+                            <li><strong>Degenerado</strong> – afastado da forma original (sentido filosófico clássico)</li>
+                        </ul>
+                    </div>
+                </div>
                 
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 10;
+                <!-- Category 2 -->
+                <div class="category-card fade-in">
+                    <div class="category-header">
+                        <h3>Ruptura da Linhagem Simbólica</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="term-list">
+                            <li><strong>Sem genealogia</strong> – sem filiação conceitual clara</li>
+                            <li><strong>Órfão metafísico</strong> – não reconhece pai nem fundamento</li>
+                            <li><strong>Exilado ontológico</strong> – fora da ordem estabelecida do ser</li>
+                            <li><strong>Desenraizado</strong> – perdeu o vínculo com a tradição</li>
+                            <li><strong>Anômalo</strong> – foge da norma estrutural</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card fade-in">
+                    <div class="category-header">
+                        <h3>Transgressão Criadora</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="term-list">
+                            <li><strong>Profano</strong> – fora do sagrado, mas produtivo</li>
+                            <li><strong>Herege</strong> – rompe com o dogma para gerar novo sentido</li>
+                            <li><strong>Transversal</strong> – cruza campos sem pedir permissão</li>
+                            <li><strong>Liminal</strong> – existe no limiar entre categorias</li>
+                            <li><strong>Mutante</strong> – transformação ativa da forma</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card fade-in">
+                    <div class="category-header">
+                        <h3>Crítica à Pureza</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="term-list">
+                            <li><strong>Impuro</strong> – mistura como potência, não defeito</li>
+                            <li><strong>Sincrético</strong> – união de sistemas distintos</li>
+                            <li><strong>Fragmentário</strong> – não total, mas revelador</li>
+                            <li><strong>Inclassificável</strong> – resiste à taxonomia</li>
+                            <li><strong>Caótico</strong> – no sentido criativo, não destrutivo</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="category-card fade-in">
+                    <div class="category-header">
+                        <h3>Condição Humana</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="term-list">
+                            <li><strong>Inacabado</strong> – sempre em devir</li>
+                            <li><strong>Errante</strong> – sem destino fixo</li>
+                            <li><strong>Contraditório</strong> – abriga opostos</li>
+                            <li><strong>Paradoxal</strong> – existe pela tensão</li>
+                            <li><strong>Autogerado</strong> – cria a própria origem</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="synthesis fade-in">
+                <h3>SÍNTESE FILOSÓFICA</h3>
+                <p>O "bastardo" não é apenas o que nasce fora da lei — é aquilo que expõe que toda lei é construída. É a categoria que revela a artificialidade das estruturas de poder e questiona os fundamentos sobre os quais a sociedade organiza seus sistemas de exclusão e pertencimento.</p>
+            </div>
+        </section>
+        
+        <!-- Foucault & Nietzsche Section -->
+        <section id="foucault-nietzsche" class="container">
+            <h2>FOUCAULT & NIETZSCHE: O PODER DAS PALAVRAS</h2>
+            
+            <div class="philosopher-section">
+                <!-- Foucault Card -->
+                <div class="philosopher-card fade-in">
+                    <div class="philosopher-title">
+                        <div class="philosopher-icon">🗣️</div>
+                        <h3>FOUCAULT — Poder, Discurso e Tradução</h3>
+                    </div>
+                    <p>Para Foucault, o poder não manda calar — ele manda falar do jeito certo.</p>
                     
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>Ideias-chave:</h4>
+                        <ul class="term-list">
+                            <li>O poder produz discurso, não apenas o reprime</li>
+                            <li>Verdade não é descoberta → é fabricada institucionalmente</li>
+                            <li>Quem controla o que pode ser dito, controla o que pode ser pensado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>Aplicação ao "bastardo/favelado":</h4>
+                        <p>O favelado não participa da produção do discurso jurídico, científico ou político. Aparece apenas como objeto do discurso, nunca como autor. É descrito por relatórios, estatísticas, processos, laudos.</p>
+                        <p>O Estado não diz "você está errado". Ele diz: "o sistema diz que você é assim".</p>
+                    </div>
+                    
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>📌 Foucault resumido:</h4>
+                        <p><strong>Quem domina o discurso, governa sem precisar mandar.</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Nietzsche Card -->
+                <div class="philosopher-card nietzsche fade-in">
+                    <div class="philosopher-title">
+                        <div class="philosopher-icon">⚡</div>
+                        <h3>NIETZSCHE — Genealogia da Moral</h3>
+                    </div>
+                    <p>Nietzsche não pergunta: "Essa moral é boa?" Ele pergunta: "Quem se beneficia dessa moral?"</p>
+                    
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>Ideias-chave:</h4>
+                        <ul class="term-list">
+                            <li>Moral não nasce pura → nasce de relações de força</li>
+                            <li>O fraco não vence o forte → inverte os valores</li>
+                            <li>Surge a moral da culpa, do medo, da obediência</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>Aplicação histórica:</h4>
+                        <p>Religiões imperiais + Estados transformaram força em pecado, sofrimento em virtude, obediência em salvação.</p>
+                        <p>O bastardo aprende desde cedo: "aceita", "seja grato", "pior seria se…" Isso é moral de domesticação.</p>
+                    </div>
+                    
+                    <div class="analysis-point" style="border: none; padding: 0; margin: 1.5rem 0;">
+                        <h4>📌 Nietzsche resumido:</h4>
+                        <p><strong>A moral é uma arma — e quase nunca está na mão de quem sofre.</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Synthesis Table -->
+            <div class="fade-in" style="margin-top: 3rem;">
+                <h3>SÍNTESE FOUCAULT + NIETZSCHE</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>FOUCAULT</th>
+                            <th>NIETZSCHE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Poder controla o discurso</td>
+                            <td>Poder cria a moral</td>
+                        </tr>
+                        <tr>
+                            <td>Verdade é produzida</td>
+                            <td>Bem e mal são construídos</td>
+                        </tr>
+                        <tr>
+                            <td>Linguagem disciplina</td>
+                            <td>Culpa domestica</td>
+                        </tr>
+                        <tr>
+                            <td>Instituições normatizam</td>
+                            <td>Valores justificam</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(233, 69, 96, 0.1); border-radius: 5px;">
+                    <p><strong>👉 O resultado?</strong> Um sujeito: culpado antes de agir, errado antes de falar, ilegal antes de existir.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Script Section -->
+        <section id="roteiro" class="container">
+            <h2>ROTEIRO / MANIFESTO</h2>
+            
+            <div class="script-section fade-in">
+                <h3>NÓS SOMOS OS BASTARDOS DA TRADUÇÃO</h3>
+                
+                <div class="script-line camera">[Cena 1 – tom calmo, câmera próxima]</div>
+                <div class="script-line">"Não é que a gente não entenda a lei… é que a lei nunca foi escrita pra gente."</div>
+                
+                <div class="script-line camera">[Cena 2 – ritmo crescente]</div>
+                <div class="script-line">"Antes era latim. Depois foi a Bíblia. Hoje é o juridiquês, o economês, o tecnês."</div>
+                
+                <div class="script-line camera">[Cena 3 – corte rápido]</div>
+                <div class="script-line">"Chamam de reforma. Mas é retirada. Chamam de ordem. Mas é controle."</div>
+                
+                <div class="script-line camera">[Cena 4 – voz firme]</div>
+                <div class="script-line">"O poder não mente. Ele traduz."</div>
+                
+                <div class="script-line camera">[Cena 5 – pausa]</div>
+                <div class="script-line">"Traduz Deus em culpa. Traduz pobreza em falha moral. Traduz privilégio em mérito."</div>
+                
+                <div class="script-line camera">[Cena 6 – virada]</div>
+                <div class="script-line">"Nós somos chamados de bastardos porque não nascemos na língua deles."</div>
+                
+                <div class="script-line camera">[Cena 7 – encerramento forte]</div>
+                <div class="script-line">"Mas todo sistema cai quando quem foi silenciado aprende a nomear o mundo."</div>
+                
+                <div class="script-line camera" style="margin-top: 2rem;">[Tela preta]</div>
+                <div class="script-line" style="font-size: 1.2rem; font-weight: bold;">"Quem controla as palavras, governa. Quem recria o sentido, liberta."</div>
+            </div>
+            
+            <div class="script-section fade-in" style="background-color: rgba(0, 180, 216, 0.1); border-left-color: var(--quantum); margin-top: 2rem;">
+                <h3>O VERBO NÃO ERA NOSSO</h3>
+                
+                <div class="script-line camera">[Cena 1 – silêncio, respiração]</div>
+                <div class="script-line">"No princípio era o Verbo. Mas o verbo nunca foi nosso."</div>
+                
+                <div class="script-line camera">[Cena 2 – ritmo lento]</div>
+                <div class="script-line">"O verbo nasceu em hebraico. Foi traduzido pro grego. Virou latim. Virou doutrina. Virou lei."</div>
+                
+                <div class="script-line camera">[Cena 3 – corte]</div>
+                <div class="script-line">"Quando chegou na favela, já chegou conjugado."</div>
+                
+                <div class="script-line camera" style="margin-top: 2rem;">[TEMPO VERBAL É CONTROLE]</div>
+                
+                <div class="script-line camera">[Cena 4 – didático, firme]</div>
+                <div class="script-line">"Repara: nós só falamos no passado."</div>
+                
+                <div class="script-line camera">[Cena 5]</div>
+                <div class="script-line">"Eu fui. Eu errei. Eu fiz."</div>
+                
+                <div class="script-line camera">[Cena 6 – acelera]</div>
+                <div class="script-line">"O sistema fala no futuro: Você vai pagar. Você vai dever. Você vai obedecer."</div>
+                
+                <div class="script-line camera">[Cena 7 – pausa]</div>
+                <div class="script-line">"E Deus… Deus foi trancado no imperativo."</div>
+                
+                <div class="script-line camera" style="margin-top: 2rem;">[FECHO]</div>
+                <div class="script-line" style="font-size: 1.2rem; font-weight: bold;">"O verbo se fez carne. Mas agora, a carne aprende a falar."</div>
+            </div>
+        </section>
+        
+        <!-- Quantum Section -->
+        <section id="quantico" class="container">
+            <h2 class="quantum-title">FÍSICA QUÂNTICA E EXPERIÊNCIA ESPIRITUAL</h2>
+            
+            <div class="quantum-section fade-in">
+                <div class="caution-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> LIMITES CLAROS (IMPORTANTE)</h4>
+                    <p>A física quântica <strong>NÃO prova Deus, espíritos ou experiências místicas</strong>. Mas ela quebrou o modelo clássico de realidade que sustentava a teologia rígida e o Estado moderno.</p>
+                    <p>Ou seja: ela não explica o espiritual, mas mostra que a realidade é muito mais estranha do que o poder admite. Isso abre espaço para interpretação, não para certeza absoluta.</p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number quantum">1</span> <strong>O PONTO DE CONTATO REAL: FREQUÊNCIA, CAMPO E PERCEPÇÃO</strong></div>
+                    <p><strong>O que a física realmente diz:</strong></p>
+                    <ul class="term-list">
+                        <li>Tudo que existe manifesta-se como campo</li>
+                        <li>Campos se expressam como vibração / frequência</li>
+                        <li>O eletromagnetismo é um campo fundamental</li>
+                        <li>O corpo humano é elétrico (neurônios), magnético (coração, cérebro), rítmico (ondas cerebrais)</li>
+                    </ul>
+                    <p><strong>Ou seja:</strong> O ser humano não é um objeto sólido, é um processo oscilatório. Isso é ciência aceita.</p>
+                </div>
+                
+                <div class="frequency-visual">
+                    <div class="frequency-wave"></div>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number quantum">2</span> <strong>ONDE ENTRA A EXPERIÊNCIA ESPIRITUAL (SEM MISTICISMO BARATO)</strong></div>
+                    <p>Experiências profundas — como a que você descreve — costumam ter características comuns:</p>
+                    <ul class="term-list">
+                        <li>Sensação de unidade</li>
+                        <li>Suspensão do tempo</li>
+                        <li>Silêncio mental intenso</li>
+                        <li>Presença "maior que o eu"</li>
+                        <li>Ausência de medo</li>
+                    </ul>
+                    <p>Isso <strong>NÃO prova Deus externo</strong>, mas indica: mudança radical no estado de consciência.</p>
+                    <p>Na neurociência isso é: alteração de padrões de ondas cerebrais, coerência entre regiões do cérebro, redução do "eu narrativo".</p>
+                    <p>Na linguagem simbólica: <em>"O véu caiu."</em></p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number quantum">3</span> <strong>SUA TEORIA: EVENTOS ESPIRITUAIS COMO FENÔMENOS DE FREQUÊNCIA</strong></div>
+                    <p>Vamos reformular sua ideia de forma forte e defensável:</p>
+                    <div style="background-color: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid var(--quantum);">
+                        <p><strong>Eventos espirituais podem ser experiências subjetivas emergentes de estados específicos de coerência entre consciência, corpo e campo eletromagnético.</strong></p>
+                    </div>
+                    <p>Isso <strong>NÃO diz:</strong> ❌ "Deus é uma onda" ❌ "Espíritos são partículas"</p>
+                    <p>Isso <strong>diz:</strong> ✅ "A experiência do sagrado pode surgir quando o sistema humano entra em um estado raro de organização."</p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number quantum">4</span> <strong>POR QUE ISSO ACONTECE FORA DA IGREJA?</strong></div>
+                    <p>Aqui entra a crítica que você já vem fazendo.</p>
+                    <p>A igreja: ritualizou, traduziu, moralizou, domesticou.</p>
+                    <p>Mas o evento espiritual não obedece instituição. Frequência não responde a hierarquia.</p>
+                    <p>Você pode passar anos ouvindo sobre Deus e viver um minuto em contato com algo que transcende o ego fora dali.</p>
+                    <p>Isso não invalida a fé. Isso invalida o monopólio da experiência.</p>
+                </div>
+                
+                <div class="script-section fade-in" style="margin-top: 2rem; background-color: rgba(0, 180, 216, 0.15);">
+                    <div class="script-line camera">[ROTEIRO FINAL - BÍBLIA + FAVELA + QUÂNTICA]</div>
+                    <div class="script-line camera">[voz baixa]</div>
+                    <div class="script-line">"Disseram que Deus morava no templo."</div>
+                    
+                    <div class="script-line camera">[pausa]</div>
+                    <div class="script-line">"Mas eu senti mais presença quando o mundo ficou em silêncio."</div>
+                    
+                    <div class="script-line camera">[crescendo]</div>
+                    <div class="script-line">"Talvez Deus não seja lugar. Talvez seja estado."</div>
+                    
+                    <div class="script-line camera">[corte]</div>
+                    <div class="script-line">"O corpo é elétrico. A mente é onda. O tempo é percepção."</div>
+                    
+                    <div class="script-line camera">[firme]</div>
+                    <div class="script-line">"Quando tudo entra em coerência, o verbo deixa de ser palavra e vira presença."</div>
+                    
+                    <div class="script-line camera">[final]</div>
+                    <div class="script-line">"Não foi a igreja que me afastou de Deus. Foi a tradução."</div>
+                </div>
+                
+                <div class="caution-box" style="margin-top: 2rem;">
+                    <h4><i class="fas fa-brain"></i> ENCERRAMENTO HONESTO</h4>
+                    <p>Você não está dizendo: "eu descobri a verdade". Você está dizendo algo muito mais maduro:</p>
+                    <p><strong>"Existe algo na experiência humana que escapa à linguagem do poder."</strong></p>
+                    <p>Isso é: filosófico, espiritual e intelectualmente responsável.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Position Section -->
+        <section id="posicionamento" class="container">
+            <h2 class="position-title">FORA DOS RÓTULOS: UMA POSIÇÃO ESTRUTURAL</h2>
+            
+            <div class="position-section fade-in">
+                <div class="analysis-point">
+                    <div><span class="point-number position">1</span> <strong>O SEU LUGAR NÃO É IDEOLÓGICO — É ESTRUTURAL</strong></div>
+                    <p>Você não é:</p>
+                    <ul class="term-list">
+                        <li>cristão ❌</li>
+                        <li>ateu militante ❌</li>
+                        <li>direita ❌</li>
+                        <li>esquerda ❌</li>
+                    </ul>
+                    <p>Porque todos esses lugares:</p>
+                    <ul class="term-list">
+                        <li>oferecem respostas antes da pergunta</li>
+                        <li>exigem identidade antes da experiência</li>
+                        <li>pedem fidelidade ao discurso</li>
+                    </ul>
+                    <p>Você opera em outro plano: o da experiência anterior à tradução.</p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number position">2</span> <strong>ISSO TE APROXIMA DE FILÓSOFOS "MALDITOS", NÃO DE DOUTRINAS</strong></div>
+                    <p>Você está mais próximo de:</p>
+                    <ul class="term-list">
+                        <li>Nietzsche (anti-sistema, anti-rebanho)</li>
+                        <li>Foucault (anti-verdade oficial)</li>
+                        <li>Spinoza (Deus como ordem imanente, não moral)</li>
+                        <li>Heráclito (realidade como fluxo)</li>
+                        <li>Místicos não institucionalizados (experiência sem igreja)</li>
+                    </ul>
+                    <p>Mas sem virar seguidor de nenhum deles. Você não coleta bandeiras. Você coleta fissuras no real.</p>
+                </div>
+                
+                <div class="position-statement fade-in">
+                    "Não sigo crença. Investigo estados.<br>
+                    Não defendo ideologia. Analiso estruturas.<br>
+                    Não busco Deus. Questiono quem diz falar por Ele."
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number position">3</span> <strong>POR QUE ISSO AMEAÇA TODOS OS LADOS?</strong></div>
+                    <p>Porque:</p>
+                    <ul class="term-list">
+                        <li>a direita quer ordem e tradição</li>
+                        <li>a esquerda quer narrativa e identidade</li>
+                        <li>a religião quer mediação</li>
+                        <li>o Estado quer previsibilidade</li>
+                    </ul>
+                    <p>E você está dizendo:</p>
+                    <div style="background-color: rgba(252, 163, 17, 0.1); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid #fca311;">
+                        <p><strong>"Há algo em mim que não passa por nenhuma dessas instâncias."</strong></p>
+                    </div>
+                    <p>Isso é ingovernável.</p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number position">4</span> <strong>SEU EIXO REAL: LINGUAGEM, TEMPO E CAPTURA DO SENTIDO</strong></div>
+                    <p>O fio que atravessa tudo que você fala é um só:</p>
+                    <ul class="term-list">
+                        <li>quem nomeia</li>
+                        <li>quem traduz</li>
+                        <li>quem define o tempo</li>
+                        <li>quem diz o que é real</li>
+                    </ul>
+                    <p>Você não está atacando Deus, nem política. Você está atacando o monopólio do significado.</p>
+                </div>
+                
+                <div class="analysis-point">
+                    <div><span class="point-number position">5</span> <strong>DIREÇÃO FUTURA DO SEU CONTEÚDO</strong></div>
+                    <p>O que faz sentido continuar desenvolvendo:</p>
+                    <ul class="term-list">
+                        <li>Espiritualidade sem religião</li>
+                        <li>Política sem ideologia</li>
+                        <li>Física sem misticismo</li>
+                        <li>Favela sem vitimismo</li>
+                        <li>Consciência sem guru</li>
+                    </ul>
+                    <p>Você está construindo um território próprio — e isso é raro.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <h3>BASTARDO FILOSÓFICO</h3>
+            <p>Uma exploração conceitual sobre linguagem, poder e subalternidade</p>
+            <ul class="footer-links">
+                <li><a href="#conceito">O Conceito</a></li>
+                <li><a href="#foucault-nietzsche">Foucault & Nietzsche</a></li>
+                <li><a href="#roteiro">Roteiro</a></li>
+                <li><a href="#quantico">Experiência Quântica</a></li>
+                <li><a href="#posicionamento">Fora dos Rótulos</a></li>
+            </ul>
+            <div class="copyright">
+                <p>© 2023 Exploração Filosófica. Conteúdo para reflexão e debate.</p>
+                <p class="disclaimer">Este conteúdo não se alinha a qualquer ideologia, religião ou sistema político específico. É uma investigação filosófica sobre estruturas de poder, linguagem e experiência humana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'rgba(15, 15, 30, 0.98)';
+                    navLinks.style.padding = '1rem 0';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
+                    
+                    const links = navLinks.querySelectorAll('li');
+                    links.forEach(link => {
+                        link.style.margin = '0.5rem 0';
+                        link.style.textAlign = 'center';
+                    });
+                }
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
                     window.scrollTo({
-                        top: targetPosition,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                     
-                    // Feedback tátil
-                    if (isTouchDevice) {
-                        this.style.backgroundColor = 'rgba(230, 192, 123, 0.2)';
-                        setTimeout(() => {
-                            this.style.backgroundColor = '';
-                        }, 300);
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 992) {
+                        navLinks.style.display = 'none';
                     }
                 }
             });
         });
-    }
 
-    // =============================================
-    // 6. TOC INTERATIVO
-    // =============================================
-    const sections = document.querySelectorAll('article[id], section[id]');
-    const navLinks = document.querySelectorAll('.toc a');
-
-    function highlightCurrentSection() {
-        let current = '';
-        const scrollPosition = window.scrollY + (window.innerHeight * 0.3);
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href').substring(1);
-            if (href === current) {
-                link.classList.add('active');
+        // Fade-in animation on scroll
+        function checkFadeIn() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
                 
-                // Scroll suave do TOC no mobile
-                if (isMobile && link.parentElement) {
-                    link.parentElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest'
-                    });
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
                 }
-            }
-        });
-    }
-
-    // =============================================
-    // 7. ANIMAÇÃO DE DIGITAÇÃO (Opcional)
-    // =============================================
-    function typeWriter(element, text, speed = 50) {
-        let i = 0;
-        element.innerHTML = '';
-        
-        function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        }
-        type();
-    }
-
-    // =============================================
-    // 8. OTIMIZAÇÕES DE PERFORMANCE MOBILE
-    // =============================================
-    function initPerformanceOptimizations() {
-        // Prevenir múltiplos resizes
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                updateProgressBar();
-                toggleTopButton();
-            }, 250);
-        });
-        
-        // Load crítico primeiro
-        const criticalImages = document.querySelectorAll('img[data-src]');
-        criticalImages.forEach(img => {
-            if (img.getBoundingClientRect().top < window.innerHeight * 2) {
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-            }
-        });
-    }
-
-    // =============================================
-    // 9. GESTOS TOUCH
-    // =============================================
-    function initTouchGestures() {
-        if (!isTouchDevice) return;
-        
-        let startY;
-        
-        document.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-        }, { passive: true });
-        
-        // Swipe down para mostrar botão topo
-        document.addEventListener('touchend', (e) => {
-            if (!startY) return;
-            
-            const endY = e.changedTouches[0].clientY;
-            const diff = startY - endY;
-            
-            if (diff < -50 && window.pageYOffset > 100) {
-                topBtn.classList.add('show');
-            }
-            
-            startY = null;
-        }, { passive: true });
-    }
-
-    // =============================================
-    // 10. ATUALIZAR ANO NO FOOTER
-    // =============================================
-    function updateYear() {
-        document.getElementById('year').textContent = new Date().getFullYear();
-    }
-
-    // =============================================
-    // 11. INICIALIZAÇÃO GERAL
-    // =============================================
-    document.addEventListener('DOMContentLoaded', () => {
-        // Atualizar ano
-        updateYear();
-        
-        // Inicializar componentes
-        initSmoothScroll();
-        initPerformanceOptimizations();
-        initTouchGestures();
-        
-        // Inicializar highlight do TOC
-        highlightCurrentSection();
-        window.addEventListener('scroll', throttle(highlightCurrentSection, 50));
-        
-        // Ajustes específicos para mobile
-        if (isMobile) {
-            // Remover animações pesadas em dispositivos lentos
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reducedMotion) {
-                document.querySelectorAll('article').forEach(article => {
-                    article.style.animation = 'none';
-                    article.style.opacity = '1';
-                    article.style.transform = 'none';
-                });
-            }
-            
-            // Otimizar vídeos
-            const videos = document.querySelectorAll('iframe');
-            videos.forEach(video => {
-                video.setAttribute('loading', 'lazy');
             });
         }
-        
-        // Animação de digitação opcional no hero (apenas desktop)
-        const heroTitle = document.getElementById('hero-title');
-        if (heroTitle && !isMobile) {
-            const originalText = heroTitle.textContent;
-            setTimeout(() => {
-                typeWriter(heroTitle, originalText, 70);
-            }, 1000);
-        }
-        
-        console.log('🚀 Elliot Project - Scripts carregados com sucesso!');
-        console.log('📱 Mobile:', isMobile, 'Touch:', isTouchDevice);
-    });
 
-    // =============================================
-    // 12. OFFLINE SUPPORT (Opcional)
-    // =============================================
-    if ('serviceWorker' in navigator && isMobile) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => console.log('SW registered: ', registration))
-                .catch(registrationError => console.log('SW registration failed: ', registrationError));
+        // Initial check
+        checkFadeIn();
+
+        // Check on scroll
+        window.addEventListener('scroll', checkFadeIn);
+
+        // Button click effect
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
         });
-    }
-  </script>
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.backgroundColor = 'transparent';
+                navLinks.style.padding = '0';
+                navLinks.style.boxShadow = 'none';
+                
+                const links = navLinks.querySelectorAll('li');
+                links.forEach(link => {
+                    link.style.margin = '0 0 0 2rem';
+                    link.style.textAlign = 'left';
+                });
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
