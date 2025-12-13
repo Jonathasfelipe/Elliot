@@ -657,6 +657,17 @@
                 margin: 0.5rem 0;
             }
         }
+        .nav-links .divider {
+    color: rgba(255,255,255,0.5);
+    margin: 0 10px;
+    cursor: default;
+}
+
+@media (max-width: 992px) {
+    .nav-links .divider {
+        display: none;
+    }
+}
     </style>
 </head>
 <body>
@@ -668,12 +679,19 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#conceito">O Conceito</a></li>
-                <li><a href="#foucault-nietzsche">Foucault & Nietzsche</a></li>
-                <li><a href="#roteiro">Roteiro</a></li>
-                <li><a href="#quantico">Experiência Quântica</a></li>
-                <li><a href="#posicionamento">Fora dos Rótulos</a></li>
-            </ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contato.html">Contato</a></li>
+    
+    <li class="divider">|</li>
+    
+    <li><a href="#conceito">O Conceito</a></li>
+    <li><a href="#foucault-nietzsche">Foucault & Nietzsche</a></li>
+    <li><a href="#roteiro">Roteiro</a></li>
+    <li><a href="#quantico">Experiência Quântica</a></li>
+    <li><a href="#posicionamento">Fora dos Rótulos</a></li>
+</ul>
         </div>
     </nav>
 
